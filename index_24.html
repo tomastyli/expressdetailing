@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Express Detailing — Hloubkové čištění interiéru aut v Litomyšli a okolí. Mobilní služba, Koch Chemie, 25+ spokojených zákazníků. Cena od 2 500 Kč." />
+<meta name="theme-color" content="#0a1628" />
+<meta property="og:title" content="Express Detailing — Hloubkové čištění interiéru" />
+<meta property="og:description" content="Nejde jen o čištění. Jde o výsledek. Mobilní detailing v Litomyšli a okolí." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.expressdetailing.cz/" />
+<title>Express Detailing — Hloubkové čištění interiéru | Litomyšl</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy-950: #050d1a;
+  --navy-900: #0a1628;
+  --navy-800: #0f2240;
+  --navy-700: #1a3458;
+  --navy-600: #2a4a73;
+  --blue-accent: #4d8cff;
+  --blue-glow: #7aa9ff;
+  --white: #ffffff;
+  --off-white: #f5f7fb;
+  --gray-300: #c9d3e3;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gold: #d4a857;
+  --success: #22c55e;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--navy-900);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ------- NAVIGATION ------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s var(--ease);
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(5, 13, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--navy-900);
+  box-shadow: 0 8px 24px rgba(77, 140, 255, 0.35);
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--navy-900);
+  padding: 11px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.15);
+}
+.nav-cta svg { width: 16px; height: 16px; }
+
+/* ------- HERO ------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 28px 100px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(77,140,255,0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(122,169,255,0.12), transparent 60%),
+    linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%);
+}
+
+/* hero grid removed */
+
+.hero-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(77, 140, 255, 0.1);
+  border: 1px solid rgba(77, 140, 255, 0.25);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue-glow);
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s var(--ease) both;
+}
+.hero-badge .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 24px;
+  animation: fadeUp 0.9s 0.1s var(--ease) both;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(135deg, var(--blue-glow) 0%, var(--white) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p.lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--gray-300);
+  max-width: 540px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.9s 0.2s var(--ease) both;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.9s 0.3s var(--ease) both;
+}
+.hero-ctas .btn-primary svg,
+.hero-ctas .btn-secondary svg { width: 16px; height: 16px; }
+
+/* Google review badge */
+.google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 16px 10px 12px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  animation: fadeUp 0.9s 0.25s var(--ease) both;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s var(--ease);
+}
+.google-badge:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+.google-badge .g-logo {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.google-badge .g-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--gold);
+}
+.google-badge .g-stars svg { width: 14px; height: 14px; }
+.google-badge .g-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-300);
+  white-space: nowrap;
+}
+.google-badge .g-text strong { color: var(--white); font-weight: 600; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--white);
+  color: var(--navy-900);
+  padding: 13px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.3s var(--ease);
+  box-shadow: 0 8px 30px rgba(255,255,255,0.14);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--blue-glow), var(--white));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+.btn-primary > * { position: relative; z-index: 1; }
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 50px rgba(122, 169, 255, 0.35);
+  color: #ffffff;
+}
+.btn-primary:hover,
+.btn-primary:hover * { color: #ffffff; }
+.btn-primary:hover svg { stroke: #ffffff; color: #ffffff; }
+.btn-primary:hover::before { opacity: 1; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  color: var(--white);
+  padding: 13px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-3px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  animation: fadeUp 0.9s 0.4s var(--ease) both;
+}
+.hero-stats .stat {
+  display: flex;
+  flex-direction: column;
+}
+.hero-stats .num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stats .label {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Hero visual / before-after slider */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--navy-800);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(77,140,255,0.1);
+  animation: fadeUp 1s 0.3s var(--ease) both;
+  user-select: none;
+  touch-action: none;
+}
+.ba-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.ba-image.before {
+  /* PLACEHOLDER: nahraď URL fotkou "PŘED čištěním" */
+  background-image: url('https://images.unsplash.com/photo-1607861716497-e65ab29fc7ac?w=900&q=85');
+  filter: brightness(0.78) contrast(1.05);
+}
+.ba-image.after {
+  /* PLACEHOLDER: nahraď URL fotkou "PO čištění" */
+  background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=85');
+  clip-path: inset(0 0 0 var(--ba-pos, 50%));
+  transition: clip-path 0.5s var(--ease);
+}
+.hero-visual.dragging .ba-image.after { transition: none; }
+
+.ba-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--ba-pos, 50%);
+  width: 2px;
+  background: var(--white);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transform: translateX(-1px);
+  transition: left 0.5s var(--ease);
+  pointer-events: none;
+  z-index: 3;
+}
+.hero-visual.dragging .ba-divider { transition: none; }
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--ba-pos, 50%);
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: var(--white);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: ew-resize;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  z-index: 4;
+  transition: left 0.5s var(--ease), transform 0.2s var(--ease);
+}
+.hero-visual.dragging .ba-handle { transition: transform 0.2s var(--ease); }
+.ba-handle:hover { transform: translate(-50%, -50%) scale(1.1); }
+.ba-handle svg { width: 20px; height: 20px; color: var(--navy-900); }
+
+.ba-label {
+  position: absolute;
+  top: 18px;
+  padding: 6px 12px;
+  background: rgba(5,13,26,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  z-index: 3;
+  pointer-events: none;
+}
+.ba-label.before-label { left: 18px; }
+.ba-label.after-label { right: 18px; background: rgba(77,140,255,0.85); border-color: rgba(255,255,255,0.2); }
+
+/* Marquee / trust strip */
+.trust-strip {
+  background: var(--navy-950);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 22px 0;
+  overflow: hidden;
+}
+.marquee {
+  display: flex;
+  gap: 60px;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.marquee-item {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  letter-spacing: -0.01em;
+}
+.marquee-item::after {
+  content: '✦';
+  color: var(--blue-accent);
+  font-size: 14px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ------- SECTIONS ------- */
+section { padding: 110px 28px; position: relative; }
+.container { max-width: 1280px; margin: 0 auto; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-glow);
+  margin-bottom: 20px;
+}
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--blue-accent);
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--blue-glow);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--gray-300);
+  max-width: 620px;
+  margin-bottom: 64px;
+}
+
+/* ------- ABOUT / VALUE ------- */
+.about {
+  background: var(--navy-900);
+  position: relative;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.08rem;
+  color: var(--gray-300);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.about-text strong { color: var(--white); font-weight: 600; }
+
+.value-cards {
+  display: grid;
+  gap: 16px;
+}
+.value-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 28px;
+  border-radius: var(--radius);
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--blue-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s var(--ease);
+}
+.value-card:hover { transform: translateX(4px); border-color: rgba(77,140,255,0.3); }
+.value-card:hover::before { transform: scaleY(1); }
+.value-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.value-card p { color: var(--gray-400); font-size: 0.96rem; }
+.value-card .icon-wrap {
+  width: 44px; height: 44px;
+  background: rgba(77,140,255,0.12);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+}
+.value-card .icon-wrap svg { width: 22px; height: 22px; color: var(--blue-glow); }
+
+/* ------- SERVICE / WHAT WE DO ------- */
+.service {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(77,140,255,0.08), transparent 50%),
+    var(--navy-950);
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+.service-item {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 28px;
+  border-radius: var(--radius);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.3s var(--ease);
+}
+.service-item:hover {
+  background: rgba(77,140,255,0.05);
+  border-color: rgba(77,140,255,0.25);
+  transform: translateY(-3px);
+}
+.service-check {
+  width: 28px;
+  height: 28px;
+  background: var(--blue-accent);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.service-check svg { width: 16px; height: 16px; color: var(--white); }
+.service-item .label {
+  font-size: 1.02rem;
+  color: var(--white);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ------- PRICING BLOCK ------- */
+.pricing-block {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.price-card {
+  background: linear-gradient(135deg, var(--white), var(--off-white));
+  color: var(--navy-900);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+.price-card.dark {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.price-card .price-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--navy-700);
+}
+.price-card.dark .price-label { color: var(--blue-glow); }
+.price-card .amount {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.price-card .amount small { font-size: 1rem; font-weight: 500; opacity: 0.6; }
+.price-card .desc { font-size: 0.98rem; opacity: 0.75; margin-top: 12px; }
+
+/* ------- PROCESS / HOW IT WORKS ------- */
+.process {
+  background: var(--navy-900);
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+  position: relative;
+}
+.process-step {
+  position: relative;
+}
+.step-num {
+  font-family: 'Fraunces', serif;
+  font-size: 5rem;
+  font-weight: 500;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--blue-accent);
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+.process-step h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.process-step p { color: var(--gray-400); font-size: 1rem; }
+
+/* ------- BEFORE/AFTER GALLERY ------- */
+.gallery {
+  background: var(--navy-950);
+  position: relative;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.ba-card {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: none;
+  background: var(--navy-800);
+  transition: transform 0.4s var(--ease), border-color 0.3s var(--ease);
+}
+.ba-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(77,140,255,0.3);
+}
+.ba-card .ba-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.ba-card .ba-image.after {
+  clip-path: inset(0 0 0 var(--ba-pos, 50%));
+  transition: clip-path 0.4s var(--ease);
+}
+.ba-card.dragging .ba-image.after { transition: none; }
+.ba-card .ba-divider {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: var(--ba-pos, 50%);
+  width: 2px;
+  background: var(--white);
+  box-shadow: 0 0 14px rgba(0,0,0,0.4);
+  transform: translateX(-1px);
+  transition: left 0.4s var(--ease);
+  pointer-events: none;
+  z-index: 2;
+}
+.ba-card.dragging .ba-divider { transition: none; }
+.ba-card .ba-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--ba-pos, 50%);
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 38px;
+  background: var(--white);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: left 0.4s var(--ease);
+}
+.ba-card.dragging .ba-handle { transition: none; }
+.ba-card .ba-handle svg { width: 16px; height: 16px; color: var(--navy-900); }
+.ba-card .ba-label {
+  position: absolute;
+  top: 14px;
+  padding: 5px 11px;
+  border-radius: 100px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.ba-card .ba-label.before-label {
+  left: 14px;
+  background: rgba(5,13,26,0.8);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+}
+.ba-card .ba-label.after-label {
+  right: 14px;
+  background: rgba(77,140,255,0.85);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+}
+.gallery-note {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--gray-500);
+}
+.gallery-note svg {
+  width: 14px; height: 14px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+/* ------- REFERENCE / TESTIMONIALS ------- */
+  background:
+    radial-gradient(ellipse at center top, rgba(77,140,255,0.1), transparent 60%),
+    var(--navy-950);
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 48px;
+}
+.testimonial {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 32px;
+  border-radius: var(--radius);
+  position: relative;
+  transition: all 0.4s var(--ease);
+}
+.testimonial:hover {
+  border-color: rgba(77,140,255,0.3);
+  transform: translateY(-4px);
+  background: rgba(77,140,255,0.04);
+}
+.stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 18px;
+  color: var(--gold);
+}
+.stars svg { width: 18px; height: 18px; }
+.testimonial-text {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  color: var(--white);
+  font-weight: 400;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.author-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow));
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy-900);
+}
+.author-name { font-weight: 600; }
+.author-loc { font-size: 13px; color: var(--gray-400); }
+
+/* ------- CONTRACT FORM ------- */
+.contract {
+  background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
+}
+.contract-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.contract-info p {
+  font-size: 1.08rem;
+  color: var(--gray-300);
+  margin-bottom: 20px;
+}
+.contract-bullets {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+.contract-bullets li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: var(--gray-300);
+  font-size: 1rem;
+}
+.contract-bullets svg {
+  width: 22px; height: 22px;
+  color: var(--blue-glow);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.form-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.form-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.form-card .form-sub {
+  color: var(--gray-400);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+.form-row { margin-bottom: 18px; }
+.form-row label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-300);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.form-row input,
+.form-row textarea,
+.form-row select {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: var(--white);
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.2s var(--ease);
+}
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  outline: none;
+  border-color: var(--blue-accent);
+  background: rgba(77,140,255,0.05);
+  box-shadow: 0 0 0 4px rgba(77,140,255,0.1);
+}
+.form-row textarea { resize: vertical; min-height: 110px; font-family: inherit; }
+.form-row select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9d3e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; padding-right: 44px; }
+.form-row select option { background: var(--navy-800); color: var(--white); }
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: var(--white);
+  color: var(--navy-900);
+  border: none;
+  padding: 13px 24px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+  margin-top: 6px;
+  font-family: inherit;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 6px 22px rgba(255,255,255,0.1);
+}
+.btn-submit svg { width: 16px; height: 16px; }
+.btn-submit:hover {
+  transform: translateY(-2px);
+  background: var(--blue-glow);
+  color: var(--white);
+}
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.form-success, .form-error {
+  display: none;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 16px;
+  font-size: 14.5px;
+}
+.form-success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #6ee7b7; }
+.form-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+.form-success.show, .form-error.show { display: block; }
+
+.form-fine {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ------- FAQ ------- */
+.faq {
+  background: var(--navy-900);
+}
+.faq-list {
+  margin-top: 48px;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--white);
+  padding: 28px 0;
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--blue-glow); }
+.faq-toggle {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.3s var(--ease);
+}
+.faq-toggle svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease); }
+.faq-item.active .faq-toggle { background: var(--blue-accent); border-color: var(--blue-accent); }
+.faq-item.active .faq-toggle svg { transform: rotate(45deg); }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
+  color: var(--gray-300);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.faq-item.active .faq-answer { max-height: 300px; padding-bottom: 28px; }
+
+/* ------- FINAL CTA ------- */
+.final-cta {
+  background:
+    radial-gradient(ellipse at center, rgba(77,140,255,0.25), transparent 60%),
+    var(--navy-950);
+  text-align: center;
+  padding: 130px 28px;
+}
+.final-cta h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-cta h2 em {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--blue-glow), var(--white));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.final-cta p {
+  font-size: 1.15rem;
+  color: var(--gray-300);
+  margin-bottom: 40px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-cta .phone-display {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s var(--ease);
+}
+.final-cta .phone-display:hover {
+  color: var(--blue-glow);
+  transform: scale(1.03);
+}
+
+/* ------- FOOTER ------- */
+footer {
+  background: var(--navy-950);
+  padding: 70px 28px 30px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+.footer-col h5 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-glow);
+  margin-bottom: 18px;
+}
+.footer-col p, .footer-col a {
+  color: var(--gray-400);
+  font-size: 14.5px;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-brand p { max-width: 320px; line-height: 1.6; }
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  transition: all 0.25s var(--ease);
+}
+.socials a:hover {
+  background: var(--blue-accent);
+  border-color: var(--blue-accent);
+  transform: translateY(-2px);
+}
+.socials svg { width: 17px; height: 17px; color: var(--white); }
+
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+/* ------- STICKY MOBILE CTA ------- */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 13, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  display: none;
+  z-index: 90;
+  gap: 10px;
+  transform: translateY(100%);
+  transition: transform 0.5s var(--ease);
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta a {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: all 0.2s;
+}
+.sticky-cta .call {
+  background: var(--white);
+  color: var(--navy-900);
+}
+.sticky-cta .sms {
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.sticky-cta svg { width: 17px; height: 17px; }
+
+/* ------- ANIMATIONS ------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------- RESPONSIVE ------- */
+@media (max-width: 980px) {
+  .hero-content { grid-template-columns: 1fr; gap: 50px; }
+  .hero-visual { max-width: 460px; margin: 0 auto; }
+  .about-grid, .contract-wrap { grid-template-columns: 1fr; gap: 50px; }
+  .pricing-block { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; gap: 40px; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+  .footer-wrap { grid-template-columns: 1fr 1fr; }
+  section { padding: 80px 24px; }
+  .nav-cta span { display: none; }
+}
+
+@media (max-width: 640px) {
+  .nav { padding: 14px 18px; }
+  .nav.scrolled { padding: 10px 18px; }
+  .logo { font-size: 18px; }
+  .logo-mark { width: 32px; height: 32px; font-size: 16px; }
+  .nav-cta { padding: 9px 14px; font-size: 13px; }
+  .hero { padding: 110px 20px 80px; }
+  .hero-stats { gap: 24px; }
+  .hero-stats .num { font-size: 1.9rem; }
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  section { padding: 70px 20px; }
+  .form-card { padding: 28px 22px; }
+  .form-grid-2 { grid-template-columns: 1fr; }
+  .footer-wrap { grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .price-card { padding: 30px 24px; }
+  .price-card .amount { font-size: 2.4rem; }
+  .sticky-cta { display: flex; }
+  body { padding-bottom: 80px; }
+  .marquee-item { font-size: 15px; gap: 30px; }
+  .marquee { gap: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <a href="#" class="logo">
+    <span class="logo-mark">E</span>
+    Express Detailing
+  </a>
+  <a href="tel:+420792302615" class="nav-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>Zavolat</span>
+  </a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Aktuálně přijímám rezervace · Litomyšl a okolí
+      </div>
+      <h1>Interiér jako z&nbsp;nového vozu. <em>Bez kompromisů.</em></h1>
+      <p class="lead">
+        Mobilní hloubkové čištění interiéru. Přijedu k Vám domů nebo do práce, pracuji s profesionální autokosmetikou Koch Chemie a moderním vybavením.
+      </p>
+      <a href="https://www.google.com/search?q=Express+Detailing+Litomy%C5%A1l" target="_blank" rel="noopener" class="google-badge">
+        <svg class="g-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <div class="g-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span class="g-text"><strong>5,0</strong> · Google recenze</span>
+      </a>
+      <div class="hero-ctas">
+        <a href="tel:+420792302615" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Zavolat: 792 302 615
+        </a>
+        <a href="sms:+420792302615" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Napsat SMS
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="num">25+</span>
+          <span class="label">Spokojených zákazníků</span>
+        </div>
+        <div class="stat">
+          <span class="num">★ 5.0</span>
+          <span class="label">Hodnocení</span>
+        </div>
+        <div class="stat">
+          <span class="num">od&nbsp;2 500</span>
+          <span class="label">Kč za auto</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="baSlider" style="--ba-pos: 50%">
+      <div class="ba-image before"></div>
+      <div class="ba-image after"></div>
+      <span class="ba-label before-label">Před</span>
+      <span class="ba-label after-label">Po</span>
+      <div class="ba-divider"></div>
+      <div class="ba-handle" id="baHandle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6" style="opacity:0"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="position:absolute"><polyline points="9 6 15 12 9 18"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="marquee">
+    <div class="marquee-item">Koch Chemie</div>
+    <div class="marquee-item">Mobilní služba</div>
+    <div class="marquee-item">Parní čištění</div>
+    <div class="marquee-item">Tepování</div>
+    <div class="marquee-item">Kůže &amp; plasty</div>
+    <div class="marquee-item">Pracovní auta &amp; kamiony</div>
+    <div class="marquee-item">Koch Chemie</div>
+    <div class="marquee-item">Mobilní služba</div>
+    <div class="marquee-item">Parní čištění</div>
+    <div class="marquee-item">Tepování</div>
+    <div class="marquee-item">Kůže &amp; plasty</div>
+    <div class="marquee-item">Pracovní auta &amp; kamiony</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="o-mne">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label">O službě</span>
+        <h2 class="section-title">Nejde jen o čištění. Jde o <em>výsledek.</em></h2>
+        <p>
+          Express Detailing vznikl s cílem čistit interiéry důkladně a bez kompromisů. Nejde o rychlé přetření povrchů, ale o skutečně <strong>hloubkové vyčištění</strong> sedaček, koberců, plastů i detailů, které jsou běžně přehlíženy.
+        </p>
+        <p>
+          Každému vozu věnuji maximální péči. Pracuji s profesionální autokosmetikou <strong>Koch Chemie</strong> a moderním vybavením. Díky tomu dokážu vrátit interiéru čistotu, svěžest a pocit jako z nového vozu.
+        </p>
+        <p>
+          Funguji jako <strong>mobilní služba</strong> v Litomyšli a okolí — přijedu za Vámi domů nebo do práce a postarám se o Váš vůz přímo na místě.
+        </p>
+      </div>
+      <div class="value-cards reveal">
+        <div class="value-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>Přijedu za Vámi</h4>
+          <p>Domů, do práce, nebo kdekoliv máte dostatek prostoru a zásuvku do 30 m.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Profi vybavení</h4>
+          <p>Koch Chemie kosmetika, parní čištění, extraktor — bez kompromisů.</p>
+        </div>
+        <div class="value-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h4>Hloubková péče</h4>
+          <p>Včetně detailů a spár, které běžné mytí přehlíží. Cit pro každý povrch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE / WHAT IS INCLUDED -->
+<section class="service" id="sluzby">
+  <div class="container">
+    <span class="section-label reveal">Co je v ceně</span>
+    <h2 class="section-title reveal">Hloubkové čištění interiéru — <em>kompletně.</em></h2>
+    <p class="section-subtitle reveal">
+      Interiér auta toho zažije opravdu hodně. Prach, skvrny na sedačkách, zašlé plasty, drobky ve spárách. Cílem je důkladná obnova — ne kosmetická úprava.
+    </p>
+
+    <div class="service-list">
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Důkladné vysátí celého interiéru</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Čištění a ošetření plastových dílů</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Čištění a ošetření kožených sedaček</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Vyčištění dveřních prostor a detailů</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Parní čištění vybraných částí</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="label">Tepování sedaček a koberců (pokud je potřeba)</div>
+      </div>
+    </div>
+
+    <div class="pricing-block">
+      <div class="price-card reveal">
+        <div class="price-label">Osobní auta</div>
+        <div class="amount">od 2 500&nbsp;<small>Kč</small></div>
+        <p class="desc">Cena za standardní vůz. U výrazně znečištěných nebo nadměrně velkých vozů cena dohodou.</p>
+      </div>
+      <div class="price-card dark reveal">
+        <div class="price-label">Pracovní auta &amp; kamiony</div>
+        <div class="amount">Cena dohodou</div>
+        <p class="desc">Čistím i užitkové vozy, dodávky a tahače. Stačí se ozvat — domluvíme se na rozsahu a termínu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <span class="section-label reveal">Jak to probíhá</span>
+    <h2 class="section-title reveal">Jednoduše, rychle, <em>bez starostí.</em></h2>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <span class="step-num">01</span>
+        <h4>Zavoláte nebo napíšete SMS</h4>
+        <p>Domluvíme termín a místo, které Vám vyhovuje — doma, v práci, nebo u mě v Litomyšli.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="step-num">02</span>
+        <h4>Přijedu za Vámi</h4>
+        <p>Potřebuji pouze běžnou elektrickou zásuvku (do 30 m) a dostatek prostoru kolem vozu. Vodu si vozím.</p>
+      </div>
+      <div class="process-step reveal">
+        <span class="step-num">03</span>
+        <h4>Auto jako nové</h4>
+        <p>Hloubkové čištění s profi vybavením. Předávám Vám vůz s pocitem, jako byste ho právě převzali ze showroomu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reference">
+  <div class="container">
+    <span class="section-label reveal">Reference</span>
+    <h2 class="section-title reveal">Co říkají moji <em>zákazníci.</em></h2>
+
+    <div class="testimonial-grid">
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">„Skvělá práce, auto jako nové. Doporučuji na 200&nbsp;%."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Alena</div>
+            <div class="author-loc">Litomyšl</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">„Interiér vyčištěný perfektně, skvělá domluva, vysoká kvalita a cit pro detail. Doporučuji!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">F</div>
+          <div>
+            <div class="author-name">Filip</div>
+            <div class="author-loc">Okolí Litomyšle</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">„Čištění interiéru na jedničku. Super domluva, kvalitně odvedená práce a dobrá cena. Auto vypadá jako nové."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">B</div>
+          <div>
+            <div class="author-name">Bořivoj</div>
+            <div class="author-loc">Litomyšl</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER GALLERY -->
+<section class="gallery" id="galerie">
+  <div class="container">
+    <span class="section-label reveal">Před a po</span>
+    <h2 class="section-title reveal">Výsledky mluví <em>za mě.</em></h2>
+    <p class="section-subtitle reveal">Posuňte čáru a podívejte se na rozdíl. Skutečné fotky z mé práce.</p>
+
+    <div class="gallery-grid">
+      <!-- PLACEHOLDER FOTKY: nahraď URL skutečnými fotkami "před" a "po" -->
+      <div class="ba-card" style="--ba-pos: 50%">
+        <div class="ba-image before" style="background-image:url('https://images.unsplash.com/photo-1607861716497-e65ab29fc7ac?w=900&q=85');filter:brightness(0.78) contrast(1.05);"></div>
+        <div class="ba-image after" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=85');"></div>
+        <span class="ba-label before-label">Před</span>
+        <span class="ba-label after-label">Po</span>
+        <div class="ba-divider"></div>
+        <div class="ba-handle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+      </div>
+
+      <div class="ba-card" style="--ba-pos: 50%">
+        <div class="ba-image before" style="background-image:url('https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=85');filter:brightness(0.7) contrast(1.1);"></div>
+        <div class="ba-image after" style="background-image:url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=900&q=85');"></div>
+        <span class="ba-label before-label">Před</span>
+        <span class="ba-label after-label">Po</span>
+        <div class="ba-divider"></div>
+        <div class="ba-handle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+      </div>
+
+      <div class="ba-card" style="--ba-pos: 50%">
+        <div class="ba-image before" style="background-image:url('https://images.unsplash.com/photo-1604335079441-c0d52d68b9af?w=900&q=85');filter:brightness(0.75) contrast(1.05);"></div>
+        <div class="ba-image after" style="background-image:url('https://images.unsplash.com/photo-1605618826115-fb9e0c4d3989?w=900&q=85');"></div>
+        <span class="ba-label before-label">Před</span>
+        <span class="ba-label after-label">Po</span>
+        <div class="ba-divider"></div>
+        <div class="ba-handle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+      </div>
+
+      <div class="ba-card" style="--ba-pos: 50%">
+        <div class="ba-image before" style="background-image:url('https://images.unsplash.com/photo-1612883192655-9e3a32eb3aa3?w=900&q=85');filter:brightness(0.78) contrast(1.05);"></div>
+        <div class="ba-image after" style="background-image:url('https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=900&q=85');"></div>
+        <span class="ba-label before-label">Před</span>
+        <span class="ba-label after-label">Po</span>
+        <div class="ba-divider"></div>
+        <div class="ba-handle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <p class="gallery-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--blue-glow);"><path d="M9 18l6-6-6-6"/></svg>
+      Klikněte a táhněte čáru pro porovnání
+    </p>
+  </div>
+</section>
+
+<!-- CONTRACT FORM -->
+<section class="contract" id="spoluprace">
+  <div class="container">
+    <div class="contract-wrap">
+      <div class="contract-info reveal">
+        <span class="section-label">Dlouhodobá spolupráce</span>
+        <h2 class="section-title">Pravidelná péče pro <em>firmy &amp; flotily.</em></h2>
+        <p>
+          Provozujete autopůjčovnu, taxi službu, firemní flotilu nebo dopravní společnost? Domluvíme se na pravidelné péči o Vaše vozy se zvýhodněnou cenou.
+        </p>
+        <ul class="contract-bullets">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Individuální cenová nabídka podle počtu vozů
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Pravidelný harmonogram (týdně, měsíčně)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Vystavení faktury, možnost rámcové smlouvy
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Čištění přímo u Vás — bez výpadku provozu
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Poptávka spolupráce</h3>
+        <p class="form-sub">Vyplňte formulář a ozvu se Vám obvykle do 24 hodin.</p>
+        <form id="contractForm">
+          <div class="form-row">
+            <label for="name">Jméno a příjmení / Firma *</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="phone">Telefon *</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+            </div>
+            <div class="form-row">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="fleet">Počet vozů</label>
+            <select id="fleet" name="fleet">
+              <option value="1-3">1–3 vozy</option>
+              <option value="4-10">4–10 vozů</option>
+              <option value="11-25">11–25 vozů</option>
+              <option value="25+">Více než 25 vozů</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Stručný popis Vaší poptávky</label>
+            <textarea id="message" name="message" placeholder="Jaký typ vozů, jak často byste chtěli čistit, lokalita…"></textarea>
+          </div>
+          <!-- honeypot -->
+          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span>Odeslat poptávku</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <div class="form-success" id="formSuccess">✓ Děkuji! Poptávka odeslána, ozvu se Vám obvykle do 24 hodin.</div>
+          <div class="form-error" id="formError">Nepodařilo se odeslat. Zkuste prosím zavolat na 792 302 615.</div>
+          <p class="form-fine">Pro rychlou domluvu termínu raději <a href="tel:+420792302615" style="color:var(--blue-glow);">zavolejte</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-label reveal" style="text-align:center;display:flex;justify-content:center;">Časté dotazy</span>
+    <h2 class="section-title reveal" style="text-align:center;margin-left:auto;margin-right:auto;">Na co se nejčastěji <em>ptáte.</em></h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          Musím zajistit přístup k vodě a elektřině?
+          <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">Vodu si vozím sám, potřebuji pouze zásuvku do 30 metrů od auta.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Co se stane, když bude v termínu pršet?
+          <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">Pokud nemáte k dispozici přístřešek nebo garáž, včas Vás kontaktuji a zdarma přeobjednám službu na nejbližší možný termín.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Kde všude je možné auto vyčistit?
+          <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">Kdekoliv, potřebuji pouze dostatek prostoru kolem auta a přístup k elektřině.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Co když nemám vhodné místo na čištění?
+          <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">Není problém, mám své místo v Litomyšli, kam mi auto můžete dovézt.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Čistíte i kamiony a pracovní auta?
+          <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">Ano, čistím i pracovní auta, dodávky a kamiony. U těchto vozů je cena dohodou — záleží na velikosti a stupni znečištění.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Rezervujte si termín. <em>Auto za Vámi nepojede zpět stejné.</em></h2>
+    <p>Nejrychlejší cesta k čistému interiéru — zavolejte nebo napište SMS.</p>
+    <a href="tel:+420792302615" class="phone-display">+420 792 302 615</a>
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;">
+      <a href="tel:+420792302615" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Zavolat hned
+      </a>
+      <a href="sms:+420792302615" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Napsat SMS
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-col footer-brand">
+      <a href="#" class="logo" style="margin-bottom:18px;">
+        <span class="logo-mark">E</span>
+        Express Detailing
+      </a>
+      <p>Hloubkové čištění interiéru aut v Litomyšli a okolí. Mobilní služba — přijedu za Vámi.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/profile.php?id=61580205237265" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/expressdetailing_lit" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Kontakt</h5>
+      <a href="tel:+420792302615">+420 792 302 615</a>
+      <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a>
+      <p style="margin-top:14px;">Litomyšl a okolí</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigace</h5>
+      <a href="#o-mne">O službě</a>
+      <a href="#sluzby">Co je v ceně</a>
+      <a href="#galerie">Galerie před/po</a>
+      <a href="#reference">Reference</a>
+      <a href="#spoluprace">Spolupráce</a>
+      <a href="#faq">Časté dotazy</a>
+    </div>
+    <div class="footer-col">
+      <h5>Firma</h5>
+      <p>IČO: 23820560</p>
+      <p>Express Detailing</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Express Detailing. Všechna práva vyhrazena.</div>
+    <div>Pohání Cloudflare Pages</div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="sms:+420792302615" class="sms">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    SMS
+  </a>
+  <a href="tel:+420792302615" class="call">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Zavolat: 792 302 615
+  </a>
+</div>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+const stickyCta = document.getElementById('stickyCta');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  if (window.scrollY > 500) stickyCta.classList.add('visible');
+  else stickyCta.classList.remove('visible');
+}, { passive: true });
+
+// Before/After slider — auto cycle + drag
+(function () {
+  const slider = document.getElementById('baSlider');
+  if (!slider) return;
+  let dragging = false;
+  let autoTimer = null;
+  let autoState = 0; // 0 = after visible (pos 30%), 1 = before visible (pos 70%)
+
+  const setPos = (pct) => {
+    pct = Math.max(0, Math.min(100, pct));
+    slider.style.setProperty('--ba-pos', pct + '%');
+  };
+
+  const startAuto = () => {
+    stopAuto();
+    autoTimer = setInterval(() => {
+      autoState = autoState ? 0 : 1;
+      setPos(autoState ? 72 : 28);
+    }, 4000);
+  };
+  const stopAuto = () => {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  };
+
+  const dragMove = (clientX) => {
+    const rect = slider.getBoundingClientRect();
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    setPos(pct);
+  };
+
+  const onDown = (e) => {
+    dragging = true;
+    stopAuto();
+    slider.classList.add('dragging');
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    dragMove(x);
+    e.preventDefault();
+  };
+  const onMove = (e) => {
+    if (!dragging) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    dragMove(x);
+  };
+  const onUp = () => {
+    if (!dragging) return;
+    dragging = false;
+    slider.classList.remove('dragging');
+    setTimeout(startAuto, 2500);
+  };
+
+  slider.addEventListener('mousedown', onDown);
+  slider.addEventListener('touchstart', onDown, { passive: false });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('mouseup', onUp);
+  window.addEventListener('touchend', onUp);
+
+  // Start auto after initial render
+  setPos(50);
+  setTimeout(() => { setPos(28); autoState = 0; startAuto(); }, 1200);
+})();
+
+// Gallery before/after cards — drag only
+document.querySelectorAll('.ba-card').forEach((card) => {
+  let dragging = false;
+  const setPos = (pct) => {
+    pct = Math.max(0, Math.min(100, pct));
+    card.style.setProperty('--ba-pos', pct + '%');
+  };
+  const move = (clientX) => {
+    const rect = card.getBoundingClientRect();
+    setPos(((clientX - rect.left) / rect.width) * 100);
+  };
+  const down = (e) => {
+    dragging = true;
+    card.classList.add('dragging');
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    move(x);
+    e.preventDefault();
+  };
+  const mv = (e) => {
+    if (!dragging) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    move(x);
+  };
+  const up = () => {
+    if (!dragging) return;
+    dragging = false;
+    card.classList.remove('dragging');
+  };
+  card.addEventListener('mousedown', down);
+  card.addEventListener('touchstart', down, { passive: false });
+  window.addEventListener('mousemove', mv);
+  window.addEventListener('touchmove', mv, { passive: true });
+  window.addEventListener('mouseup', up);
+  window.addEventListener('touchend', up);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach((el) => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach((i) => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+// Form submission
+const form = document.getElementById('contractForm');
+const submitBtn = document.getElementById('submitBtn');
+const successMsg = document.getElementById('formSuccess');
+const errorMsg = document.getElementById('formError');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  successMsg.classList.remove('show');
+  errorMsg.classList.remove('show');
+
+  // Honeypot check
+  if (form.website.value) return;
+
+  submitBtn.disabled = true;
+  submitBtn.querySelector('span').textContent = 'Odesílám...';
+
+  const data = {
+    name: form.name.value.trim(),
+    phone: form.phone.value.trim(),
+    email: form.email.value.trim(),
+    fleet: form.fleet.value,
+    message: form.message.value.trim(),
+  };
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error('fail');
+    successMsg.classList.add('show');
+    form.reset();
+  } catch (err) {
+    errorMsg.classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.querySelector('span').textContent = 'Odeslat poptávku';
+  }
+});
+</script>
+</body>
+</html>
