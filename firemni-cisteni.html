@@ -452,6 +452,88 @@ img { max-width: 100%; display: block; }
   position: relative;
   z-index: 2;
 }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-main { min-width: 0; }
+
+/* Hero obrázek / vizuál */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 25%, rgba(227,18,45,0.18), transparent 65%),
+    linear-gradient(160deg, var(--ink-700), var(--ink-900));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(227,18,45,0.1);
+  animation: fadeUp 1s 0.3s var(--ease) both;
+}
+.hero-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* Placeholder, dokud není nahraná fotka. Po vložení <img> ho překryje obrázek. */
+.hero-visual .placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 32px;
+  color: var(--gray-400);
+}
+.hero-visual .placeholder svg {
+  width: 56px;
+  height: 56px;
+  color: rgba(255,59,78,0.55);
+}
+.hero-visual .placeholder span {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  max-width: 260px;
+  line-height: 1.5;
+}
+.hero-visual .ph-frame {
+  position: absolute;
+  inset: 16px;
+  border: 1px dashed rgba(255,255,255,0.14);
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+}
+/* Plovoucí odznak přes obrázek */
+.hero-visual .visual-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(6,6,7,0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 9px 15px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--white);
+  z-index: 2;
+}
+.hero-visual .visual-badge svg { width: 15px; height: 15px; color: var(--red-glow); }
 
 .breadcrumb {
   font-size: 13px;
@@ -1575,8 +1657,11 @@ footer {
   .nav-cta span { display: none; }
   .nav-desktop-links { display: none; }
   .nav-toggle { display: flex; }
+  .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .hero-visual { max-width: 440px; margin: 0 auto; width: 100%; }
 }
 @media (max-width: 640px) {
+  .hero-visual { aspect-ratio: 4 / 3; }
   .nav { padding: 14px 18px; }
   .nav.scrolled { padding: 10px 18px; }
   .logo { font-size: 18px; gap: 9px; }
@@ -1692,36 +1777,55 @@ textarea:focus-visible,
     <nav class="breadcrumb" aria-label="Drobečková navigace">
       <a href="/">Úvod</a> &nbsp;/&nbsp; <span>Firemní čištění</span>
     </nav>
-    <div class="hero-badge">
-      <span class="dot"></span>
-      Pro firmy s vozovým parkem · Litomyšl a okolí
-    </div>
-    <h1>Firemní čištění aut, které <em>drží vaši flotilu reprezentativní.</em></h1>
-    <p class="lead">
-      Mobilní detailing pro firmy z Litomyšle a okolí. Přijedu přímo k vám na parkoviště a postarám se o celý vozový park. Pravidelná smluvní údržba, jednorázové vyčištění flotily i příprava vozů před prodejem a vrácením leasingu. Fakturace na IČO.
-    </p>
-    <div class="hero-ctas">
-      <a href="#poptavka" class="btn-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>Nezávazná poptávka</span>
-      </a>
-      <a href="tel:+420792302615" class="btn-secondary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Zavolat: 792 302 615</span>
-      </a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="num"><span class="star">★</span>5,0</span>
-        <span class="label">Hodnocení na Googlu</span>
+    <div class="hero-grid">
+      <div class="hero-main">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Pro firmy s vozovým parkem · Litomyšl a okolí
+        </div>
+        <h1>Firemní čištění aut, které <em>drží vaši flotilu reprezentativní.</em></h1>
+        <p class="lead">
+          Mobilní detailing pro firmy z Litomyšle a okolí. Přijedu přímo k vám na parkoviště a postarám se o celý vozový park. Pravidelná smluvní údržba, jednorázové vyčištění flotily i příprava vozů před prodejem a vrácením leasingu. Fakturace na IČO.
+        </p>
+        <div class="hero-ctas">
+          <a href="#poptavka" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Nezávazná poptávka</span>
+          </a>
+          <a href="tel:+420792302615" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Zavolat: 792 302 615</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="num"><span class="star">★</span>5,0</span>
+            <span class="label">Hodnocení na Googlu</span>
+          </div>
+          <div class="stat">
+            <span class="num">100&nbsp;%</span>
+            <span class="label">Mobilní služba u vás</span>
+          </div>
+          <div class="stat">
+            <span class="num">IČO</span>
+            <span class="label">Fakturace na firmu</span>
+          </div>
+        </div>
       </div>
-      <div class="stat">
-        <span class="num">100&nbsp;%</span>
-        <span class="label">Mobilní služba u vás</span>
-      </div>
-      <div class="stat">
-        <span class="num">IČO</span>
-        <span class="label">Fakturace na firmu</span>
+
+      <!--
+        HERO OBRÁZEK
+        Soubor firemni-hero.webp nahrajte do /assets/ na webu.
+        Pokud fotku budete chtít vyměnit, zachovejte poměr stran zhruba 4:5.
+      -->
+      <div class="hero-visual">
+        <img src="/assets/firemni-hero.webp" width="900" height="1125"
+             fetchpriority="high" decoding="async"
+             alt="Vyčištěný interiér firemního vozu Volvo s vozovou flotilou v pozadí" />
+        <span class="visual-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          Mobilní detailing přímo u vás
+        </span>
       </div>
     </div>
   </div>
