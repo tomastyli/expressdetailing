@@ -59,6 +59,66 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Inter+Tight:wght@400;500;600;700;800&display=swap" />
 </noscript>
 
+<!-- Strukturovaná data: lokální firma (Google My Business / Maps) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoWash",
+  "@id": "https://www.expressdetailing.cz/#firma",
+  "name": "Express Detailing Litomyšl",
+  "description": "Mobilní hloubkové čištění interiéru osobních aut v Litomyšli a okolí. Tepování sedaček, parní čištění, péče o kůži a plasty. Přijedu za vámi domů nebo do práce.",
+  "url": "https://www.expressdetailing.cz/",
+  "telephone": "+420792302615",
+  "email": "expressdetail.litomysl@gmail.com",
+  "image": "https://www.expressdetailing.cz/assets/og-image.jpg",
+  "logo": "https://www.expressdetailing.cz/assets/favicon-512.png",
+  "priceRange": "Kč",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Litomyšl",
+    "addressRegion": "Pardubický kraj",
+    "postalCode": "57001",
+    "addressCountry": "CZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.8722,
+    "longitude": 16.3106
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Litomyšl" },
+    { "@type": "City", "name": "Polička" },
+    { "@type": "City", "name": "Vysoké Mýto" },
+    { "@type": "City", "name": "Svitavy" },
+    { "@type": "City", "name": "Česká Třebová" }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.google.com/maps/place/Express+Detailing+Litomy%C5%A1l"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "25",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>
+
 <!-- Strukturovaná data: služba čištění interiéru (Google SEO) -->
 <script type="application/ld+json">
 {
@@ -72,6 +132,7 @@
   "telephone": "+420792302615",
   "email": "expressdetail.litomysl@gmail.com",
   "image": "https://www.expressdetailing.cz/assets/og-image.jpg",
+  "provider": { "@id": "https://www.expressdetailing.cz/#firma" },
   "areaServed": {
     "@type": "City",
     "name": "Litomyšl"
@@ -1281,6 +1342,8 @@ section { padding: 110px 28px; position: relative; }
 /* ------- FAQ ------- */
 .faq {
   background: var(--navy-900);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1200px;
 }
 .faq-list {
   margin-top: 48px;
@@ -1423,6 +1486,8 @@ footer {
   background: var(--navy-950);
   padding: 70px 28px 30px;
   border-top: 1px solid rgba(255,255,255,0.06);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
 }
 .footer-wrap {
   max-width: 1280px;
@@ -1804,7 +1869,7 @@ footer {
   .hero-stats .stat + .stat { padding-left: 14px; }
   .hero-stats .num { font-size: 1.5rem; gap: 4px; }
   .hero-stats .num .star { font-size: 1rem; }
-  .hero-stats .label { font-size: 10.5px; letter-spacing: 0.05em; margin-top: 6px; }
+  .hero-stats .label { font-size: 11px; letter-spacing: 0.05em; margin-top: 6px; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   section { padding: 70px 20px; }
@@ -2787,6 +2852,7 @@ form.addEventListener('submit', async (e) => {
     cartype: form.cartype.value,
     message: form.message.value.trim(),
     consent: form.consent.checked,
+    website: form.website.value,
   };
 
   try {

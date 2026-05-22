@@ -50,6 +50,8 @@
 <!-- Fonty: preload nejnutnějšího, zbytek bez blokování renderu -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="/assets/firemni-hero.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="/assets/logo.webp" fetchpriority="high" />
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Inter+Tight:wght@400;500;600;700;800&display=swap"
@@ -57,6 +59,49 @@
 <noscript>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Inter+Tight:wght@400;500;600;700;800&display=swap" />
 </noscript>
+
+<!-- Strukturovaná data: lokální firma -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoWash",
+  "@id": "https://www.expressdetailing.cz/#firma",
+  "name": "Express Detailing Litomyšl",
+  "description": "Mobilní detailing osobních a firemních vozidel v Litomyšli a okolí. Hloubkové čištění interiérů, péče o flotily, fakturace na IČO.",
+  "url": "https://www.expressdetailing.cz/",
+  "telephone": "+420792302615",
+  "email": "expressdetail.litomysl@gmail.com",
+  "image": "https://www.expressdetailing.cz/assets/og-image.jpg",
+  "logo": "https://www.expressdetailing.cz/assets/favicon-512.png",
+  "priceRange": "Kč",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Litomyšl",
+    "addressRegion": "Pardubický kraj",
+    "postalCode": "57001",
+    "addressCountry": "CZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.8722,
+    "longitude": 16.3106
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Litomyšl" },
+    { "@type": "City", "name": "Polička" },
+    { "@type": "City", "name": "Vysoké Mýto" },
+    { "@type": "City", "name": "Svitavy" },
+    { "@type": "City", "name": "Česká Třebová" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "25",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+</script>
 
 <!-- Strukturovaná data: služba firemního čištění -->
 <script type="application/ld+json">
@@ -69,31 +114,7 @@
   "description": "Mobilní firemní čištění a detailing vozových flotil v Litomyšli a okolí. Pravidelná smluvní údržba flotily, jednorázové vyčištění celého vozového parku a příprava aut před prodejem nebo vrácením leasingu.",
   "url": "https://www.expressdetailing.cz/firemni-cisteni",
   "provider": {
-    "@type": "AutoWash",
-    "name": "Express Detailing",
-    "telephone": "+420792302615",
-    "email": "expressdetail.litomysl@gmail.com",
-    "image": "https://www.expressdetailing.cz/assets/og-image.jpg",
-    "logo": "https://www.expressdetailing.cz/assets/favicon-512.png",
-    "priceRange": "Cena dohodou",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Litomyšl",
-      "addressRegion": "Pardubický kraj",
-      "addressCountry": "CZ"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 49.8722,
-      "longitude": 16.3106
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "25",
-      "bestRating": "5",
-      "worstRating": "1"
-    }
+    "@id": "https://www.expressdetailing.cz/#firma"
   },
   "areaServed": {
     "@type": "City",
@@ -347,6 +368,11 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 24px;
 }
+.nav-desktop-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 .nav-link {
   position: relative;
   color: var(--gray-300);
@@ -481,7 +507,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 78%;
 }
 /* Placeholder, dokud není nahraná fotka. Po vložení <img> ho překryje obrázek. */
 .hero-visual .placeholder {
@@ -598,6 +624,19 @@ img { max-width: 100%; display: block; }
   animation: fadeUp 0.9s 0.2s var(--ease) both;
 }
 
+.hero p.hero-sublead {
+  font-family: 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--off-white);
+  max-width: 620px;
+  margin: -8px 0 28px;
+  padding-left: 18px;
+  border-left: 2px solid var(--red-accent);
+  animation: fadeUp 0.9s 0.15s var(--ease) both;
+}
+
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
@@ -617,6 +656,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  min-width: 0;
 }
 .hero-stats .stat + .stat {
   padding-left: 28px;
@@ -640,11 +680,12 @@ img { max-width: 100%; display: block; }
   line-height: 1;
 }
 .hero-stats .label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--gray-400);
   margin-top: 8px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 /* ------- BUTTONS ------- */
@@ -1260,6 +1301,9 @@ section { padding: 110px 28px; position: relative; }
 /* ------- FAQ ------- */
 .faq {
   background: var(--ink-950);
+  /* Performance: tato sekce je hluboko pod foldem, browser ji nemusí renderovat dokud není potřeba */
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1200px;
 }
 .faq-list {
   margin-top: 48px;
@@ -1400,6 +1444,8 @@ footer {
   background: var(--ink-950);
   padding: 70px 28px 30px;
   border-top: 1px solid rgba(255,255,255,0.06);
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
 }
 .footer-wrap {
   max-width: 1280px;
@@ -1686,7 +1732,7 @@ footer {
   .nav.scrolled { padding: 10px 18px; }
   .logo { font-size: 18px; gap: 9px; }
   .logo-img { height: 30px; }
-  .logo-badge { font-size: 9px; padding: 4px 7px 3px; letter-spacing: 0.1em; }
+  .logo-badge { font-size: 10px; padding: 4px 8px 3px; letter-spacing: 0.1em; }
   .footer-brand .logo-img { height: 36px; }
   .nav-cta { padding: 9px 14px; font-size: 13px; }
   .nav-right { gap: 12px; }
@@ -1695,7 +1741,7 @@ footer {
   .hero-stats .stat + .stat { padding-left: 14px; }
   .hero-stats .num { font-size: 1.5rem; gap: 4px; }
   .hero-stats .num .star { font-size: 1rem; }
-  .hero-stats .label { font-size: 10.5px; letter-spacing: 0.05em; margin-top: 6px; }
+  .hero-stats .label { font-size: 11px; letter-spacing: 0.05em; margin-top: 6px; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   section { padding: 70px 20px; }
@@ -1768,6 +1814,179 @@ textarea:focus-visible,
 .skip-link:focus {
   top: 12px;
 }
+
+/* ------- PARTNEŘI / SPOLUPRÁCE ------- */
+.partners {
+  padding: 64px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.partners::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 30%, rgba(239, 68, 68, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(239, 68, 68, 0.03) 0%, transparent 45%);
+  pointer-events: none;
+}
+.partners .container { position: relative; }
+.partners .partners-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+}
+.partners .section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--red-accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 18px;
+}
+.partners .section-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--red-accent);
+}
+.partners h2 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--white);
+  margin: 0 0 14px;
+}
+.partners h2 em {
+  font-style: italic;
+  color: var(--red-accent);
+}
+.partners .partners-sub {
+  color: var(--gray-300);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.partner-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  padding: 32px 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    border-color 0.5s var(--ease),
+    transform 0.5s var(--ease),
+    background 0.5s var(--ease);
+}
+.partner-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, rgba(239, 68, 68, 0.22) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  z-index: -1;
+}
+.partner-card:hover,
+.partner-card:focus-visible {
+  border-color: rgba(239, 68, 68, 0.35);
+  transform: translateY(-3px);
+  background:
+    linear-gradient(180deg, rgba(239,68,68,0.04) 0%, rgba(239,68,68,0.01) 100%);
+}
+.partner-card:hover::before,
+.partner-card:focus-visible::before { opacity: 1; }
+
+.partner-card img {
+  max-width: 100%;
+  max-height: 78px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* logo začíná bílé (filter nezmění bílý PNG s alfou) */
+  filter: brightness(1) saturate(0);
+  opacity: 0.78;
+  transition:
+    filter 0.5s var(--ease),
+    opacity 0.5s var(--ease),
+    transform 0.6s var(--ease);
+}
+/* Hover: bílá -> červená.
+   Bílé pixely (255,255,255) převedeme na červenou pomocí kombinace filtrů.
+   sepia(1) zhnědne bílou na ~zhruba (255,225,180), pak hue-rotate ji posune do červené,
+   saturate zvýší sytost. */
+.partner-card:hover img,
+.partner-card:focus-visible img {
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(45%)
+    sepia(95%)
+    saturate(3500%)
+    hue-rotate(338deg)
+    brightness(95%)
+    contrast(95%);
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.partner-card .partner-name {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease), color 0.4s var(--ease);
+  white-space: nowrap;
+}
+.partner-card:hover .partner-name,
+.partner-card:focus-visible .partner-name {
+  opacity: 0.6;
+  color: var(--red-accent);
+}
+
+@media (max-width: 720px) {
+  .partners { padding: 48px 20px 60px; }
+  .partners-grid { gap: 14px; }
+  .partner-card { min-height: 130px; padding: 26px 22px; }
+  .partner-card img { max-height: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-card,
+  .partner-card img,
+  .partner-card::before,
+  .partner-card .partner-name {
+    transition: none;
+  }
+  .partner-card:hover { transform: none; }
+  .partner-card:hover img { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -1781,7 +2000,7 @@ textarea:focus-visible,
     <span class="logo-badge">Pro firmy</span>
   </a>
   <div class="nav-right">
-    <div class="nav-desktop-links" style="display:flex;align-items:center;gap:24px;">
+    <div class="nav-desktop-links">
       <a href="/" class="nav-link">Úvod</a>
       <a href="/#sluzby" class="nav-link">Co je v ceně</a>
       <a href="/#galerie" class="nav-link">Galerie</a>
@@ -1822,9 +2041,10 @@ textarea:focus-visible,
           <span class="dot"></span>
           Pro firmy s vozovým parkem · Litomyšl a okolí
         </div>
-        <h1>Firemní čištění aut, které <em>drží vaši flotilu reprezentativní.</em></h1>
+        <h1>Firemní čištění aut, které <em>drží interiéry vaší flotily reprezentativní.</em></h1>
+        <p class="hero-sublead">Čištění interiérů pro firmy, které udržuje vaši flotilu reprezentativní.</p>
         <p class="lead">
-          Mobilní detailing pro firmy z Litomyšle a okolí. Přijedu přímo k vám na parkoviště a postarám se o celý vozový park. Pravidelná smluvní údržba, jednorázové vyčištění flotily i příprava vozů před prodejem a vrácením leasingu. Fakturace na IČO.
+          Mobilní detailing interiérů pro firmy z Litomyšle a okolí. Přijedu přímo k vám na parkoviště a postarám se o celý vozový park. Pravidelná smluvní údržba, jednorázové vyčištění flotily i příprava vozů před prodejem a vrácením leasingu. Fakturace na IČO.
         </p>
         <div class="hero-ctas">
           <a href="#poptavka" class="btn-primary">
@@ -1842,8 +2062,8 @@ textarea:focus-visible,
             <span class="label">Hodnocení na Googlu</span>
           </div>
           <div class="stat">
-            <span class="num">100&nbsp;%</span>
-            <span class="label">Mobilní služba u vás</span>
+            <span class="num">Mobilní</span>
+            <span class="label">Přijedu k vám</span>
           </div>
           <div class="stat">
             <span class="num">IČO</span>
@@ -1896,7 +2116,7 @@ textarea:focus-visible,
         <span class="section-label">Firemní detailing</span>
         <h2 class="section-title">Vozový park je <em>vizitka vaší firmy.</em></h2>
         <p>
-          Auta vaší firmy denně potkávají zákazníci, obchodní partneři i lidé na cestě. Zaprášený interiér a zašlé sedačky působí stejně jako neuklizená kancelář. <strong>Express Detailing</strong> se postará o to, aby každý vůz vaší flotily působil profesionálně, uvnitř i navenek.
+          Auta vaší firmy denně potkávají zákazníci, obchodní partneři i lidé na cestě. Zaprášený interiér a zašlé sedačky působí stejně jako neuklizená kancelář. <strong>Express Detailing</strong> se postará o to, aby každý vůz vaší flotily dělal perfektní první dojem a vaši zaměstnanci se v něm na cestách cítili dobře. <strong>Vyčistím interiér i exteriér</strong>, aby auto působilo svěže uvnitř i navenek.
         </p>
         <p>
           Pracuji jako mobilní služba, takže celé čištění probíhá <strong>přímo u vás v areálu nebo na firemním parkovišti</strong>. Vaši zaměstnanci nikam nejezdí a vozidla nejsou zbytečně mimo provoz. Stačí běžná zásuvka a dostatek prostoru kolem vozu.
@@ -1911,7 +2131,7 @@ textarea:focus-visible,
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
           </div>
           <h4>Přijedu za flotilou</h4>
-          <p>Čištění probíhá ve vašem areálu. Žádné svážení aut, žádné prostoje navíc.</p>
+          <p>Čištění probíhá přímo ve vašem areálu. Žádné složité přesuny aut, žádné zbytečné prostoje.</p>
         </div>
         <div class="value-card">
           <div class="icon-wrap">
@@ -2028,6 +2248,28 @@ textarea:focus-visible,
         <h4>Osobní jednání</h4>
         <p>Žádné call centrum. Vše řešíte přímo se mnou, rychle a konkrétně.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNEŘI / FIRMY SE KTERÝMI SPOLUPRACUJI -->
+<section class="partners" id="spoluprace" aria-labelledby="partneri-nadpis">
+  <div class="container">
+    <div class="partners-head reveal">
+      <span class="section-label">Aktivní spolupráce</span>
+      <h2 id="partneri-nadpis">Firmy, se kterými <em>aktivně spolupracuji.</em></h2>
+      <p class="partners-sub">Pravidelně se starám o vozové parky lokálních firem z Litomyšle a okolí. Jsou se mnou dlouhodobě a vědí, na co se mohou spolehnout.</p>
+    </div>
+
+    <div class="partners-grid reveal">
+      <a class="partner-card" href="https://www.mhservis.cz" target="_blank" rel="noopener" aria-label="MH Servis Litomyšl, otevře se v novém okně">
+        <img src="/assets/partneri/mh-servis.png" alt="MH Servis Litomyšl" loading="lazy" width="440" height="160" />
+        <span class="partner-name">MH Servis Litomyšl</span>
+      </a>
+      <a class="partner-card" href="https://www.strechynechvile.cz" target="_blank" rel="noopener" aria-label="Střechy Nechvíle, otevře se v novém okně">
+        <img src="/assets/partneri/strechy-nechvile.png" alt="Střechy Nechvíle" loading="lazy" width="440" height="160" />
+        <span class="partner-name">Střechy Nechvíle</span>
+      </a>
     </div>
   </div>
 </section>
@@ -2537,6 +2779,7 @@ form.addEventListener('submit', async (e) => {
     location: form.location.value.trim(),
     message: form.message.value.trim(),
     consent: form.consent.checked,
+    website: form.website.value,
   };
 
   try {
