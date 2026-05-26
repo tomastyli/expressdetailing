@@ -646,11 +646,10 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-stats {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
   justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
+  align-items: stretch;
   animation: fadeUp 0.9s 0.4s var(--ease) both;
 }
 .hero-stats .stat {
@@ -659,10 +658,10 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 28px;
   min-width: 0;
 }
 .hero-stats .stat + .stat {
-  padding-left: 28px;
   border-left: 1px solid rgba(255,255,255,0.1);
 }
 .hero-stats .num {
@@ -1929,8 +1928,13 @@ footer {
   .nav-cta { padding: 9px 14px; font-size: 13px; }
   .nav-right { gap: 12px; }
   .hero { padding: 120px 20px 80px; }
-  .hero-stats { gap: 14px; }
-  .hero-stats .stat + .stat { padding-left: 14px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 18px; }
+  .hero-stats .stat { padding: 0; }
+  .hero-stats .stat + .stat {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 18px;
+  }
   .hero-stats .num { font-size: 1.5rem; gap: 4px; }
   .hero-stats .num .star { font-size: 1rem; }
   .hero-stats .label { font-size: 11px; letter-spacing: 0.05em; margin-top: 6px; }
