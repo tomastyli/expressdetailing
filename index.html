@@ -2593,15 +2593,14 @@ textarea:focus-visible,
   function loadAnalytics() {
     if (window.__edAnalyticsLoaded) return;
     window.__edAnalyticsLoaded = true;
-    // Příklad pro Google Analytics 4 (odkomentuj a doplň své ID):
-    // var s = document.createElement('script');
-    // s.async = true;
-    // s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-    // document.head.appendChild(s);
-    // window.dataLayer = window.dataLayer || [];
-    // function gtag(){ dataLayer.push(arguments); }
-    // gtag('js', new Date());
-    // gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-L718E72LY9';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'G-L718E72LY9');
   }
 
   function readConsent() {
