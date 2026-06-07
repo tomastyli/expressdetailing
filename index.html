@@ -1557,13 +1557,14 @@ footer {
 .footer-credit {
   color: var(--gray-400);
 }
-.footer-credit a {
-  color: var(--gray-300);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s var(--ease);
-}
-.footer-credit a:hover { color: var(--blue-glow); }
+/* Statly kredit s hover efektem */
+.statly { display: inline-flex; align-items: center; gap: 9px; color: #888280; font-size: 0.85rem; font-weight: 500; padding: 6px 10px; border-radius: 10px; text-decoration: none; transition: background 0.25s cubic-bezier(0.22,1,0.36,1); }
+.statly img { width: 24px; height: 24px; border-radius: 7px; display: block; filter: grayscale(0.15); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1), filter 0.3s cubic-bezier(0.22,1,0.36,1); }
+.statly .statly-pre { color: #888280; }
+.statly .statly-name { color: #fff; font-weight: 700; transition: color 0.25s cubic-bezier(0.22,1,0.36,1); }
+.statly:hover { background: rgba(27, 127, 95, 0.1); }
+.statly:hover img { transform: scale(1.15) rotate(-4deg); box-shadow: 0 8px 22px rgba(27, 127, 95, 0.5); filter: grayscale(0); }
+.statly:hover .statly-name { color: #27a37a; }
 .footer-legal {
   display: flex;
   align-items: center;
@@ -2510,7 +2511,11 @@ textarea:focus-visible,
   <div class="footer-bottom">
     <div>© 2026 Express Detailing. Všechna práva vyhrazena.</div>
     <div class="footer-credit">
-      Made with <span aria-hidden="true">❤️</span><span class="sr-only">láskou</span> in Litomyšl by <a href="https://statly.cz" target="_blank" rel="noopener">statly.cz</a>
+      <a href="https://statly.cz" target="_blank" rel="noopener" class="statly" aria-label="Web vytvořil Statly">
+        <span class="statly-pre">Vytvořil</span>
+        <img src="/assets/statly-logo.svg" alt="Statly logo" width="24" height="24" loading="lazy" />
+        <span class="statly-name">statly.cz</span>
+      </a>
     </div>
     <div class="footer-legal">
       <a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a>
