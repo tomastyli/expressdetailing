@@ -2848,6 +2848,20 @@ textarea:focus-visible,
 </div>
 
 <script>
+/* ===== SCROLL NA SEKCI Z ?sekce=... (kvůli Google Ads) ===== */
+(function () {
+  var id = new URLSearchParams(window.location.search).get('sekce');
+  if (!id) return;
+  function go() {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (document.readyState === 'complete') { go(); }
+  else { window.addEventListener('load', function () { setTimeout(go, 100); }); }
+})();
+</script>
+
+<script>
 // Nav scroll effect
 const nav = document.getElementById('nav');
 const stickyCta = document.getElementById('stickyCta');
