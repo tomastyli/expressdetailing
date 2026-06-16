@@ -1187,6 +1187,17 @@ section { padding: 110px 28px; position: relative; }
   text-align: center;
 }
 
+.rez-cards-single { grid-template-columns: 1fr; max-width: 440px; }
+.rez-opt { font-size: 0.82em; font-weight: 400; color: var(--gray-500); }
+.rez-promo-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gray-400);
+}
+.rez-promo-note strong { color: var(--blue-glow); font-weight: 600; }
+
 /* ------- FAQ ------- */
 .faq {
   background: var(--navy-900);
@@ -2008,7 +2019,7 @@ textarea:focus-visible,
     <p class="rez-stepcount" id="rezStepCount">Krok 1 z 5</p>
 
     <form id="rezForm" novalidate>
-      <input type="hidden" name="service" id="rezService" value="" />
+      <input type="hidden" name="service" id="rezService" value="interier" />
       <input type="hidden" name="concerns" id="rezConcerns" value="" />
       <input type="hidden" name="car" id="rezCar" value="" />
       <input type="hidden" name="city" id="rezCity" value="" />
@@ -2017,27 +2028,19 @@ textarea:focus-visible,
       <!-- KROK 1 — služba -->
       <div class="rez-step active" data-step="1">
         <h2>Co pro vás uděláme?</h2>
-        <p class="rez-hint">Vyberte rozsah, který vám sedí.</p>
-        <div class="rez-cards">
-          <button type="button" class="rez-card" data-service="basic" aria-pressed="false">
+        <p class="rez-hint">Kompletní hloubkové čištění interiéru vašeho auta.</p>
+        <div class="rez-cards rez-cards-single">
+          <button type="button" class="rez-card selected" data-service="interier" aria-pressed="true">
+            <span class="rez-card-badge">Hloubkové čištění</span>
             <span class="rez-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <div class="rez-card-name">Základní čištění</div>
-            <div class="rez-card-price">2 500 Kč</div>
-            <div class="rez-card-time">~3 hodiny</div>
-            <div class="rez-card-desc">Exteriér + interiér, vysávání, ošetření plastů</div>
-          </button>
-          <button type="button" class="rez-card" data-service="full" aria-pressed="false">
-            <span class="rez-card-badge">Nejoblíbenější</span>
-            <span class="rez-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <div class="rez-card-name">Kompletní detailing</div>
-            <div class="rez-card-price">4 500 Kč</div>
-            <div class="rez-card-time">~6 hodin</div>
-            <div class="rez-card-desc">+ leštění laku, vosk, impregnace sedaček</div>
+            <div class="rez-card-name">Detailing interiéru</div>
+            <div class="rez-card-price">od 3 000 Kč</div>
+            <div class="rez-card-desc">Vysávání, tepování sedaček a koberců, čištění plastů, palubovky a oken, odstranění skvrn a zápachu</div>
           </button>
         </div>
-        <div class="rez-err" id="errService">Vyberte prosím jednu ze služeb.</div>
+        <div class="rez-err" id="errService">Vyberte prosím službu.</div>
         <div class="rez-actions">
-          <button type="button" class="btn-submit rez-grow" id="next1" disabled><span>Pokračovat →</span></button>
+          <button type="button" class="btn-submit rez-grow" id="next1"><span>Pokračovat →</span></button>
         </div>
       </div>
 
@@ -2102,7 +2105,7 @@ textarea:focus-visible,
       <!-- KROK 5 — kontakt + termín -->
       <div class="rez-step" data-step="5">
         <h2>Kontakt a termín</h2>
-        <p class="rez-hint">Vyberte den, který vám vyhovuje. Přesný čas doladíme telefonicky.</p>
+        <p class="rez-hint">Termín je jen orientační — přesný den a čas doladíme telefonicky.</p>
         <div class="form-row">
           <label for="name">Jméno <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
           <input type="text" id="name" name="name" autocomplete="name" aria-required="true" />
@@ -2114,26 +2117,21 @@ textarea:focus-visible,
           <div class="rez-err" id="errPhone">Zadejte prosím platné telefonní číslo.</div>
         </div>
         <div class="form-row">
-          <label>Preferovaný termín <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-          <div class="rez-cal" id="rezCal">
-            <div class="rez-cal-head">
-              <button type="button" class="rez-cal-nav" id="calPrev" aria-label="Předchozí měsíc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <span class="rez-cal-title" id="calTitle"></span>
-              <button type="button" class="rez-cal-nav" id="calNext" aria-label="Další měsíc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </div>
-            <div class="rez-cal-grid" id="calDow"></div>
-            <div class="rez-cal-grid" id="calDays"></div>
-            <div class="rez-cal-legend">V neděli a ve svátky nejezdíme.</div>
+          <label>Kdy chcete, abychom přijeli? <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
+          <div class="rez-chips" id="whenChips">
+            <button type="button" class="rez-chip" data-val="Co nejdříve"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Co nejdříve</button>
+            <button type="button" class="rez-chip" data-val="Do týdne"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do týdne</button>
+            <button type="button" class="rez-chip" data-val="Do měsíce"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do měsíce</button>
           </div>
-          <div class="rez-time">
-            <div class="rez-time-label">Část dne (nepovinné)</div>
-            <div class="rez-chips" id="timeChips">
-              <button type="button" class="rez-chip" data-val="dopoledne"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Dopoledne</button>
-              <button type="button" class="rez-chip" data-val="odpoledne"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Odpoledne</button>
-              <button type="button" class="rez-chip" data-val="nezáleží"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nezáleží</button>
-            </div>
+          <div class="rez-err" id="errWhen">Vyberte prosím, jak rychle to potřebujete.</div>
+        </div>
+        <div class="form-row">
+          <label>Kdy se vám to hodí? <span class="rez-opt">(nepovinné)</span></label>
+          <div class="rez-chips" id="dayChips">
+            <button type="button" class="rez-chip" data-val="všední den"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Všední den</button>
+            <button type="button" class="rez-chip" data-val="víkend"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Víkend</button>
+            <button type="button" class="rez-chip" data-val="nezáleží"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nezáleží</button>
           </div>
-          <div class="rez-err" id="errDate">Vyberte prosím termín z kalendáře.</div>
         </div>
         <!-- honeypot proti spamu -->
         <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
@@ -2141,6 +2139,7 @@ textarea:focus-visible,
           <button type="button" class="btn-secondary" id="back5">← Zpět</button>
           <button type="submit" class="btn-submit rez-grow" id="rezSubmit"><span>Odeslat rezervaci →</span></button>
         </div>
+        <p class="rez-promo-note">Přišli jste z&nbsp;reklamy? Řekněte nám to a&nbsp;získáte <strong>slevu 500&nbsp;Kč</strong>.</p>
         <div class="form-error" id="rezError" role="alert" aria-live="assertive">Nepodařilo se odeslat. Zkuste to prosím znovu, nebo zavolejte na 792 302 615.</div>
       </div>
     </form>
@@ -2502,70 +2501,29 @@ reveals.forEach((el) => observer.observe(el));
     showStep(5);
   });
 
-  /* --- Krok 5: kalendář --- */
-  const MONTHS = ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'];
-  const DOW = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const maxDate = new Date(today); maxDate.setMonth(maxDate.getMonth() + 3);
-  let viewY = today.getFullYear();
-  let viewM = today.getMonth();
-  let selected = null;
+  /* --- Krok 5: orientační termín (chip skupiny) --- */
+  // jak rychle (povinné, single-select)
+  let whenPref = '';
+  const whenChips = $('whenChips');
+  whenChips.addEventListener('click', (e) => {
+    const chip = e.target.closest('.rez-chip');
+    if (!chip) return;
+    whenChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+    chip.classList.add('selected'); chip.setAttribute('aria-pressed', 'true');
+    whenPref = chip.dataset.val;
+    showErr('errWhen', false);
+  });
 
-  const dowWrap = $('calDow');
-  DOW.forEach((d) => { const el = document.createElement('div'); el.className = 'rez-cal-dow'; el.textContent = d; dowWrap.appendChild(el); });
-
-  const fmtDate = (d) => `${d.getDate()}. ${d.getMonth() + 1}. ${d.getFullYear()}`;
-
-  function renderCal() {
-    $('calTitle').textContent = MONTHS[viewM] + ' ' + viewY;
-    const grid = $('calDays');
-    grid.innerHTML = '';
-    const first = new Date(viewY, viewM, 1);
-    let lead = (first.getDay() + 6) % 7; // pondělí = 0
-    const days = new Date(viewY, viewM + 1, 0).getDate();
-    for (let i = 0; i < lead; i++) {
-      const e = document.createElement('button');
-      e.type = 'button'; e.className = 'rez-cal-day empty'; e.disabled = true; e.tabIndex = -1;
-      grid.appendChild(e);
-    }
-    for (let d = 1; d <= days; d++) {
-      const date = new Date(viewY, viewM, d); date.setHours(0, 0, 0, 0);
-      const btn = document.createElement('button');
-      btn.type = 'button'; btn.className = 'rez-cal-day'; btn.textContent = d;
-      const past = date < today;
-      const sunday = date.getDay() === 0;
-      const tooFar = date > maxDate;
-      if (past || sunday || tooFar) {
-        btn.disabled = true;
-      } else {
-        if (selected && date.getTime() === selected.getTime()) btn.classList.add('selected');
-        btn.addEventListener('click', () => {
-          selected = date;
-          $('rezDate').value = fmtDate(date);
-          showErr('errDate', false);
-          renderCal();
-        });
-      }
-      grid.appendChild(btn);
-    }
-    // hranice navigace
-    $('calPrev').disabled = (viewY === today.getFullYear() && viewM === today.getMonth());
-    $('calNext').disabled = (viewY === maxDate.getFullYear() && viewM === maxDate.getMonth());
-  }
-  $('calPrev').addEventListener('click', () => { if (--viewM < 0) { viewM = 11; viewY--; } renderCal(); });
-  $('calNext').addEventListener('click', () => { if (++viewM > 11) { viewM = 0; viewY++; } renderCal(); });
-  renderCal();
-
-  // část dne (single-select, lze odznačit)
-  let timePref = '';
-  const timeChips = $('timeChips');
-  timeChips.addEventListener('click', (e) => {
+  // kdy se hodí (nepovinné, single-select, lze odznačit)
+  let dayPref = '';
+  const dayChips = $('dayChips');
+  dayChips.addEventListener('click', (e) => {
     const chip = e.target.closest('.rez-chip');
     if (!chip) return;
     const was = chip.classList.contains('selected');
-    timeChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-    if (!was) { chip.classList.add('selected'); chip.setAttribute('aria-pressed', 'true'); timePref = chip.dataset.val; }
-    else { timePref = ''; }
+    dayChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+    if (!was) { chip.classList.add('selected'); chip.setAttribute('aria-pressed', 'true'); dayPref = chip.dataset.val; }
+    else { dayPref = ''; }
   });
 
   $('back5').addEventListener('click', () => showStep(4));
@@ -2585,22 +2543,21 @@ reveals.forEach((el) => observer.observe(el));
 
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
-    const dateStr = $('rezDate').value;
     const checks = [
       ['errName', name.length >= 2, form.name],
       ['errPhone', phone.replace(/\s/g, '').length >= 9, form.phone],
-      ['errDate', !!dateStr, null],
+      ['errWhen', !!whenPref, null],
     ];
     let firstInvalid = null;
     for (const [errId, ok, el] of checks) {
       showErr(errId, !ok);
       if (!ok && !firstInvalid) firstInvalid = el;
     }
-    if (firstInvalid === null && !dateStr) return;
     if (firstInvalid) { firstInvalid.focus(); return; }
-    if (!dateStr) return;
+    if (!whenPref) return;
 
-    const preferred_date = timePref ? `${dateStr} (${timePref})` : dateStr;
+    const preferred_date = dayPref ? `${whenPref} (${dayPref})` : whenPref;
+    $('rezDate').value = preferred_date;
 
     submitBtn.disabled = true;
     submitBtn.querySelector('span').textContent = 'Odesílám...';
@@ -2627,7 +2584,7 @@ reveals.forEach((el) => observer.observe(el));
       $('rezRecap').textContent = `${data.car} · ${data.city} · ${preferred_date}`;
       $('rezSuccess').hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (typeof fbq !== 'undefined') fbq('track', 'Lead', { value: 2500, currency: 'CZK' });
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead', { value: 3000, currency: 'CZK' });
     } catch (err) {
       errorMsg.classList.add('show');
       submitBtn.disabled = false;

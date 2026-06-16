@@ -2312,85 +2312,21 @@ textarea:focus-visible,
   </div>
 </section>
 
-<!-- CONTRACT FORM -->
-<section class="contract" id="poptavka">
+<!-- FINAL CTA -->
+<section class="final-cta">
   <div class="container">
-    <div class="contract-wrap">
-      <div class="contract-info reveal">
-        <span class="section-label">Nezávazná poptávka</span>
-        <h2 class="section-title">Objednejte si <em>termín čištění.</em></h2>
-        <p>
-          Napište mi pár slov o svém voze a co byste rádi vyčistili. Ozvu se Vám a domluvíme termín i místo. Přesnou cenu vždy domluvíme před čištěním.
-        </p>
-        <ul class="contract-bullets">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            Přijedu za Vámi domů nebo do práce
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            Cenu znáte předem, žádná překvapení
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            Termín obvykle do několika dní
-          </li>
-        </ul>
-      </div>
-
-      <div class="form-card reveal">
-        <h3>Poptávka termínu</h3>
-        <p class="form-sub">Vyplňte formulář a ozvu se Vám obvykle během několika hodin.</p>
-        <form id="contractForm" novalidate>
-          <div class="form-row">
-            <label for="name">Jméno a příjmení <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-            <input type="text" id="name" name="name" required autocomplete="name" aria-required="true" />
-          </div>
-          <div class="form-grid-2">
-            <div class="form-row">
-              <label for="phone">Telefon <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-required="true" />
-            </div>
-            <div class="form-row">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" />
-            </div>
-          </div>
-          <div class="form-row">
-            <label for="cartype">Typ vozu</label>
-            <select id="cartype" name="cartype">
-              <option value="osobni">Osobní automobil</option>
-              <option value="suv">SUV / větší vůz</option>
-              <option value="dodavka">Dodávka / užitkový vůz</option>
-              <option value="jine">Jiné</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="message">Doplňující informace</label>
-            <textarea id="message" name="message" rows="4" placeholder="Značka a model vozu, stav interiéru, preferovaný termín a lokalita..."></textarea>
-          </div>
-          <div class="form-consent">
-            <input type="checkbox" id="consent" name="consent" required aria-required="true" />
-            <label for="consent">
-              Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
-              Podrobnosti najdete v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.
-              <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span>
-            </label>
-          </div>
-          <!-- honeypot proti spamu, pro lidi neviditelný -->
-          <div class="hp-field" aria-hidden="true">
-            <label for="website">Toto pole nevyplňujte</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-          <button type="submit" class="btn-submit" id="submitBtn">
-            <span>Odeslat poptávku</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-          <div class="form-success" id="formSuccess" role="status" aria-live="polite">✓ Děkuji! Poptávka odeslána, ozvu se Vám obvykle během několika hodin.</div>
-          <div class="form-error" id="formError" role="alert" aria-live="assertive">Nepodařilo se odeslat. Zkuste to prosím znovu, nebo zavolejte na 792 302 615.</div>
-          <p class="form-fine">Pro rychlou domluvu termínu raději <a href="tel:+420792302615" style="color:var(--blue-glow);">zavolejte</a>.</p>
-        </form>
-      </div>
+    <h2>Každá cesta je příjemnější<br><em>v&nbsp;čistém autě.</em></h2>
+    <p>Rezervujte online za 60 sekund — nebo zavolejte přímo.</p>
+    <a href="tel:+420792302615" class="phone-display">+420 792 302 615</a>
+    <div class="cta-buttons">
+      <a href="/rezervace" class="btn-primary cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Rezervovat termín</span>
+      </a>
+      <a href="tel:+420792302615" class="btn-secondary cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>Zavolat hned</span>
+      </a>
     </div>
   </div>
 </section>
@@ -2450,25 +2386,6 @@ textarea:focus-visible,
     </div>
   </div>
 </section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container">
-    <h2>Každá cesta je příjemnější<br><em>v&nbsp;čistém autě.</em></h2>
-    <p>Rezervujte online za 60 sekund — nebo zavolejte přímo.</p>
-    <a href="tel:+420792302615" class="phone-display">+420 792 302 615</a>
-    <div class="cta-buttons">
-      <a href="/rezervace" class="btn-primary cta-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span>Rezervovat termín</span>
-      </a>
-      <a href="tel:+420792302615" class="btn-secondary cta-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>Zavolat hned</span>
-      </a>
-    </div>
-  </div>
-</section>
 </main>
 
 <!-- FOOTER -->
@@ -2500,7 +2417,6 @@ textarea:focus-visible,
       <a href="#sluzby">Co je v ceně</a>
       <a href="#galerie">Galerie před/po</a>
       <a href="#reference">Reference</a>
-      <a href="#poptavka">Poptávka termínu</a>
       <a href="#faq">Časté dotazy</a>
     </div>
     <div class="footer-col">
@@ -2838,76 +2754,6 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
   });
 });
 
-// Form submission
-const form = document.getElementById('contractForm');
-const submitBtn = document.getElementById('submitBtn');
-const successMsg = document.getElementById('formSuccess');
-const errorMsg = document.getElementById('formError');
-
-const setInvalid = (el, on) => {
-  el.classList.toggle('invalid', on);
-  if (el.type === 'checkbox') el.closest('.form-consent').classList.toggle('invalid', on);
-};
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  successMsg.classList.remove('show');
-  errorMsg.classList.remove('show');
-
-  // Honeypot, pokud je vyplněný, tiše nic neodešleme
-  if (form.website.value) return;
-
-  // Validace
-  let firstInvalid = null;
-  const checks = [
-    [form.name, form.name.value.trim().length >= 2],
-    [form.phone, form.phone.value.replace(/\s/g, '').length >= 9],
-    [form.consent, form.consent.checked],
-  ];
-  for (const [el, ok] of checks) {
-    setInvalid(el, !ok);
-    if (!ok && !firstInvalid) firstInvalid = el;
-  }
-  if (firstInvalid) {
-    firstInvalid.focus();
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.querySelector('span').textContent = 'Odesílám...';
-
-  const data = {
-    name: form.name.value.trim(),
-    phone: form.phone.value.trim(),
-    email: form.email.value.trim(),
-    cartype: form.cartype.value,
-    message: form.message.value.trim(),
-    consent: form.consent.checked,
-    website: form.website.value,
-  };
-
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error('fail');
-    successMsg.classList.add('show');
-    form.reset();
-  } catch (err) {
-    errorMsg.classList.add('show');
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.querySelector('span').textContent = 'Odeslat poptávku';
-  }
-});
-
-// Odstraň zvýraznění chyby při psaní
-['name', 'phone', 'consent'].forEach((id) => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('input', () => setInvalid(el, false));
-});
 </script>
 </body>
 </html>
