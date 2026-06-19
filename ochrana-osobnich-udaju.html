@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ochrana osobních údajů | Express Detailing Litomyšl</title>
+<meta name="description" content="Jak Express Detailing Litomyšl zpracovává osobní údaje z poptávkového a rezervačního formuláře. Správce, účel, doba uchování, zpracovatelé, cookies a práva subjektu údajů." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.expressdetailing.cz/ochrana-osobnich-udaju" />
+<meta name="theme-color" content="#0a1628" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="/assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700&family=Inter+Tight:wght@400;500;600;700;800&display=swap"
+  media="print" onload="this.media='all'" />
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700&family=Inter+Tight:wght@400;500;600;700;800&display=swap" />
+</noscript>
+
+<style>
+:root {
+  --navy-950: #050d1a;
+  --navy-900: #0a1628;
+  --navy-800: #0f2240;
+  --navy-700: #1a3458;
+  --blue-accent: #4d8cff;
+  --blue-glow: #7aa9ff;
+  --white: #ffffff;
+  --gray-300: #c9d3e3;
+  --gray-400: #94a3b8;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--navy-900);
+  color: var(--white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--blue-glow); }
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5, 13, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img { height: 34px; width: auto; display: block; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--navy-900);
+  padding: 10px 18px; border-radius: 100px;
+  text-decoration: none; font-weight: 600; font-size: 14px;
+}
+.nav-cta svg { width: 16px; height: 16px; }
+
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 64px 24px 40px;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--blue-glow); margin-bottom: 18px;
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--blue-accent); }
+h1 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 500; font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 12px;
+}
+.updated { color: var(--gray-400); font-size: 14px; margin-bottom: 40px; }
+h2 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 600; font-size: 1.5rem;
+  margin: 40px 0 14px; letter-spacing: -0.01em;
+}
+p { color: var(--gray-300); margin-bottom: 16px; }
+ul { color: var(--gray-300); margin: 0 0 16px 22px; }
+li { margin-bottom: 8px; }
+strong { color: var(--white); font-weight: 600; }
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.card p:last-child { margin-bottom: 0; }
+a:focus-visible, .nav-cta:focus-visible {
+  outline: 3px solid var(--blue-glow); outline-offset: 3px; border-radius: 6px;
+}
+
+footer {
+  background: var(--navy-950);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 40px 24px 30px;
+  margin-top: 60px;
+}
+.footer-inner {
+  max-width: 820px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 16px;
+  justify-content: space-between; align-items: center;
+  font-size: 13px; color: var(--gray-400);
+}
+.footer-inner a { color: var(--gray-400); text-decoration: none; }
+.footer-inner a:hover { color: var(--white); }
+.footer-links { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.statly { display: inline-flex; align-items: center; gap: 8px; color: #888280; font-size: 0.85rem; font-weight: 500; text-decoration: none; }
+.statly img { width: 22px; height: 22px; border-radius: 6px; }
+.statly .statly-name { color: #fff; font-weight: 700; }
+@media (max-width: 560px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Hlavní navigace">
+  <a href="/" class="logo" aria-label="Express Detailing, domovská stránka">
+    <img src="/assets/logo.webp" alt="Logo Express Detailing" class="logo-img" width="322" height="160" decoding="async" />
+  </a>
+  <a href="tel:+420792302615" class="nav-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>Zavolat</span>
+  </a>
+</nav>
+
+<main>
+  <span class="eyebrow">Soukromí</span>
+  <h1>Ochrana osobních údajů</h1>
+  <p class="updated">Účinné od 19. 6. 2026</p>
+
+  <p>
+    Vážím si vašeho soukromí. Tady přehledně popisuji, jaké osobní údaje sbírám přes formuláře na tomto webu,
+    proč je potřebuji, jak dlouho je uchovávám a jaká máte práva. Údaje zpracovávám v souladu s nařízením
+    GDPR (EU 2016/679) a českými předpisy.
+  </p>
+
+  <h2>Kdo údaje zpracovává</h2>
+  <div class="card">
+    <p><strong>Express Detailing</strong> (mobilní hloubkové čištění interiéru aut)</p>
+    <p>IČO: 23820560, Litomyšl a okolí, Pardubický kraj</p>
+    <p>E-mail: <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a><br>
+       Telefon: <a href="tel:+420792302615">+420 792 302 615</a></p>
+  </div>
+
+  <h2>Jaké údaje sbírám</h2>
+  <p>Z rezervačního a poptávkového formuláře zpracovávám pouze to, co vyplníte:</p>
+  <ul>
+    <li>jméno a telefon (povinné, abych se mohl ozvat a domluvit termín),</li>
+    <li>e-mail (u firemní poptávky, nepovinný),</li>
+    <li>město, typ vozu a popis toho, co je potřeba vyčistit,</li>
+    <li>u firem případně název firmy a IČO.</li>
+  </ul>
+  <p>
+    Pokud povolíte analytické cookies, zpracovávám i anonymizované statistiky o návštěvě webu
+    (viz část Cookies). Bez souhlasu se analytika nespustí.
+  </p>
+
+  <h2>Proč údaje zpracovávám a na jakém základě</h2>
+  <ul>
+    <li><strong>Vyřízení poptávky a rezervace</strong> (domluva termínu, cena, kontakt) na základě plnění smlouvy
+      a opatření přijatých před jejím uzavřením (čl. 6 odst. 1 písm. b GDPR).</li>
+    <li><strong>Analytika návštěvnosti</strong> na základě vašeho souhlasu (čl. 6 odst. 1 písm. a GDPR),
+      který můžete kdykoliv odvolat v nastavení cookies.</li>
+  </ul>
+
+  <h2>Komu údaje předávám</h2>
+  <p>Údaje nepředávám k marketingu třetích stran. Pro chod služby využívám tyto zpracovatele:</p>
+  <ul>
+    <li><strong>Resend</strong> (resend.com):doručení e-mailu s vaší poptávkou do mé schránky,</li>
+    <li><strong>Supabase</strong> (supabase.com):bezpečné uložení rezervace,</li>
+    <li><strong>Cloudflare</strong> (cloudflare.com):hosting webu a doručení obsahu,</li>
+    <li><strong>Google Analytics</strong> (Google Ireland): měření návštěvnosti, pouze s vaším souhlasem.</li>
+  </ul>
+
+  <h2>Jak dlouho údaje uchovávám</h2>
+  <p>
+    Poptávky a rezervace si nechávám po dobu nezbytnou k vyřízení a po dobu možné reklamace, nejdéle 3 roky
+    od posledního kontaktu. Poté je smažu. Analytická data se uchovávají podle nastavení Google Analytics.
+  </p>
+
+  <h2>Cookies</h2>
+  <p>
+    Web používá <strong>nezbytné cookies</strong> pro základní fungování a zapamatování vašeho souhlasu.
+    Volitelně používá <strong>analytické cookies</strong> (Google Analytics), které se spustí jen tehdy,
+    pokud je povolíte. Nastavení můžete kdykoliv změnit přes tlačítko „Nastavení cookies" v patičce na úvodní stránce.
+  </p>
+
+  <h2>Vaše práva</h2>
+  <p>Ve vztahu ke svým údajům máte právo:</p>
+  <ul>
+    <li>na přístup k údajům a jejich kopii,</li>
+    <li>na opravu nepřesných údajů,</li>
+    <li>na výmaz („právo být zapomenut") a na omezení zpracování,</li>
+    <li>vznést námitku proti zpracování a odvolat dříve udělený souhlas,</li>
+    <li>na přenositelnost údajů,</li>
+    <li>podat stížnost u Úřadu pro ochranu osobních údajů (<a href="https://www.uoou.cz" target="_blank" rel="noopener">uoou.cz</a>).</li>
+  </ul>
+  <p>
+    Stačí napsat na <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a>
+    nebo zavolat na <a href="tel:+420792302615">+420 792 302 615</a> a ozvu se vám.
+  </p>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Express Detailing</div>
+    <div class="footer-links">
+      <a href="/">Úvod</a>
+      <a href="/rezervace">Rezervace</a>
+      <a href="/pro-firmy">Pro firmy</a>
+    </div>
+    <a href="https://statly.cz" target="_blank" rel="noopener" class="statly" aria-label="Web vytvořil Statly">
+      <span>Vytvořil</span>
+      <img src="/assets/statly-logo.svg" alt="Statly logo" width="22" height="22" loading="lazy" />
+      <span class="statly-name">statly.cz</span>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 
 <!-- Základní SEO -->
 <title>Rezervace termínu online | Express Detailing Litomyšl</title>
-<meta name="description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt — ozveme se do 24 hodin. Litomyšl a okolí." />
+<meta name="description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt, ozveme se do 24 hodin. Litomyšl a okolí." />
 <meta name="author" content="Express Detailing Litomyšl" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="language" content="Czech" />
@@ -28,7 +28,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Express Detailing Litomyšl" />
 <meta property="og:title" content="Rezervace termínu online | Express Detailing Litomyšl" />
-<meta property="og:description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt — ozveme se do 24 hodin." />
+<meta property="og:description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt, ozveme se do 24 hodin." />
 <meta property="og:url" content="https://www.expressdetailing.cz/rezervace" />
 <meta property="og:image" content="https://www.expressdetailing.cz/assets/og-image.jpg" />
 
@@ -924,7 +924,7 @@ section { padding: 110px 28px; position: relative; }
   margin-top: 32px;
   text-align: center;
   font-size: 13.5px;
-  color: var(--gray-500);
+  color: var(--gray-400);
 }
 .gallery-note svg {
   width: 14px; height: 14px;
@@ -1065,7 +1065,7 @@ section { padding: 110px 28px; position: relative; }
   border-radius: 10px;
   padding: 14px 16px;
   color: var(--white);
-  font-size: 15px;
+  font-size: 16px;
   font-family: inherit;
   transition: all 0.2s var(--ease);
 }
@@ -1182,14 +1182,14 @@ section { padding: 110px 28px; position: relative; }
 
 .form-fine {
   font-size: 12px;
-  color: var(--gray-500);
+  color: var(--gray-400);
   margin-top: 14px;
   text-align: center;
 }
 
 .rez-cards.rez-cards-single { display: flex; justify-content: center; }
 .rez-cards.rez-cards-single .rez-card { width: 100%; max-width: 283px; }
-.rez-opt { font-size: 0.82em; font-weight: 400; color: var(--gray-500); }
+.rez-opt { font-size: 0.82em; font-weight: 400; color: var(--gray-400); }
 .rez-promo-note {
   margin-top: 18px;
   text-align: center;
@@ -1812,6 +1812,7 @@ textarea:focus-visible,
 </style>
 </head>
 <body>
+<a href="#hlavni-obsah" class="skip-link">Přeskočit na hlavní obsah</a>
 <!-- Stylování specifické pro rezervační stepper. Staví na brand CSS
      proměnných z index.html (--blue-accent, --navy-*, --radius...) -->
 <style>
@@ -1819,14 +1820,20 @@ textarea:focus-visible,
   padding: 116px 20px 90px; min-height: 80vh;
   background: radial-gradient(ellipse 75% 45% at 50% 0%, rgba(77,140,255,0.10), transparent 62%);
 }
-.rez-wrap { max-width: 580px; margin: 0 auto; }
+.rez-wrap { max-width: 1040px; margin: 0 auto; }
 
-/* Intro */
-.rez-intro { text-align: center; margin-bottom: 40px; }
-.rez-intro .hero-badge { margin-bottom: 20px; }
+/* Dvousloupcový layout: vlevo důvěra a co dostanu, vpravo formulář */
+.rez-layout {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 56px;
+  align-items: start;
+}
+.rez-aside { position: sticky; top: 100px; }
+.rez-aside .hero-badge { margin-bottom: 18px; }
 .rez-title {
   font-family: 'Newsreader', Georgia, serif; font-weight: 600;
-  font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12;
+  font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.12;
   letter-spacing: -0.03em; margin-bottom: 14px;
 }
 .rez-title em {
@@ -1834,8 +1841,40 @@ textarea:focus-visible,
   background: linear-gradient(135deg, var(--blue-glow) 0%, var(--white) 100%);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.rez-lead { color: var(--gray-300); font-size: 1.05rem; max-width: 440px; margin: 0 auto 22px; }
-.rez-intro .google-badge { margin-bottom: 0; }
+.rez-lead { color: var(--gray-300); font-size: 1.05rem; margin: 0 0 24px; }
+.rez-assure {
+  list-style: none; display: grid; gap: 15px;
+  margin: 0 0 24px; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.rez-assure li { display: flex; gap: 13px; align-items: flex-start; }
+.rez-assure .a-ico {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: rgba(77,140,255,0.12); border-radius: 10px;
+  display: grid; place-items: center;
+}
+.rez-assure .a-ico svg { width: 19px; height: 19px; color: var(--blue-glow); }
+.rez-assure b { display: block; font-weight: 600; color: var(--white); margin-bottom: 1px; font-size: 1rem; }
+.rez-assure span { color: var(--gray-400); font-size: 0.92rem; line-height: 1.5; }
+.rez-aside .google-badge { margin-bottom: 0; }
+.rez-ref {
+  margin-top: 20px; padding: 18px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+}
+.rez-ref p {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.08rem; color: var(--white); margin: 0 0 8px; line-height: 1.45;
+}
+.rez-ref .ref-who { font-size: 13px; color: var(--gray-400); }
+/* Formulářový panel (pravý sloupec) */
+.rez-stage {
+  background: linear-gradient(135deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 34px 32px;
+}
 
 /* Progress */
 .rez-progress { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
@@ -1966,9 +2005,15 @@ textarea:focus-visible,
 }
 .rez-success .rez-check-big svg { width: 28px; height: 28px; stroke: #6ee7b7; }
 
+@media (max-width: 900px) {
+  .rez-layout { grid-template-columns: 1fr; gap: 36px; }
+  .rez-aside { position: static; max-width: 580px; margin: 0 auto; }
+  .rez-stage { max-width: 580px; margin: 0 auto; }
+}
 @media (max-width: 520px) {
   .rez-cards { grid-template-columns: 1fr; }
   .rez-step h2 { font-size: 1.45rem; }
+  .rez-stage { padding: 26px 20px; }
 }
 </style>
 <nav class="nav" id="nav" aria-label="Hlavní navigace">
@@ -1987,11 +2032,26 @@ textarea:focus-visible,
 <main id="hlavni-obsah">
 <section class="rez-section">
   <div class="rez-wrap">
+    <div class="rez-layout">
 
-    <div class="rez-intro">
+    <aside class="rez-aside reveal">
       <div class="hero-badge"><span class="dot"></span> Rezervace online · Litomyšl a okolí</div>
       <h1 class="rez-title">Zarezervujte si <em>termín.</em></h1>
-      <p class="rez-lead">Pár kliknutí a je hotovo. Ozveme se vám do 24 hodin a potvrdíme termín.</p>
+      <p class="rez-lead">Pár kliknutí a je hotovo. Vyberte službu, řekněte mi, co vás na autě trápí, a nechte kontakt.</p>
+      <ul class="rez-assure">
+        <li>
+          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Přijedu za vámi</b><span>Litomyšl a okolí. Vyčistím auto u vás doma nebo v práci, stačí běžná zásuvka.</span></div>
+        </li>
+        <li>
+          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+          <div><b>Cena od 3 000 Kč</b><span>Řeknu ji předem podle stavu vozu. Žádná překvapení.</span></div>
+        </li>
+        <li>
+          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><b>Ozvu se do 24 hodin</b><span>Osobně, žádné automaty. Domluvíme přesný den a čas.</span></div>
+        </li>
+      </ul>
       <a href="https://www.google.com/search?q=Express+Detailing+Litomy%C5%A1l" target="_blank" rel="noopener" class="google-badge">
         <svg class="g-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -2008,8 +2068,13 @@ textarea:focus-visible,
         </div>
         <span class="g-text"><strong>5,0</strong> · Google recenze</span>
       </a>
-    </div>
+      <div class="rez-ref">
+        <p>„Skvělá práce, auto jako nové. Doporučuji na 200&nbsp;%."</p>
+        <div class="ref-who">Alena Kopecká &middot; Google recenze</div>
+      </div>
+    </aside>
 
+    <div class="rez-stage">
     <div class="rez-progress" aria-hidden="true">
       <span class="rez-dot active"></span>
       <span class="rez-dot"></span>
@@ -2048,7 +2113,7 @@ textarea:focus-visible,
       <!-- KROK 2 — co trápí -->
       <div class="rez-step" data-step="2">
         <h2>Co vás na autě nejvíc trápí?</h2>
-        <p class="rez-hint">Vyberte cokoliv, co sedí — klidně víc možností. Nebo krok přeskočte.</p>
+        <p class="rez-hint">Vyberte cokoliv, co sedí, klidně víc možností. Nebo krok přeskočte.</p>
         <div class="rez-chips" id="concernChips">
           <button type="button" class="rez-chip" data-val="Skvrny na sedačkách"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Skvrny na sedačkách</button>
           <button type="button" class="rez-chip" data-val="Nepříjemný zápach"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nepříjemný zápach</button>
@@ -2066,7 +2131,7 @@ textarea:focus-visible,
       <!-- KROK 3 — typ auta -->
       <div class="rez-step" data-step="3">
         <h2>Jaké máte auto?</h2>
-        <p class="rez-hint">Stačí přibližně — kvůli odhadu času.</p>
+        <p class="rez-hint">Stačí přibližně, kvůli odhadu času.</p>
         <div class="rez-chips" id="carChips">
           <button type="button" class="rez-chip" data-val="Osobní auto"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Osobní auto</button>
           <button type="button" class="rez-chip" data-val="SUV / větší vůz"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>SUV / větší vůz</button>
@@ -2083,7 +2148,7 @@ textarea:focus-visible,
       <!-- KROK 4 — město -->
       <div class="rez-step" data-step="4">
         <h2>Kam máme přijet?</h2>
-        <p class="rez-hint">Jsme mobilní — přijedeme za vámi.</p>
+        <p class="rez-hint">Jsme mobilní a přijedeme za vámi.</p>
         <div class="rez-chips" id="cityChips">
           <button type="button" class="rez-chip" data-val="Litomyšl"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Litomyšl</button>
           <button type="button" class="rez-chip" data-val="Polička"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Polička</button>
@@ -2106,7 +2171,7 @@ textarea:focus-visible,
       <!-- KROK 5 — kontakt + termín -->
       <div class="rez-step" data-step="5">
         <h2>Kontakt a termín</h2>
-        <p class="rez-hint">Termín je jen orientační — přesný den a čas doladíme telefonicky.</p>
+        <p class="rez-hint">Termín je jen orientační, přesný den a čas doladíme telefonicky.</p>
         <div class="form-row">
           <label for="name">Jméno <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
           <input type="text" id="name" name="name" autocomplete="name" aria-required="true" />
@@ -2119,7 +2184,7 @@ textarea:focus-visible,
         </div>
         <div class="form-row">
           <label>Kdy chcete, abychom přijeli? <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-          <div class="rez-chips" id="whenChips">
+          <div class="rez-chips" id="whenChips" role="group" aria-label="Kdy chcete, abychom přijeli?">
             <button type="button" class="rez-chip" data-val="Co nejdříve"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Co nejdříve</button>
             <button type="button" class="rez-chip" data-val="Do týdne"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do týdne</button>
             <button type="button" class="rez-chip" data-val="Do měsíce"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do měsíce</button>
@@ -2128,12 +2193,17 @@ textarea:focus-visible,
         </div>
         <div class="form-row">
           <label>Kdy se vám to hodí? <span class="rez-opt">(nepovinné)</span></label>
-          <div class="rez-chips" id="dayChips">
+          <div class="rez-chips" id="dayChips" role="group" aria-label="Kdy se vám to hodí?">
             <button type="button" class="rez-chip" data-val="všední den"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Všední den</button>
             <button type="button" class="rez-chip" data-val="víkend"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Víkend</button>
             <button type="button" class="rez-chip" data-val="nezáleží"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nezáleží</button>
           </div>
         </div>
+        <div class="form-consent" id="rezConsentRow">
+          <input type="checkbox" id="rezConsent" name="consent" aria-required="true" />
+          <label for="rezConsent">Souhlasím se zpracováním osobních údajů za účelem vyřízení rezervace. Více v <a href="/ochrana-osobnich-udaju" target="_blank" rel="noopener">zásadách ochrany osobních údajů</a>.</label>
+        </div>
+        <div class="rez-err" id="errConsent">Bez souhlasu bohužel nemůžu rezervaci přijmout.</div>
         <!-- honeypot proti spamu -->
         <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="rez-actions">
@@ -2150,7 +2220,11 @@ textarea:focus-visible,
       <div class="rez-check-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h2>Rezervace přijata</h2>
       <p>Ozveme se vám do 24 hodin a potvrdíme přesný čas.</p>
+      <p style="margin-top:18px;color:var(--gray-300);">Spěcháte? Zavolejte rovnou na <a href="tel:+420792302615" style="color:var(--blue-glow);font-weight:600;">+420 792 302 615</a>.</p>
       <div class="rez-recap" id="rezRecap"></div>
+    </div>
+
+    </div>
     </div>
 
   </div>
@@ -2163,7 +2237,7 @@ textarea:focus-visible,
       <a href="#" class="logo" style="margin-bottom:18px;" aria-label="Express Detailing, domovská stránka">
         <img src="/assets/logo.webp" alt="Logo Express Detailing" class="logo-img" width="322" height="160" loading="lazy" decoding="async" />
       </a>
-      <p>Hloubkové čištění interiéru aut v Litomyšli a okolí. Mobilní služba, přijedu za Vámi.</p>
+      <p>Hloubkové čištění interiéru aut v Litomyšli a okolí. Mobilní služba, přijedu za vámi.</p>
       <div class="socials">
         <a href="https://www.facebook.com/profile.php?id=61580205237265" target="_blank" rel="noopener" aria-label="Express Detailing na Facebooku (otevře se v novém okně)">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
@@ -2181,12 +2255,12 @@ textarea:focus-visible,
     </div>
     <div class="footer-col">
       <h5>Navigace</h5>
-      <a href="#o-mne">O službě</a>
-      <a href="#sluzby">Co je v ceně</a>
-      <a href="#galerie">Galerie před/po</a>
-      <a href="#reference">Reference</a>
-      <a href="#poptavka">Poptávka termínu</a>
-      <a href="#faq">Časté dotazy</a>
+      <a href="/#o-mne">O službě</a>
+      <a href="/#sluzby">Co je v ceně</a>
+      <a href="/#galerie">Galerie před/po</a>
+      <a href="/#reference">Reference</a>
+      <a href="/rezervace">Rezervace</a>
+      <a href="/#faq">Časté dotazy</a>
     </div>
     <div class="footer-col">
       <h5>Firma</h5>
@@ -2214,7 +2288,7 @@ textarea:focus-visible,
 <aside class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
   <h3 id="cookieTitle">Používáme cookies</h3>
   <p id="cookieDesc">
-    Tento web používá nezbytné cookies pro správné fungování. S Vaším souhlasem
+    Tento web používá nezbytné cookies pro správné fungování. S vaším souhlasem
     můžeme používat i analytické cookies, abychom rozuměli návštěvnosti.
     Více v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.
   </p>
@@ -2386,7 +2460,7 @@ const stickyCta = document.getElementById('stickyCta');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 30) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
-  if (window.scrollY > 500) stickyCta.classList.add('visible');
+  if (window.scrollY > 120) stickyCta.classList.add('visible');
   else stickyCta.classList.remove('visible');
 }, { passive: true });
 
@@ -2546,8 +2620,9 @@ reveals.forEach((el) => observer.observe(el));
     const phone = form.phone.value.trim();
     const checks = [
       ['errName', name.length >= 2, form.name],
-      ['errPhone', phone.replace(/\s/g, '').length >= 9, form.phone],
+      ['errPhone', phone.replace(/\D/g, '').length >= 9, form.phone],
       ['errWhen', !!whenPref, null],
+      ['errConsent', $('rezConsent').checked, $('rezConsent')],
     ];
     let firstInvalid = null;
     for (const [errId, ok, el] of checks) {
@@ -2569,6 +2644,7 @@ reveals.forEach((el) => observer.observe(el));
       car: $('rezCar').value,
       city: $('rezCity').value,
       name, phone, preferred_date,
+      consent: $('rezConsent').checked,
       website: form.website.value,
     };
 
@@ -2585,7 +2661,7 @@ reveals.forEach((el) => observer.observe(el));
       $('rezRecap').textContent = `${data.car} · ${data.city} · ${preferred_date}`;
       $('rezSuccess').hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (typeof fbq !== 'undefined') fbq('track', 'Lead', { value: 3000, currency: 'CZK' });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 3000, currency: 'CZK' });
     } catch (err) {
       errorMsg.classList.add('show');
       submitBtn.disabled = false;
@@ -2593,6 +2669,17 @@ reveals.forEach((el) => observer.observe(el));
     }
   });
 })();
+
+// Měření kliků na telefon / SMS jako konverzní signál (jen když je povolená analytika)
+document.querySelectorAll('a[href^="tel:"], a[href^="sms:"]').forEach((a) => {
+  a.addEventListener('click', () => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'contact', {
+        method: a.getAttribute('href').indexOf('sms:') === 0 ? 'sms' : 'phone',
+      });
+    }
+  });
+});
 </script>
 </body>
 </html>

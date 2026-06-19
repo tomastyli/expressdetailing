@@ -3,7 +3,7 @@
 // Zpracovává rezervaci z rezervace.html — uloží do Supabase a pošle email přes Resend
 //
 // Env variables (nastav v CF Pages → Settings → Environment variables):
-//   RESEND_API_KEY              - Resend API klíč (stejný jako pro /api/contact)
+//   RESEND_API_KEY              - Resend API klíč (stejný jako pro /api/firemni-poptavka)
 //   MAIL_FROM                   - adresa odesílatele, např. "Web <web@expressdetailing.cz>"
 //   MAIL_TO                     - kam mají rezervace chodit
 //   SUPABASE_URL                - Supabase → Settings → API → Project URL
@@ -21,9 +21,10 @@ const BRAND = {
 };
 
 const SERVICE_LABELS = {
-  basic: 'Základní čištění (2 500 Kč, ~3 h)',
-  full: 'Kompletní detailing (4 500 Kč, ~6 h)',
+  interier: 'Detailing interiéru (od 3 000 Kč)',
 };
+
+const VALID_SERVICES = ['interier'];
 
 // Jednoduchý in-memory rate limit per IP (po deploy je per-instance, takže není železná,
 // ale ořeže nejhrubší bursty). Pro tvrdší limit použij Cloudflare Turnstile nebo Rate Limiting.
@@ -73,14 +74,16 @@ export async function onRequestPost(context) {
     const service = sanitize(body.service);
     const preferred_date = sanitize(body.preferred_date);
     const concerns = sanitize(body.concerns); // nepovinné
+    const consent = body.consent === true;
 
     if (
       name.length < 2 ||
-      phone.replace(/\s/g, '').length < 9 ||
+      phone.replace(/\D/g, '').length < 9 ||
       !city ||
       !car ||
       !preferred_date ||
-      (service !== 'basic' && service !== 'full')
+      !VALID_SERVICES.includes(service) ||
+      !consent
     ) {
       return new Response(JSON.stringify({ ok: false, error: 'validation' }), { status: 400, headers });
     }

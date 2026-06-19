@@ -1,9 +1,9 @@
 // Cloudflare Pages Function
 // Endpoint: POST /api/firemni-poptavka
-// Posílá email z firemního formuláře (firemni-cisteni.html)
+// Posílá email z firemního formuláře (pro-firmy.html)
 //
 // Env variables (nastav v CF Pages → Settings → Environment variables):
-//   RESEND_API_KEY  - tvůj Resend API klíč (Encrypt = ON, stejný jako pro /api/contact)
+//   RESEND_API_KEY  - tvůj Resend API klíč (Encrypt = ON, stejný jako pro /api/rezervace)
 //   MAIL_FROM       - adresa odesílatele, např. "Web firemní <firmy@expressdetailing.cz>"
 //                     (doména musí být verifikovaná v Resendu)
 //   MAIL_TO         - kam mají poptávky chodit, např. "expressdetail.litomysl@gmail.com"
@@ -69,8 +69,8 @@ export async function onRequestPost(context) {
     if (
       company.length < 2 ||
       name.length < 2 ||
-      phone.replace(/\s/g, '').length < 9 ||
-      !isEmail(email) ||
+      phone.replace(/\D/g, '').length < 9 ||
+      (email && !isEmail(email)) ||
       !consent
     ) {
       return new Response(JSON.stringify({ ok: false, error: 'validation' }), { status: 400, headers });
@@ -89,7 +89,7 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         from: env.MAIL_FROM,
         to: [env.MAIL_TO],
-        reply_to: email,
+        ...(email ? { reply_to: email } : {}),
         subject,
         html,
         text,
@@ -139,8 +139,8 @@ function renderHtmlEmail({ company, ico, name, phone, email, fleetsize, service,
   const contactRows = [
     ['Kontaktní osoba', e(name)],
     ['Telefon', `<a href="tel:${e(phone)}" style="color:${BRAND.accent};text-decoration:none">${e(phone)}</a>`],
-    ['Email', `<a href="mailto:${e(email)}" style="color:${BRAND.accent};text-decoration:none">${e(email)}</a>`],
-  ];
+    email ? ['Email', `<a href="mailto:${e(email)}" style="color:${BRAND.accent};text-decoration:none">${e(email)}</a>`] : null,
+  ].filter(Boolean);
 
   const companyRows = [
     ['Firma', e(company)],
@@ -235,7 +235,7 @@ function renderTextEmail({ company, ico, name, phone, email, fleetsize, service,
     '== KONTAKT ==',
     `Kontaktní osoba: ${name}`,
     `Telefon: ${phone}`,
-    `Email: ${email}`,
+    email ? `Email: ${email}` : null,
     '',
     '== DETAILY ==',
     fleetsize ? `Velikost flotily: ${fleetsize}` : null,

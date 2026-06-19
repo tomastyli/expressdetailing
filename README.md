@@ -6,13 +6,18 @@ cookie/GDPR lišta a funkční odesílání formuláře přes Resend.
 ## Obsah balíku
 
 ```
-index.html              hlavní stránka (z 1,6 MB na ~93 KB)
-assets/                 obrázky ve formátu WebP + favicony + og-image
-_headers                cache a bezpečnostní hlavičky pro Cloudflare
-site.webmanifest        manifest pro mobilní zástupce
-robots.txt              instrukce pro vyhledávače
-sitemap.xml             mapa webu
-functions/api/contact.js  serverová funkce pro odeslání poptávky e-mailem
+index.html                          hlavní stránka
+pro-firmy.html                      stránka pro firmy (B2B)
+rezervace.html                      online rezervace termínu (5krokový formulář)
+ochrana-osobnich-udaju.html         zásady ochrany osobních údajů (GDPR)
+assets/                             obrázky ve formátu WebP + favicony + og-image
+_headers                            cache a bezpečnostní hlavičky pro Cloudflare
+_redirects                          přesměrování (/firemni-cisteni -> /pro-firmy)
+site.webmanifest                    manifest pro mobilní zástupce
+robots.txt                          instrukce pro vyhledávače
+sitemap.xml                         mapa webu
+functions/api/rezervace.js          serverová funkce: rezervace -> e-mail + Supabase
+functions/api/firemni-poptavka.js   serverová funkce: firemní poptávka -> e-mail
 ```
 
 ## Jak nasadit
@@ -21,16 +26,20 @@ functions/api/contact.js  serverová funkce pro odeslání poptávky e-mailem
    Struktura složek (assets/, functions/) musí zůstat zachovaná.
 
 2. V Cloudflare Pages otevřete Settings > Environment variables a přidejte
-   tři proměnné (Production i Preview):
+   tyto proměnné (Production i Preview):
 
-   - RESEND_API_KEY   = váš API klíč z resend.com (začíná re_)
-   - CONTACT_TO       = expressdetail.litomysl@gmail.com
-   - CONTACT_FROM     = poptavka@expressdetailing.cz
+   - RESEND_API_KEY              = váš API klíč z resend.com (začíná re_)
+   - MAIL_FROM                   = "Web <web@expressdetailing.cz>" (doména ověřená v Resend)
+   - MAIL_TO                     = expressdetail.litomysl@gmail.com
+   - SUPABASE_URL                = Project URL z Supabase (jen pro ukládání rezervací)
+   - SUPABASE_SERVICE_ROLE_KEY   = service_role klíč z Supabase (Encrypt = ON)
 
-   CONTACT_FROM musí být na doméně ověřené v Resend. Dokud doménu nemáte
-   ověřenou, použijte dočasně onboarding@resend.dev.
+   MAIL_FROM musí být na doméně ověřené v Resend. Dokud doménu nemáte
+   ověřenou, použijte dočasně onboarding@resend.dev. SUPABASE_* jsou volitelné
+   (bez nich rezervace stále dorazí e-mailem, jen se neuloží do databáze).
 
-3. Hotovo. Formulář na webu posílá data na /api/contact, funkce je odešle e-mailem.
+3. Hotovo. Rezervace posílá data na /api/rezervace, firemní poptávka na
+   /api/firemni-poptavka. Obě funkce odešlou e-mail přes Resend.
 
 ## Co bylo upraveno
 
@@ -63,8 +72,9 @@ functions/api/contact.js  serverová funkce pro odeslání poptávky e-mailem
 
 - Web vznikl úpravou kódu, vizuálně jej po nasazení projděte v prohlížeči
   a znovu si jej změřte na pagespeed.web.dev.
-- Stránky /firemni-cisteni a /ochrana-osobnich-udaju jsou odkazované,
-  ale jejich obsah není součástí tohoto balíku. Zásady ochrany osobních
-  údajů je vhodné doplnit, protože na ně odkazuje formulář i cookie lišta.
+- Zásady ochrany osobních údajů jsou součástí balíku (ochrana-osobnich-udaju.html,
+  dostupné na /ochrana-osobnich-udaju). Odkazuje na ně formulář i cookie lišta.
+  Obsah zkontrolujte a případně doplňte přesné údaje správce.
+- Stará URL /firemni-cisteni je přes _redirects přesměrovaná na /pro-firmy (301).
 - Souřadnice firmy v meta tazích a JSON-LD jsou orientačně pro Litomyšl.
   Pokud máte přesnou adresu, doporučuji ji doplnit.
