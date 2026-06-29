@@ -74,7 +74,6 @@ export async function onRequestPost(context) {
     const service = sanitize(body.service);
     const preferred_date = sanitize(body.preferred_date);
     const concerns = sanitize(body.concerns); // nepovinné
-    const consent = body.consent === true;
 
     if (
       name.length < 2 ||
@@ -82,8 +81,7 @@ export async function onRequestPost(context) {
       !city ||
       !car ||
       !preferred_date ||
-      !VALID_SERVICES.includes(service) ||
-      !consent
+      !VALID_SERVICES.includes(service)
     ) {
       return new Response(JSON.stringify({ ok: false, error: 'validation' }), { status: 400, headers });
     }

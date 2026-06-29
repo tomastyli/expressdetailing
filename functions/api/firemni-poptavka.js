@@ -64,14 +64,12 @@ export async function onRequestPost(context) {
     const service = sanitize(body.service);
     const location = sanitize(body.location);
     const message = sanitize(body.message);
-    const consent = body.consent === true;
 
     if (
       company.length < 2 ||
       name.length < 2 ||
       phone.replace(/\D/g, '').length < 9 ||
-      (email && !isEmail(email)) ||
-      !consent
+      (email && !isEmail(email))
     ) {
       return new Response(JSON.stringify({ ok: false, error: 'validation' }), { status: 400, headers });
     }

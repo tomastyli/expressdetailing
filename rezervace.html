@@ -1126,6 +1126,40 @@ section { padding: 110px 28px; position: relative; }
   text-decoration: underline;
 }
 .form-consent.invalid label { color: #ff8a8a; }
+.form-consent-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-400);
+  margin: 4px 0 20px;
+}
+.form-consent-note a {
+  color: var(--blue-glow);
+  text-decoration: underline;
+}
+.rez-storno {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.03);
+}
+.rez-storno b {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.rez-storno p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-400);
+  margin: 0;
+}
+.rez-storno a {
+  color: var(--blue-glow);
+  text-decoration: underline;
+}
 
 /* Honeypot proti spamu, schovaný mimo obrazovku */
 .hp-field {
@@ -2191,11 +2225,11 @@ textarea:focus-visible,
             <button type="button" class="rez-chip" data-val="nezáleží"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nezáleží</button>
           </div>
         </div>
-        <div class="form-consent" id="rezConsentRow">
-          <input type="checkbox" id="rezConsent" name="consent" aria-required="true" />
-          <label for="rezConsent">Souhlasím se zpracováním osobních údajů za účelem vyřízení rezervace. Více v <a href="/ochrana-osobnich-udaju" target="_blank" rel="noopener">zásadách ochrany osobních údajů</a>.</label>
+        <p class="form-consent-note">Odesláním formuláře berete na vědomí zpracování osobních údajů za účelem vyřízení vaší poptávky. Více v <a href="/ochrana-osobnich-udaju" target="_blank" rel="noopener">zásadách ochrany osobních údajů</a>.</p>
+        <div class="rez-storno">
+          <b>Zrušení termínu</b>
+          <p>Tato rezervace je nezávazná. Domluvený termín můžete bez problémů zrušit nebo přeložit telefonicky na <a href="tel:+420792302615">+420 792 302 615</a> nebo e-mailem na <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a>, ideálně co nejdříve, nejpozději 48 hodin před termínem. Zrušení 48 hodin předem a dříve je vždy zdarma. Pokud to nestihnete, dejte nám prosím vědět co nejdříve, abychom termín mohli nabídnout někomu dalšímu.</p>
         </div>
-        <div class="rez-err" id="errConsent">Bez souhlasu bohužel nemůžu rezervaci přijmout.</div>
         <!-- honeypot proti spamu -->
         <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="rez-actions">
@@ -2255,8 +2289,10 @@ textarea:focus-visible,
     </div>
     <div class="footer-col">
       <h5>Firma</h5>
+      <p>Jan Nechvíle</p>
       <p>IČO: 23820560</p>
-      <p>Express Detailing</p>
+      <p>Jiříkov 18, 570 01 Dolní Újezd</p>
+      <p>Podnikatel zapsaný v živnostenském rejstříku. Neplátce DPH.</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -2613,7 +2649,6 @@ reveals.forEach((el) => observer.observe(el));
       ['errName', name.length >= 2, form.name],
       ['errPhone', phone.replace(/\D/g, '').length >= 9, form.phone],
       ['errWhen', !!whenPref, null],
-      ['errConsent', $('rezConsent').checked, $('rezConsent')],
     ];
     let firstInvalid = null;
     for (const [errId, ok, el] of checks) {
@@ -2635,7 +2670,6 @@ reveals.forEach((el) => observer.observe(el));
       car: $('rezCar').value,
       city: $('rezCity').value,
       name, phone, preferred_date,
-      consent: $('rezConsent').checked,
       website: form.website.value,
     };
 

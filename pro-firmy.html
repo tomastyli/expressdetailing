@@ -1467,31 +1467,16 @@ section { padding: 110px 28px; position: relative; }
   border: 0;
 }
 
-.form-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  margin: 4px 0 20px;
-}
-.form-consent input[type="checkbox"] {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
-  accent-color: var(--red-accent);
-  cursor: pointer;
-}
-.form-consent label {
+.form-consent-note {
   font-size: 13px;
   line-height: 1.55;
   color: var(--gray-400);
-  cursor: pointer;
+  margin: 4px 0 20px;
 }
-.form-consent label a {
+.form-consent-note a {
   color: var(--red-glow);
   text-decoration: underline;
 }
-.form-consent.invalid label { color: #ff8a8a; }
 
 .hp-field {
   position: absolute;
@@ -2710,14 +2695,7 @@ textarea:focus-visible,
             <label for="message">Doplňující informace</label>
             <textarea id="message" name="message" rows="4" placeholder="Typy vozidel ve flotile, jak často potřebujete čistit, preferovaný termín..."></textarea>
           </div>
-          <div class="form-consent">
-            <input type="checkbox" id="consent" name="consent" required aria-required="true" />
-            <label for="consent">
-              Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.
-              Podrobnosti najdete v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.
-              <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span>
-            </label>
-          </div>
+          <p class="form-consent-note">Odesláním formuláře berete na vědomí zpracování osobních údajů za účelem vyřízení vaší poptávky. Více v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.</p>
           <!-- honeypot proti spamu, pro lidi neviditelný -->
           <div class="hp-field" aria-hidden="true">
             <label for="website">Toto pole nevyplňujte</label>
@@ -2855,8 +2833,10 @@ textarea:focus-visible,
     </div>
     <div class="footer-col">
       <h5>Firma</h5>
+      <p>Jan Nechvíle</p>
       <p>IČO: 23820560</p>
-      <p>Express Detailing</p>
+      <p>Jiříkov 18, 570 01 Dolní Újezd</p>
+      <p>Podnikatel zapsaný v živnostenském rejstříku. Neplátce DPH.</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -3086,7 +3066,6 @@ const errorMsg = document.getElementById('formError');
 
 const setInvalid = (el, on) => {
   el.classList.toggle('invalid', on);
-  if (el.type === 'checkbox') el.closest('.form-consent').classList.toggle('invalid', on);
 };
 
 form.addEventListener('submit', async (e) => {
@@ -3106,7 +3085,6 @@ form.addEventListener('submit', async (e) => {
     [form.name, form.name.value.trim().length >= 2],
     [form.phone, form.phone.value.replace(/\D/g, '').length >= 9],
     [form.email, emailOk],
-    [form.consent, form.consent.checked],
   ];
   for (const [el, ok] of checks) {
     setInvalid(el, !ok);
@@ -3130,7 +3108,6 @@ form.addEventListener('submit', async (e) => {
     service: form.service.value,
     location: form.location.value.trim(),
     message: form.message.value.trim(),
-    consent: form.consent.checked,
     website: form.website.value,
   };
 
@@ -3153,7 +3130,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 // Odstraň zvýraznění chyby při psaní
-['company', 'name', 'phone', 'email', 'consent'].forEach((id) => {
+['company', 'name', 'phone', 'email'].forEach((id) => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('input', () => setInvalid(el, false));
 });
