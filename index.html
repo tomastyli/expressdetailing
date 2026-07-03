@@ -507,7 +507,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
 }
-/* plná modrá výplň, najede zleva — bílý text na ní bude vždy čitelný */
+/* plná modrá výplň, najede zleva – bílý text na ní bude vždy čitelný */
 .btn-primary::before {
   content: '';
   position: absolute;
@@ -2590,7 +2590,7 @@ window.addEventListener('scroll', () => {
   else stickyCta.classList.remove('visible');
 }, { passive: true });
 
-// Before/After slider — auto cycle + drag
+// Before/After slider – auto cycle + drag
 (function () {
   const slider = document.getElementById('baSlider');
   if (!slider) return;
@@ -2650,7 +2650,7 @@ window.addEventListener('scroll', () => {
   window.addEventListener('mouseup', onUp);
   window.addEventListener('touchend', onUp);
 
-  // Ovládání klávesnicí (přístupnost) — z role="img" děláme posuvník
+  // Ovládání klávesnicí (přístupnost) – z role="img" děláme posuvník
   slider.setAttribute('role', 'slider');
   slider.setAttribute('tabindex', '0');
   slider.setAttribute('aria-valuemin', '0');
@@ -2669,7 +2669,7 @@ window.addEventListener('scroll', () => {
   setTimeout(() => { setPos(28); autoState = 0; startAuto(); }, 1200);
 })();
 
-// Gallery before/after cards — drag only
+// Gallery before/after cards – drag only
 document.querySelectorAll('.ba-card').forEach((card) => {
   let dragging = false;
   const setPos = (pct) => {

@@ -3093,7 +3093,7 @@ form.addEventListener('submit', async (e) => {
   // Honeypot, pokud je vyplněný, tiše nic neodešleme
   if (form.website.value) return;
 
-  // Validace (e-mail je nepovinný — kontrolujeme formát jen když je vyplněný)
+  // Validace (e-mail je nepovinný – kontrolujeme formát jen když je vyplněný)
   const emailVal = form.email.value.trim();
   const emailOk = !emailVal || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
   let firstInvalid = null;
