@@ -2861,7 +2861,8 @@ textarea:focus-visible,
   <h3 id="cookieTitle">Používáme cookies</h3>
   <p id="cookieDesc">
     Tento web používá nezbytné cookies pro správné fungování. S vaším souhlasem
-    můžeme používat i analytické cookies, abychom rozuměli návštěvnosti.
+    používáme i analytické a marketingové cookies (Google, Meta), abychom měřili
+    návštěvnost a výsledky reklamy.
     Více v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.
   </p>
   <div class="cookie-detail" id="cookieDetail">
@@ -2881,6 +2882,15 @@ textarea:focus-visible,
       </div>
       <span class="cookie-switch">
         <input type="checkbox" id="ckAnalytics" aria-label="Analytické cookies" />
+      </span>
+    </div>
+    <div class="cookie-option">
+      <div class="cookie-option-text">
+        <strong>Marketingové cookies</strong>
+        <span>Měření reklamy a remarketing (Meta Pixel).</span>
+      </div>
+      <span class="cookie-switch">
+        <input type="checkbox" id="ckMarketing" aria-label="Marketingové cookies" />
       </span>
     </div>
   </div>
@@ -2992,6 +3002,8 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
   var settingsBtn = document.getElementById('cookieSettings');
   var saveBtn = document.getElementById('cookieSavePrefs');
   var ckAnalytics = document.getElementById('ckAnalytics');
+  var ckMarketing = document.getElementById('ckMarketing');
+  var META_PIXEL_ID = '1028815046350783';
 
   function readConsent() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); }
@@ -3009,15 +3021,24 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
     gtag('js', new Date());
     gtag('config', 'G-L718E72LY9');
   }
-  function saveConsent(analytics) {
+  function loadMarketing() {
+    if (window.__edMarketingLoaded) return;
+    window.__edMarketingLoaded = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+  function saveConsent(analytics, marketing) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         necessary: true,
         analytics: !!analytics,
+        marketing: !!marketing,
         date: new Date().toISOString()
       }));
     } catch (e) {}
     if (analytics) loadAnalytics();
+    if (marketing) loadMarketing();
   }
   function showBanner() { banner.classList.add('show'); reopenBtn.style.display = 'none'; }
   function hideBanner() { banner.classList.remove('show'); reopenBtn.style.display = 'grid'; }
@@ -3029,27 +3050,30 @@ document.querySelectorAll('.faq-question').forEach((btn) => {
   }
 
   var consent = readConsent();
-  if (consent) { reopenBtn.style.display = 'grid'; if (consent.analytics) loadAnalytics(); }
+  if (consent) { reopenBtn.style.display = 'grid'; if (consent.analytics) loadAnalytics(); if (consent.marketing) loadMarketing(); }
   else { showBanner(); }
 
   document.getElementById('cookieAccept').addEventListener('click', function () {
     ckAnalytics.checked = true;
-    saveConsent(true);
+    ckMarketing.checked = true;
+    saveConsent(true, true);
     hideBanner();
   });
   document.getElementById('cookieReject').addEventListener('click', function () {
     ckAnalytics.checked = false;
-    saveConsent(false);
+    ckMarketing.checked = false;
+    saveConsent(false, false);
     hideBanner();
   });
   settingsBtn.addEventListener('click', openDetail);
   saveBtn.addEventListener('click', function () {
-    saveConsent(ckAnalytics.checked);
+    saveConsent(ckAnalytics.checked, ckMarketing.checked);
     hideBanner();
   });
   function reopen() {
     var c = readConsent();
     ckAnalytics.checked = c ? !!c.analytics : false;
+    ckMarketing.checked = c ? !!c.marketing : false;
     openDetail();
     showBanner();
   }

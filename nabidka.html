@@ -907,7 +907,7 @@ footer { background: var(--navy-950); border-top: 1px solid rgba(255,255,255,0.0
 <script>
 (function () {
   var GA_ID = 'G-L718E72LY9';
-  var META_PIXEL_ID = '2507194139752210';
+  var META_PIXEL_ID = '1028815046350783';
   var STORAGE_KEY = 'ed_consent_v2';
 
   function loadAnalytics() {
@@ -953,6 +953,8 @@ footer { background: var(--navy-950); border-top: 1px solid rgba(255,255,255,0.0
   var saveBtn = document.getElementById('ckSave');
 
   function openDetail() { detail.classList.add('open'); settingsBtn.style.display = 'none'; saveBtn.style.display = ''; }
+
+  loadMarketing();
 
   var existing = readConsent();
   if (existing) { window.__edConsent = existing; applyConsent(existing); ckA.checked = !!existing.analytics; ckM.checked = !!existing.marketing; }
