@@ -2708,7 +2708,7 @@ reveals.forEach((el) => observer.observe(el));
       $('rezRecap').textContent = `${data.car} · ${data.city} · ${preferred_date}`;
       $('rezSuccess').hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 3000, currency: 'CZK' });
+      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 3000, currency: 'CZK', lead_source: 'rezervace' });
     } catch (err) {
       errorMsg.classList.add('show');
       submitBtn.disabled = false;

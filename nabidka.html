@@ -964,7 +964,7 @@ footer { background: var(--navy-950); border-top: 1px solid rgba(255,255,255,0.0
   });
 
   window.edTrackLead = function (value) {
-    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: value || 2500, currency: 'CZK' });
+    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: value || 2500, currency: 'CZK', lead_source: 'nabidka' });
     if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { value: value || 2500, currency: 'CZK' });
   };
   window.edTrackContact = function (method) {

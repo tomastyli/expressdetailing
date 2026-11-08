@@ -3130,7 +3130,7 @@ form.addEventListener('submit', async (e) => {
     });
     if (!res.ok) throw new Error('fail');
     successMsg.classList.add('show');
-    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 0, currency: 'CZK' });
+    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 0, currency: 'CZK', lead_source: 'pro-firmy' });
     form.reset();
   } catch (err) {
     errorMsg.classList.add('show');
