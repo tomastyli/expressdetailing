@@ -1,4 +1,4 @@
 # Cloudflare Pages přesměrování
-# Stará/odkazovaná URL firemní stránky -> aktuální /pro-firmy
-/firemni-cisteni /pro-firmy 301
-/firemni-cisteni/ /pro-firmy 301
+# Stará URL firemní stránky -> úvodní stránka (firemní stránka je zatím skrytá)
+/firemni-cisteni / 301
+/firemni-cisteni/ / 301

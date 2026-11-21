@@ -1,2732 +1,629 @@
-<!DOCTYPE html>
-<html lang="cs">
+<!doctype html>
+<html lang="cs" data-type="service" data-radius="soft" data-buttons="solid">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>if(!location.hash){try{history.scrollRestoration="manual"}catch(e){}window.scrollTo({top:0,left:0,behavior:"instant"})}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rezervace termínu | Express Detailing</title>
+<!-- seo -->
+<link rel="canonical" href="https://www.expressdetailing.cz/rezervace">
+<meta property="og:url" content="https://www.expressdetailing.cz/rezervace">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Express Detailing">
+<!-- /seo -->
+<meta name="description" content="Rezervace mobilního čištění interiéru auta v Litomyšli a okolí. Vyberte auto, napište, co ho trápí, kde stojí a kdy se vám to hodí.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rezervace termínu | Express Detailing">
+<meta property="og:description" content="Rezervace mobilního čištění interiéru auta v Litomyšli a okolí. Vyberte auto, napište, co ho trápí, kde stojí a kdy se vám to hodí.">
+<meta property="og:image" content="https://www.expressdetailing.cz/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#eeeeeb">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
 
-<!-- Základní SEO -->
-<title>Rezervace termínu online | Express Detailing Litomyšl</title>
-<meta name="description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt, ozveme se do 24 hodin. Litomyšl a okolí." />
-<meta name="author" content="Express Detailing Litomyšl" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<meta name="language" content="Czech" />
-<meta name="geo.region" content="CZ-53" />
-<meta name="geo.placename" content="Litomyšl" />
-<link rel="canonical" href="https://www.expressdetailing.cz/rezervace" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..600&family=Inter+Tight:wght@500..600&display=swap" rel="stylesheet">
 
-<!-- Barvy a ikony -->
-<meta name="theme-color" content="#0a1628" />
-<meta name="color-scheme" content="dark" />
-<link rel="icon" href="/assets/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
-
-<!-- Open Graph -->
-<meta property="og:locale" content="cs_CZ" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Express Detailing Litomyšl" />
-<meta property="og:title" content="Rezervace termínu online | Express Detailing Litomyšl" />
-<meta property="og:description" content="Zarezervujte si termín hloubkového čištění interiéru auta online. Vyberte službu, zadejte auto a kontakt, ozveme se do 24 hodin." />
-<meta property="og:url" content="https://www.expressdetailing.cz/rezervace" />
-<meta property="og:image" content="https://www.expressdetailing.cz/assets/og-image.jpg" />
-
-<!-- Fonty -->
-<link rel="stylesheet" href="fonts/fonts.css">
-
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<link rel="stylesheet" href="assets/moments/pinned-chapters/moment.css">
+<link rel="stylesheet" href="assets/moments/picture-develops/moment.css">
+<link rel="stylesheet" href="assets/moments/word-highlight/moment.css">
 <style>
 :root {
-  --navy-950: #050d1a;
-  --navy-900: #0a1628;
-  --navy-800: #0f2240;
-  --navy-700: #1a3458;
-  --navy-600: #2a4a73;
-  --blue-accent: #4d8cff;
-  --blue-glow: #7aa9ff;
-  --white: #ffffff;
-  --off-white: #f5f7fb;
-  --gray-300: #c9d3e3;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gold: #d4a857;
-  --success: #22c55e;
-  --radius: 14px;
-  --radius-lg: 22px;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-[id] { scroll-margin-top: 90px; }
-#cenik { scroll-margin-top: 140px; }
-
-body {
-  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--navy-900);
-  color: var(--white);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img { max-width: 100%; display: block; }
-
-/* ------- NAVIGATION ------- */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 18px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.4s var(--ease);
-  background: transparent;
-}
-.nav.scrolled {
-  background: rgba(5, 13, 26, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 12px 28px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.logo {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo-img {
-  height: 40px;
-  width: auto;
-  display: block;
-  transition: opacity 0.25s var(--ease), transform 0.3s var(--ease);
-}
-.logo:hover .logo-img {
-  opacity: 0.82;
-}
-.nav.scrolled .logo-img {
-  height: 34px;
-}
-.footer-brand .logo-img {
-  height: 46px;
-}
-.logo-mark {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter Tight', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--navy-900);
-  box-shadow: 0 8px 24px rgba(77, 140, 255, 0.35);
-}
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--white);
-  color: var(--navy-900);
-  padding: 11px 20px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14.5px;
-  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
-}
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.15);
-}
-.nav-cta svg { width: 16px; height: 16px; transition: transform 0.35s var(--ease); }
-.nav-cta:hover svg { transform: scale(1.12) rotate(-8deg); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.nav-link {
-  position: relative;
-  color: var(--gray-300);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14.5px;
-  letter-spacing: -0.01em;
-  padding: 4px 2px;
-  transition: color 0.25s var(--ease);
-  white-space: nowrap;
-}
-.nav-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1.5px;
-  background: var(--blue-glow);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s var(--ease);
-}
-.nav-link:hover {
-  color: var(--white);
-}
-.nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* ------- HERO ------- */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 140px 28px 100px;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(77,140,255,0.18), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(122,169,255,0.12), transparent 60%),
-    linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%);
-}
-
-/* hero grid removed */
-
-.hero-content {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(77, 140, 255, 0.1);
-  border: 1px solid rgba(77, 140, 255, 0.25);
-  padding: 8px 16px;
-  border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--blue-glow);
-  margin-bottom: 28px;
-  animation: fadeUp 0.8s var(--ease) both;
-}
-.hero-badge .dot {
-  width: 8px;
-  height: 8px;
-  background: var(--success);
-  border-radius: 50%;
-  box-shadow: 0 0 12px var(--success);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.hero h1 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 600;
-  font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 1.12;
-  letter-spacing: -0.035em;
-  margin-bottom: 24px;
-  animation: fadeUp 0.9s 0.1s var(--ease) both;
-}
-.hero h1 em {
-  font-style: italic;
-  font-weight: 500;
-  /* padding + negativní margin: dá kurzívě prostor, aby se neořezávala, bez posunu layoutu */
-  display: inline-block;
-  padding: 0.08em 0.06em 0.14em;
-  margin: -0.08em -0.06em -0.14em;
-  background: linear-gradient(135deg, var(--blue-glow) 0%, var(--white) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p.lead {
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  color: var(--gray-300);
-  max-width: 540px;
-  margin-bottom: 36px;
-  animation: fadeUp 0.9s 0.2s var(--ease) both;
-}
-
-.hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 36px;
-  animation: fadeUp 0.9s 0.3s var(--ease) both;
-}
-
-/* Google review badge */
-.google-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 10px 16px 10px 12px;
-  border-radius: 100px;
-  margin-bottom: 28px;
-  animation: fadeUp 0.9s 0.25s var(--ease) both;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.25s var(--ease);
-}
-.google-badge:hover {
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.2);
-  transform: translateY(-1px);
-}
-.google-badge .g-logo {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-.google-badge .g-stars {
-  display: flex;
-  gap: 2px;
-  color: var(--gold);
-}
-.google-badge .g-stars svg { width: 14px; height: 14px; }
-.google-badge .g-text {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-300);
-  white-space: nowrap;
-}
-.google-badge .g-text strong { color: var(--white); font-weight: 600; }
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  background: var(--white);
-  color: var(--navy-900);
-  padding: 13px 22px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14.5px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s var(--ease), box-shadow 0.35s var(--ease), color 0.3s var(--ease);
-  box-shadow: 0 8px 30px rgba(255,255,255,0.14);
-  position: relative;
-  overflow: hidden;
-}
-/* plná modrá výplň, najede zleva – bílý text na ní bude vždy čitelný */
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, var(--blue-accent), var(--blue-glow));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s var(--ease);
-  z-index: 0;
-}
-/* lesklý pruh, který přejede přes tlačítko */
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
-  transform: skewX(-20deg);
-  z-index: 2;
-  pointer-events: none;
-}
-.btn-primary > * { position: relative; z-index: 1; }
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 50px rgba(77, 140, 255, 0.45);
-  color: #ffffff;
-}
-.btn-primary:hover * { color: #ffffff; }
-.btn-primary:hover svg { stroke: #ffffff; color: #ffffff; }
-.btn-primary:hover::before { transform: scaleX(1); }
-.btn-primary:hover::after { animation: btnShine 0.9s var(--ease) 0.1s; }
-.btn-primary svg,
-.btn-secondary svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  transition: transform 0.35s var(--ease);
-}
-.btn-primary:hover svg { transform: scale(1.12) rotate(-8deg); }
-
-@keyframes btnShine {
-  to { left: 120%; }
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  background: transparent;
-  color: var(--white);
-  padding: 13px 22px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14.5px;
-  border: 1px solid rgba(255,255,255,0.2);
-  cursor: pointer;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.btn-secondary:hover {
-  background: rgba(77,140,255,0.12);
-  border-color: rgba(122,169,255,0.6);
-  transform: translateY(-3px);
-}
-.btn-secondary:hover svg { transform: scale(1.12) rotate(-8deg); }
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: center;
-  align-items: stretch;
-  animation: fadeUp 0.9s 0.4s var(--ease) both;
-}
-.hero-stats .stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 28px;
-  min-width: 0;
-}
-.hero-stats .stat + .stat {
-  border-left: 1px solid rgba(255,255,255,0.1);
-}
-.hero-stats .num {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 2.4rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  line-height: 1;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 7px;
-  white-space: nowrap;
-}
-.hero-stats .num .star {
-  color: var(--gold);
-  font-size: 1.5rem;
-  line-height: 1;
-}
-.hero-stats .label {
-  font-size: 13px;
-  color: var(--gray-400);
-  margin-top: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-align: center;
-}
-
-/* Hero visual / before-after slider */
-.hero-visual {
-  position: relative;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--navy-800);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.5),
-    0 0 0 1px rgba(77,140,255,0.1);
-  animation: fadeUp 1s 0.3s var(--ease) both;
-  user-select: none;
-  touch-action: none;
-}
-.ba-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-}
-.ba-image.after {
-  clip-path: inset(0 0 0 var(--ba-pos, 50%));
-  transition: clip-path 0.5s var(--ease);
-}
-.hero-visual.dragging .ba-image.after { transition: none; }
-
-.ba-divider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--ba-pos, 50%);
-  width: 2px;
-  background: var(--white);
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transform: translateX(-1px);
-  transition: left 0.5s var(--ease);
-  pointer-events: none;
-  z-index: 3;
-}
-.hero-visual.dragging .ba-divider { transition: none; }
-.ba-handle {
-  position: absolute;
-  top: 50%;
-  left: var(--ba-pos, 50%);
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  background: var(--white);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: ew-resize;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  z-index: 4;
-  transition: left 0.5s var(--ease), transform 0.2s var(--ease);
-}
-.hero-visual.dragging .ba-handle { transition: transform 0.2s var(--ease); }
-.ba-handle:hover { transform: translate(-50%, -50%) scale(1.1); }
-.ba-handle svg { width: 20px; height: 20px; color: var(--navy-900); }
-
-.ba-label {
-  position: absolute;
-  top: 18px;
-  padding: 6px 12px;
-  background: rgba(5,13,26,0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--white);
-  z-index: 3;
-  pointer-events: none;
-}
-.ba-label.before-label { left: 18px; }
-.ba-label.after-label { right: 18px; background: rgba(77,140,255,0.85); border-color: rgba(255,255,255,0.2); }
-
-/* Marquee / trust strip */
-.trust-strip {
-  background: var(--navy-950);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  padding: 22px 0;
-  overflow: hidden;
-}
-.marquee {
-  display: flex;
-  gap: 60px;
-  animation: marquee 30s linear infinite;
-  white-space: nowrap;
-  width: max-content;
-}
-.marquee-item {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 18px;
-  color: var(--gray-400);
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  letter-spacing: -0.01em;
-}
-.marquee-item::after {
-  content: '✦';
-  color: var(--blue-accent);
-  font-size: 14px;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ------- SECTIONS ------- */
-section { padding: 110px 28px; position: relative; }
-.container { max-width: 1280px; margin: 0 auto; }
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--blue-glow);
-  margin-bottom: 20px;
-}
-.section-label::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--blue-accent);
-}
-
-.section-title {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-  max-width: 800px;
-}
-.section-title em {
-  font-style: italic;
-  color: var(--blue-glow);
-  /* prostor pro dotahy kurzívy, ať se spodek písmen neořezává */
-  display: inline-block;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
-}
-
-.section-subtitle {
-  font-size: 1.1rem;
-  color: var(--gray-300);
-  max-width: 620px;
-  margin-bottom: 64px;
-}
-
-/* ------- ABOUT / VALUE ------- */
-.about {
-  background: var(--navy-900);
-  position: relative;
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.about-text p {
-  font-size: 1.08rem;
-  color: var(--gray-300);
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
-.about-text strong { color: var(--white); font-weight: 600; }
-
-.value-cards {
-  display: grid;
-  gap: 16px;
-}
-.value-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 28px;
-  border-radius: var(--radius);
-  transition: all 0.4s var(--ease);
-  position: relative;
-  overflow: hidden;
-}
-.value-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px; height: 100%;
-  background: var(--blue-accent);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.4s var(--ease);
-}
-.value-card:hover { transform: translateX(4px); border-color: rgba(77,140,255,0.3); }
-.value-card:hover::before { transform: scaleY(1); }
-.value-card h4 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-}
-.value-card p { color: var(--gray-400); font-size: 0.96rem; }
-.value-card .icon-wrap {
-  width: 44px; height: 44px;
-  background: rgba(77,140,255,0.12);
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 16px;
-}
-.value-card .icon-wrap svg { width: 22px; height: 22px; color: var(--blue-glow); }
-
-/* ------- SERVICE / WHAT WE DO ------- */
-.service {
-  background:
-    radial-gradient(ellipse at 80% 20%, rgba(77,140,255,0.08), transparent 50%),
-    var(--navy-950);
-}
-
-.service-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 48px;
-  align-items: stretch;
-}
-.service-item {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 28px;
-  border-radius: var(--radius);
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  transition: all 0.3s var(--ease);
-}
-.service-item:hover {
-  background: rgba(77,140,255,0.05);
-  border-color: rgba(77,140,255,0.25);
-  transform: translateY(-3px);
-}
-.service-check {
-  width: 28px;
-  height: 28px;
-  background: var(--blue-accent);
-  border-radius: 8px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.service-check svg { width: 16px; height: 16px; color: var(--white); }
-.service-item .label {
-  font-size: 1.02rem;
-  color: var(--white);
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-/* ------- PRICING BLOCK ------- */
-.pricing-block {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.price-card {
-  background: linear-gradient(135deg, var(--white), var(--off-white));
-  color: var(--navy-900);
-  padding: 40px;
-  border-radius: var(--radius-lg);
-  position: relative;
-  overflow: hidden;
-}
-.price-card.dark {
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.price-card .price-label {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  color: var(--navy-700);
-}
-.price-card.dark .price-label { color: var(--blue-glow); }
-.price-card .amount {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 3rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.price-card .amount small { font-size: 1rem; font-weight: 500; opacity: 0.6; }
-.price-card .desc { font-size: 0.98rem; opacity: 0.75; margin-top: 12px; }
-
-/* ------- PROCESS / HOW IT WORKS ------- */
-.process {
-  background: var(--navy-900);
-}
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 60px;
-  position: relative;
-}
-.process-step {
-  position: relative;
-}
-.step-num {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 5rem;
-  font-weight: 500;
-  font-style: italic;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--blue-accent);
-  line-height: 1.15;
-  margin-bottom: 12px;
-  display: block;
-  padding: 0.05em 0.12em 0.05em 0;
-}
-.process-step h4 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.process-step p { color: var(--gray-400); font-size: 1rem; }
-
-/* ------- BEFORE/AFTER GALLERY ------- */
-.gallery {
-  background: var(--navy-950);
-  position: relative;
-}
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 56px;
-}
-.ba-card {
-  position: relative;
-  margin: 0;
-  aspect-ratio: 4/5;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  cursor: ew-resize;
-  user-select: none;
-  touch-action: none;
-  background: var(--navy-800);
-  transition: transform 0.4s var(--ease), border-color 0.3s var(--ease);
-}
-.ba-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(77,140,255,0.3);
-}
-.ba-card figcaption {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-.ba-card .ba-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-}
-.ba-card .ba-image.after {
-  clip-path: inset(0 0 0 var(--ba-pos, 50%));
-  transition: clip-path 0.4s var(--ease);
-}
-.ba-card.dragging .ba-image.after { transition: none; }
-.ba-card .ba-divider {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: var(--ba-pos, 50%);
-  width: 2px;
-  background: var(--white);
-  box-shadow: 0 0 14px rgba(0,0,0,0.4);
-  transform: translateX(-1px);
-  transition: left 0.4s var(--ease);
-  pointer-events: none;
-  z-index: 2;
-}
-.ba-card.dragging .ba-divider { transition: none; }
-.ba-card .ba-handle {
-  position: absolute;
-  top: 50%;
-  left: var(--ba-pos, 50%);
-  transform: translate(-50%, -50%);
-  width: 38px;
-  height: 38px;
-  background: var(--white);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  z-index: 3;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  transition: left 0.4s var(--ease);
-}
-.ba-card.dragging .ba-handle { transition: none; }
-.ba-card .ba-handle svg { width: 16px; height: 16px; color: var(--navy-900); }
-.ba-card .ba-label {
-  position: absolute;
-  top: 14px;
-  padding: 5px 11px;
-  border-radius: 100px;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  z-index: 2;
-  pointer-events: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.ba-card .ba-label.before-label {
-  left: 14px;
-  background: rgba(5,13,26,0.8);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: var(--white);
-}
-.ba-card .ba-label.after-label {
-  right: 14px;
-  background: rgba(77,140,255,0.85);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white);
-}
-.gallery-note {
-  margin-top: 32px;
-  text-align: center;
-  font-size: 13.5px;
-  color: var(--gray-400);
-}
-.gallery-note svg {
-  width: 14px; height: 14px;
-  vertical-align: -2px;
-  margin-right: 4px;
-}
-
-/* ------- REFERENCE / TESTIMONIALS ------- */
-.testimonials {
-  background:
-    radial-gradient(ellipse at center top, rgba(77,140,255,0.1), transparent 60%),
-    var(--navy-950);
-}
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 48px;
-}
-.testimonial {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 32px;
-  border-radius: var(--radius);
-  position: relative;
-  transition: all 0.4s var(--ease);
-}
-.testimonial:hover {
-  border-color: rgba(77,140,255,0.3);
-  transform: translateY(-4px);
-  background: rgba(77,140,255,0.04);
-}
-.stars {
-  display: flex;
-  gap: 3px;
-  margin-bottom: 18px;
-  color: var(--gold);
-}
-.stars svg { width: 18px; height: 18px; }
-.testimonial-text {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.15rem;
-  line-height: 1.5;
-  margin-bottom: 24px;
-  color: var(--white);
-  font-weight: 400;
-}
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.author-avatar {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow));
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--navy-900);
-}
-.author-name { font-weight: 600; }
-.author-loc { font-size: 13px; color: var(--gray-400); }
-
-/* ------- CONTRACT FORM ------- */
-.contract {
-  background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 100%);
-}
-.contract-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-.contract-info p {
-  font-size: 1.08rem;
-  color: var(--gray-300);
-  margin-bottom: 20px;
-}
-.contract-bullets {
-  list-style: none;
-  display: grid;
-  gap: 14px;
-  margin-top: 28px;
-}
-.contract-bullets li {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  color: var(--gray-300);
-  font-size: 1rem;
-}
-.contract-bullets svg {
-  width: 22px; height: 22px;
-  color: var(--blue-glow);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.form-card {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 40px;
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.form-card h3 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
-}
-.form-card .form-sub {
-  color: var(--gray-400);
-  font-size: 0.95rem;
-  margin-bottom: 28px;
-}
-.form-row { margin-bottom: 18px; }
-.form-row label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gray-300);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-.form-row input,
-.form-row textarea,
-.form-row select {
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 14px 16px;
-  color: var(--white);
-  font-size: 16px;
-  font-family: inherit;
-  transition: all 0.2s var(--ease);
-}
-.form-row input:focus,
-.form-row textarea:focus,
-.form-row select:focus {
-  outline: none;
-  border-color: var(--blue-accent);
-  background: rgba(77,140,255,0.05);
-  box-shadow: 0 0 0 4px rgba(77,140,255,0.1);
-}
-.form-row textarea { resize: vertical; min-height: 110px; font-family: inherit; }
-.form-row select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9d3e3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; padding-right: 44px; }
-.form-row select option { background: var(--navy-800); color: var(--white); }
-
-.form-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-/* Vizuálně skrytý text pro čtečky obrazovky */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* GDPR souhlas */
-.form-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  margin: 4px 0 20px;
-}
-.form-consent input[type="checkbox"] {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
-  accent-color: var(--blue-accent);
-  cursor: pointer;
-}
-.form-consent label {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--gray-400);
-  cursor: pointer;
-}
-.form-consent label a {
-  color: var(--blue-glow);
-  text-decoration: underline;
-}
-.form-consent.invalid label { color: #ff8a8a; }
-.form-consent-note {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--gray-400);
-  margin: 4px 0 20px;
-}
-.form-consent-note a {
-  color: var(--blue-glow);
-  text-decoration: underline;
-}
-.rez-storno {
-  margin: 0 0 20px;
-  padding: 14px 16px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius);
-  background: rgba(255,255,255,0.03);
-}
-.rez-storno b {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.rez-storno p {
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--gray-400);
-  margin: 0;
-}
-.rez-storno a {
-  color: var(--blue-glow);
-  text-decoration: underline;
-}
-
-/* Honeypot proti spamu, schovaný mimo obrazovku */
-.hp-field {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-/* Zvýraznění neplatného pole */
-.form-row input.invalid,
-.form-row textarea.invalid {
-  border-color: #ff6b6b;
-  background: rgba(255,107,107,0.06);
-}
-
-.btn-submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  background: var(--white);
-  color: var(--navy-900);
-  border: none;
-  padding: 13px 24px;
-  border-radius: 100px;
-  font-weight: 600;
-  font-size: 14.5px;
-  cursor: pointer;
-  margin-top: 6px;
-  font-family: inherit;
-  transition: all 0.25s var(--ease);
-  box-shadow: 0 6px 22px rgba(255,255,255,0.1);
-}
-.btn-submit svg { width: 16px; height: 16px; }
-.btn-submit:hover {
-  transform: translateY(-2px);
-  background: var(--blue-glow);
-  color: var(--white);
-}
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-.form-success, .form-error {
-  display: none;
-  padding: 16px;
-  border-radius: 10px;
-  margin-top: 16px;
-  font-size: 14.5px;
-}
-.form-success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #6ee7b7; }
-.form-error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
-.form-success.show, .form-error.show { display: block; }
-
-.form-fine {
-  font-size: 12px;
-  color: var(--gray-400);
-  margin-top: 14px;
-  text-align: center;
-}
-
-.rez-cards.rez-cards-single { display: flex; justify-content: center; }
-.rez-cards.rez-cards-single .rez-card { width: 100%; max-width: 283px; }
-.rez-opt { font-size: 0.82em; font-weight: 400; color: var(--gray-400); }
-
-/* ------- FAQ ------- */
-.faq {
-  background: var(--navy-900);
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 1200px;
-}
-.faq-list {
-  margin-top: 48px;
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.faq-item {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.faq-heading {
-  margin: 0;
-  font: inherit;
-}
-.faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  color: var(--white);
-  padding: 28px 0;
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  letter-spacing: -0.01em;
-  transition: color 0.2s;
-}
-.faq-question:hover { color: var(--blue-glow); }
-.faq-question:focus-visible {
-  outline: 2px solid var(--blue-glow);
-  outline-offset: 4px;
-  border-radius: 6px;
-}
-.faq-toggle {
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  transition: all 0.3s var(--ease);
-}
-.faq-toggle svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease); }
-.faq-item.active .faq-toggle { background: var(--blue-accent); border-color: var(--blue-accent); }
-.faq-item.active .faq-toggle svg { transform: rotate(45deg); }
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
-  color: var(--gray-300);
-  font-size: 1rem;
-  line-height: 1.65;
-}
-.faq-item.active .faq-answer { max-height: 300px; padding-bottom: 28px; }
-
-/* ------- FINAL CTA ------- */
-.final-cta {
-  background:
-    radial-gradient(ellipse at center, rgba(77,140,255,0.25), transparent 60%),
-    var(--navy-950);
-  text-align: center;
-  padding: 130px 28px;
-}
-.final-cta .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.final-cta h2 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-  max-width: 860px;
-}
-.final-cta h2 em {
-  font-style: italic;
-  display: inline-block;
-  padding: 0.08em 0.06em 0.14em;
-  margin: -0.08em -0.06em -0.14em;
-  background: linear-gradient(135deg, var(--blue-glow), var(--white));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.final-cta p {
-  font-size: 1.15rem;
-  color: var(--gray-300);
-  margin-bottom: 40px;
-  max-width: 560px;
-}
-.final-cta .phone-display {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
-  letter-spacing: 0;
-  margin-bottom: 24px;
-  color: var(--white);
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s var(--ease);
-}
-.final-cta .phone-display:hover {
-  color: var(--blue-glow);
-  transform: scale(1.03);
-}
-/* Sjednocená výška a zarovnání tlačítek v CTA */
-.cta-btn {
-  height: 52px;
-  padding-top: 0;
-  padding-bottom: 0;
-  font-size: 15px;
-  white-space: nowrap;
-}
-/* Wrapper drží obě tlačítka přesně na středu sekce */
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-.cta-buttons .cta-btn {
-  min-width: 190px;
-  justify-content: center;
-}
-
-/* ------- FOOTER ------- */
-footer {
-  background: var(--navy-950);
-  padding: 70px 28px 30px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 600px;
-}
-.footer-wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 50px;
-}
-.footer-col h5 {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--blue-glow);
-  margin-bottom: 18px;
-}
-.footer-col p, .footer-col a {
-  color: var(--gray-400);
-  font-size: 14.5px;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 10px;
-  transition: color 0.2s;
-}
-.footer-col a:hover { color: var(--white); }
-.footer-brand p { max-width: 320px; line-height: 1.6; }
-.socials {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-.socials a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  transition: all 0.25s var(--ease);
-}
-.socials a:hover {
-  background: var(--blue-accent);
-  border-color: var(--blue-accent);
-  transform: translateY(-2px);
-}
-.socials svg { width: 17px; height: 17px; color: var(--white); }
-
-.footer-bottom {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--gray-500);
-}
-.footer-credit {
-  color: var(--gray-400);
-}
-/* Statly kredit s hover efektem */
-.statly { display: inline-flex; align-items: center; gap: 9px; color: #888280; font-size: 0.85rem; font-weight: 500; padding: 6px 10px; border-radius: 10px; text-decoration: none; transition: background 0.25s cubic-bezier(0.22,1,0.36,1); }
-.statly img { width: 24px; height: 24px; border-radius: 7px; display: block; filter: grayscale(0.15); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1), filter 0.3s cubic-bezier(0.22,1,0.36,1); }
-.statly .statly-pre { color: #888280; }
-.statly .statly-name { color: #fff; font-weight: 700; transition: color 0.25s cubic-bezier(0.22,1,0.36,1); }
-.statly:hover { background: rgba(27, 127, 95, 0.1); }
-.statly:hover img { transform: scale(1.15) rotate(-4deg); box-shadow: 0 8px 22px rgba(27, 127, 95, 0.5); filter: grayscale(0); }
-.statly:hover .statly-name { color: #27a37a; }
-.footer-legal {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.footer-legal a,
-.footer-cookie-link {
-  color: var(--gray-400);
-  text-decoration: none;
-  font-size: 13px;
-  font-family: inherit;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: color 0.2s var(--ease);
-}
-.footer-legal a:hover,
-.footer-cookie-link:hover { color: var(--blue-glow); }
-
-/* ------- COOKIE / GDPR LIŠTA ------- */
-.cookie-banner {
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  z-index: 1500;
-  max-width: 460px;
-  background: var(--navy-800);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
-  transform: translateY(160%);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.5s var(--ease), opacity 0.4s var(--ease), visibility 0.4s;
-}
-.cookie-banner.visible {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-.cookie-banner h3 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--white);
-}
-.cookie-banner p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--gray-300);
-  margin-bottom: 16px;
-}
-.cookie-banner p a {
-  color: var(--blue-glow);
-  text-decoration: underline;
-}
-
-/* Rozbalovací detail s nastavením */
-.cookie-detail {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s var(--ease);
-}
-.cookie-detail.open { max-height: 360px; }
-.cookie-option {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.cookie-option-text strong {
-  display: block;
-  font-size: 14px;
-  color: var(--white);
-  margin-bottom: 3px;
-}
-.cookie-option-text span {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--gray-400);
-}
-.cookie-switch {
-  position: relative;
-  flex-shrink: 0;
-  width: 46px;
-  height: 26px;
-}
-.cookie-switch input {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  cursor: pointer;
-}
-.cookie-switch .track {
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.14);
-  border-radius: 14px;
-  transition: background 0.2s var(--ease);
-  pointer-events: none;
-}
-.cookie-switch .track::before {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: var(--white);
-  border-radius: 50%;
-  transition: transform 0.2s var(--ease);
-}
-.cookie-switch input:checked + .track { background: var(--blue-accent); }
-.cookie-switch input:checked + .track::before { transform: translateX(20px); }
-.cookie-switch input:focus-visible + .track {
-  outline: 3px solid var(--blue-glow);
-  outline-offset: 2px;
-}
-.cookie-switch input:disabled + .track { opacity: 0.5; cursor: not-allowed; }
-
-.cookie-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-.cookie-btn {
-  flex: 1 1 auto;
-  min-width: 130px;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.2s var(--ease);
-}
-.cookie-btn.accept {
-  background: var(--blue-accent);
-  color: var(--navy-900);
-}
-.cookie-btn.accept:hover { background: var(--blue-glow); }
-.cookie-btn.reject {
-  background: rgba(255,255,255,0.06);
-  color: var(--white);
-  border-color: rgba(255,255,255,0.14);
-}
-.cookie-btn.reject:hover { background: rgba(255,255,255,0.12); }
-.cookie-btn.settings,
-.cookie-btn.save {
-  flex: 1 1 100%;
-  background: none;
-  color: var(--gray-400);
-  font-size: 13px;
-  padding: 7px;
-  text-decoration: underline;
-}
-.cookie-btn.settings:hover,
-.cookie-btn.save:hover { color: var(--white); }
-.cookie-btn.save {
-  color: var(--blue-glow);
-  font-weight: 600;
-}
-
-/* Plovoucí tlačítko pro znovuotevření nastavení */
-.cookie-reopen {
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
-  z-index: 1400;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--navy-700);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: var(--gray-300);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  transition: all 0.2s var(--ease);
-}
-.cookie-reopen.visible { display: flex; }
-.cookie-reopen:hover {
-  color: var(--white);
-  border-color: rgba(77,140,255,0.4);
-}
-.cookie-reopen svg { width: 20px; height: 20px; }
-
-@media (max-width: 520px) {
-  .cookie-banner { left: 10px; right: 10px; bottom: 10px; padding: 20px; }
-  .cookie-reopen { left: 10px; bottom: 10px; }
-}
-
-/* ------- STICKY MOBILE CTA ------- */
-.sticky-cta {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(5, 13, 26, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 12px max(16px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
-  display: none;
-  z-index: 90;
-  gap: 10px;
-  transform: translateY(100%);
-  transition: transform 0.5s var(--ease);
-}
-.sticky-cta.visible { transform: translateY(0); }
-.sticky-cta a {
-  flex: 1 1 0;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 10px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14.5px;
-  line-height: 1;
-  transition: all 0.2s;
-}
-.sticky-cta a span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-cta .call {
-  background: var(--white);
-  color: var(--navy-900);
-}
-.sticky-cta .sms {
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-.sticky-cta svg {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
-}
-
-/* ------- ANIMATIONS ------- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-}
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ------- RESPONSIVE ------- */
-@media (max-width: 980px) {
-  .hero-content { grid-template-columns: 1fr; gap: 50px; }
-  .hero-visual { max-width: 460px; margin: 0 auto; }
-  /* Na mobilu je hero jednosloupcový, takže text centrujeme stejně jako obrázek */
-  .hero-content > div { text-align: center; }
-  .hero-content .lead { margin-left: auto; margin-right: auto; }
-  .hero-content .hero-ctas { justify-content: center; }
-  .hero-content .hero-stats { justify-content: center; }
-  .about-grid, .contract-wrap { grid-template-columns: 1fr; gap: 50px; }
-  .pricing-block { grid-template-columns: 1fr; }
-  .process-steps { grid-template-columns: 1fr; gap: 40px; }
-  .testimonial-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
-  .footer-wrap { grid-template-columns: 1fr 1fr; }
-  section { padding: 80px 24px; }
-  .nav-cta span { display: none; }
-}
-
-@media (max-width: 640px) {
-  .nav { padding: 14px 18px; }
-  .nav.scrolled { padding: 10px 18px; }
-  .logo { font-size: 18px; }
-  .logo-img { height: 30px; }
-  .footer-brand .logo-img { height: 36px; }
-  .nav-cta { padding: 9px 14px; font-size: 13px; }
-  .nav-right { gap: 12px; }
-  .nav-link { font-size: 13px; }
-  .hero { padding: 110px 20px 80px; }
-  .hero-stats { grid-template-columns: 1fr; gap: 18px; }
-  .hero-stats .stat { padding: 0; }
-  .hero-stats .stat + .stat {
-    border-left: none;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 18px;
-  }
-  .hero-stats .num { font-size: 1.5rem; gap: 4px; }
-  .hero-stats .num .star { font-size: 1rem; }
-  .hero-stats .label { font-size: 11px; letter-spacing: 0.05em; margin-top: 6px; }
-  .hero-ctas { flex-direction: column; align-items: stretch; }
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-  section { padding: 70px 20px; }
-  .form-card { padding: 28px 22px; }
-  .form-grid-2 { grid-template-columns: 1fr; }
-  .footer-wrap { grid-template-columns: 1fr; gap: 30px; }
-  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-  .price-card { padding: 30px 24px; }
-  .price-card .amount { font-size: 2.4rem; }
-  .sticky-cta { display: flex; }
-  body { padding-bottom: 80px; }
-  .marquee-item { font-size: 15px; gap: 30px; }
-  .marquee { gap: 30px; }
-}
-
-/* Velmi úzké displeje: ať se sticky CTA nikdy nezalomí */
-@media (max-width: 380px) {
-  .sticky-cta {
-    gap: 8px;
-    padding-left: max(10px, env(safe-area-inset-left));
-    padding-right: max(10px, env(safe-area-inset-right));
-  }
-  .sticky-cta a {
-    gap: 6px;
-    padding: 13px 8px;
-    font-size: 13.5px;
-  }
-  .sticky-cta svg { width: 16px; height: 16px; }
-}
-
-@media (max-width: 330px) {
-  .sticky-cta a { font-size: 12.5px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-  html { scroll-behavior: auto; }
-}
-
-/* Přístupnost: viditelný focus pro klávesnici */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--blue-glow);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-/* Skip link */
-.skip-link {
-  position: absolute;
-  left: 12px;
-  top: -120px;
-  z-index: 2000;
-  background: var(--blue-accent);
-  color: var(--navy-900);
-  padding: 12px 22px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 15px;
-  text-decoration: none;
-  transition: top 0.2s var(--ease);
-}
-.skip-link:focus {
-  top: 12px;
-}
+  --p-bg: #eeeeeb;
+  --p-surface: #e1e1dd;
+  --p-ink: #18191b;
+  --p-muted: #57595e;
+  --p-accent: #1f5c49;
+  --p-accent-ink: #ffffff;
+  --p-action: #18191b;
+  --p-action-ink: #eeeeeb;
+  --p-inv-bg: #18191b;
+  --p-inv-surface: #232528;
+  --p-inv-ink: #eeeeeb;
+  --p-inv-muted: #a2a5ab;
+  --p-inv-accent: #84c5af;
+  --p-inv-accent-ink: #18191b;
+  --p-inv-action: #eeeeeb;
+  --p-inv-action-ink: #18191b;
+  --font-display: "Inter Tight", system-ui, sans-serif;
+  --font-text: "Hanken Grotesk", system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.012em;
+  --display-tracking-xl: -0.018em;
+  --display-stretch: 100%;
+  --ly-scale: 0.98;
+}
+.nav__brand-img { height: 26px; width: auto; display: block; }
+.nav .nav__brand-img { height: 48px; }
+@media (max-width: 1023px) { .nav .nav__brand-img { height: 40px; } }
+.footer--dark .nav__brand-img { filter: invert(1) brightness(1.8); }
+.statly-credit { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: var(--t-small); }
+.statly-credit img { height: 18px; width: auto; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ---------- Rezervace: krokový průvodce ---------- */
+.rez-aside { position: sticky; top: calc(var(--nav, 72px) + var(--s-5)); }
+.rez-assure { list-style: none; padding: 0; margin: var(--s-6) 0 0; display: grid; gap: var(--s-4); border-top: 1px solid var(--line); padding-top: var(--s-5); }
+.rez-assure b { display: block; font-weight: 500; }
+.rez-assure span { color: var(--muted); font-size: var(--t-small); }
+
+.rez-stage { background: var(--surface); border-radius: var(--r-lg); padding: clamp(20px, 3vw, 40px); }
+.rez-progress { display: flex; gap: 6px; margin-bottom: var(--s-3); }
+.rez-progress span { flex: 1; height: 4px; border-radius: 4px; background: var(--line-strong); transition: background-color 250ms ease; }
+.rez-progress span.is-on { background: var(--ink); }
+.rez-count { font-size: var(--t-label); color: var(--muted); margin-bottom: var(--s-5); }
+
+.rez-step { display: none; }
+.rez-step.is-on { display: grid; animation: rezIn 300ms ease; }
+@keyframes rezIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .rez-step.is-on { animation: none; } }
+.rez-step h2 { font-size: var(--t-h3); line-height: 1.2; margin: 0; }
+.rez-step .rez-sub { color: var(--muted); font-size: var(--t-small); margin-top: calc(var(--s-2) * -1); }
+.rez-step legend.sr-only, .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Karty velikosti auta */
+.cars { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+.car { position: relative; display: block; cursor: pointer; }
+.car input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.car__box { display: grid; gap: 2px; height: 100%; padding: var(--s-4); background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--r-md); transition: border-color 150ms ease, box-shadow 150ms ease; }
+.car__name { font-weight: 500; }
+.car__ex { font-size: var(--t-small); color: var(--muted); }
+.car__meta { margin-top: var(--s-2); font-size: var(--t-small); }
+.car:hover .car__box { border-color: var(--ink); }
+.car input:checked + .car__box { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.car input:focus-visible + .car__box { outline: 2px solid var(--ink); outline-offset: 2px; }
+.car--wide { grid-column: 1 / -1; }
+@media (max-width: 639px) { .cars { grid-template-columns: minmax(0, 1fr); } }
+
+/* Čipy */
+.chips { border: 0; padding: 0; margin: 0; min-width: 0; }
+.chips legend { padding: 0; margin-bottom: var(--s-2); font-size: var(--t-small); font-weight: 500; }
+.chips__row { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; min-height: var(--btn-h); padding: 0 var(--s-4); border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); font-size: var(--t-small); transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease; }
+.chip:hover span { border-color: var(--ink); }
+.chip input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.chip input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.field :is(input, textarea) { background: var(--bg); }
+.dates { display: grid; gap: var(--s-2); }
+.dates__row { display: flex; gap: var(--s-2); align-items: center; }
+.dates__row input { flex: 1; min-width: 0; }
+.dates__rm { appearance: none; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); border-radius: var(--r-sm); width: var(--btn-h); height: var(--btn-h); cursor: pointer; font-size: 18px; line-height: 1; }
+.linkbtn { appearance: none; background: none; border: 0; padding: 0; color: var(--ink); font: 500 var(--t-small)/1.4 var(--font-text); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; justify-self: start; }
+
+.rez-err { color: var(--error, #b42318); font-size: var(--t-small); font-weight: 500; min-height: 0; }
+.rez-err:empty { display: none; }
+.rez-actions { display: flex; gap: var(--s-3); margin-top: var(--s-3); }
+.rez-actions .btn--primary { margin-left: auto; }
+
+.rez-recap { display: grid; grid-template-columns: max-content 1fr; gap: 6px var(--s-4); margin: 0; padding: var(--s-4); background: var(--bg); border-radius: var(--r-md); font-size: var(--t-small); }
+.rez-recap dt { color: var(--muted); }
+.rez-recap dd { margin: 0; }
+
+.rez-done { display: grid; gap: var(--s-3); }
+.rez-done[hidden] { display: none; }
+.rez-done__mark { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: var(--accent-ink, #fff); display: grid; place-items: center; }
+
+@media (max-width: 1023px) { .rez-aside { position: static; } }
+@media (max-width: 767px) { .rez-assure, .rez-aside > p { display: none; } .rez-aside .section-head { margin-bottom: 0; } }
+
+.menu-card__voucher { aspect-ratio: 2 / 1; height: auto; --p-h: auto; }
+.menu-card__voucher img { width: 100%; height: 100%; object-fit: cover; }
+
+.footer__legal-links { display: inline-flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
+.footer__legal-links a { color: inherit; }
+
+/* Cookies: nothing from Google or Meta runs until the visitor agrees */
+.ck { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 90; width: min(420px, calc(100% - 32px)); padding: var(--s-5); background: var(--bg); color: var(--ink); border: 1px solid var(--line-strong); border-radius: var(--r-lg); box-shadow: 0 18px 48px color-mix(in srgb, var(--ink) 20%, transparent); transform: translate3d(0, 16px, 0); opacity: 0; pointer-events: none; transition: transform 300ms cubic-bezier(.2,.7,.2,1), opacity 250ms ease; }
+.ck.is-open { transform: none; opacity: 1; pointer-events: auto; }
+.ck h2 { font-size: var(--t-card); margin: 0 0 var(--s-2); }
+.ck p { font-size: var(--t-small); color: var(--muted); margin: 0; line-height: 1.5; }
+.ck p a { color: var(--ink); }
+.ck__detail { display: none; gap: var(--s-3); margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.ck.is-detail .ck__detail { display: grid; }
+.ck__opt { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-3); align-items: start; font-size: var(--t-small); cursor: pointer; }
+.ck__opt input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--ink); }
+.ck__opt b { display: block; font-weight: 500; color: var(--ink); }
+.ck__opt span { color: var(--muted); }
+.ck__actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-4); }
+.ck__actions .btn { flex: 1 1 auto; }
+.ck__link { background: none; border: 0; padding: 8px 4px; color: var(--muted); font: inherit; font-size: var(--t-small); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.ck__link:hover { color: var(--ink); }
+.ck__link:focus-visible, .ck-reopen:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.ck-reopen { background: none; border: 0; padding: 0; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+@media (max-width: 639px) { .ck { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); } }
+@media (prefers-reduced-motion: reduce) { .ck { transition: none; } }
+
+.season-note { display: flex; gap: var(--s-3); align-items: flex-start; margin-top: var(--s-5); max-width: 46ch; font-size: var(--t-small); line-height: 1.5; color: var(--muted); }
+.season-note svg { flex: none; width: 18px; height: 18px; margin-top: 1px; color: var(--accent); }
+
+/* Zimní provoz: a clearly visible notice; the snowflake turns slowly */
+.season { display: flex; gap: var(--s-4); align-items: center; margin-top: var(--s-5); padding: var(--s-4) var(--s-5); max-width: 480px; border-radius: var(--r-md); background: color-mix(in srgb, var(--accent) 10%, var(--bg)); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--bg)); color: var(--ink); }
+.season__icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--accent-ink, var(--bg)); }
+.season__icon svg { width: 24px; height: 24px; animation: season-turn 14s linear infinite; }
+.season__body { display: grid; gap: 2px; font-size: var(--t-small); line-height: 1.45; }
+.season__body b { font-size: var(--t-body); font-weight: 600; color: var(--accent); }
+@keyframes season-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .season__icon svg { animation: none; } }
 </style>
 </head>
 <body>
-<a href="#hlavni-obsah" class="skip-link">Přeskočit na hlavní obsah</a>
-<!-- Stylování specifické pro rezervační stepper. Staví na brand CSS
-     proměnných z index.html (--blue-accent, --navy-*, --radius...) -->
-<style>
-.rez-section {
-  padding: 116px 20px 90px; min-height: 80vh;
-  background: radial-gradient(ellipse 75% 45% at 50% 0%, rgba(77,140,255,0.10), transparent 62%);
-}
-.rez-wrap { max-width: 1040px; margin: 0 auto; }
 
-/* Dvousloupcový layout: vlevo důvěra a co dostanu, vpravo formulář */
-.rez-layout {
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 56px;
-  align-items: start;
-}
-.rez-aside { position: sticky; top: 100px; }
-.rez-aside .hero-badge { margin-bottom: 18px; }
-.rez-title {
-  font-family: 'Newsreader', Georgia, serif; font-weight: 600;
-  font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.12;
-  letter-spacing: -0.03em; margin-bottom: 14px;
-}
-.rez-title em {
-  font-style: italic; font-weight: 500;
-  background: linear-gradient(135deg, var(--blue-glow) 0%, var(--white) 100%);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-}
-.rez-lead { color: var(--gray-300); font-size: 1.05rem; margin: 0 0 24px; }
-.rez-assure {
-  list-style: none; display: grid; gap: 15px;
-  margin: 0 0 24px; padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.rez-assure li { display: flex; gap: 13px; align-items: flex-start; }
-.rez-assure .a-ico {
-  width: 38px; height: 38px; flex-shrink: 0;
-  background: rgba(77,140,255,0.12); border-radius: 10px;
-  display: grid; place-items: center;
-}
-.rez-assure .a-ico svg { width: 19px; height: 19px; color: var(--blue-glow); }
-.rez-assure b { display: block; font-weight: 600; color: var(--white); margin-bottom: 1px; font-size: 1rem; }
-.rez-assure span { color: var(--gray-400); font-size: 0.92rem; line-height: 1.5; }
-.rez-aside .google-badge { margin-bottom: 0; }
-.rez-ref {
-  margin-top: 20px; padding: 18px 20px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
-}
-.rez-ref p {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.08rem; color: var(--white); margin: 0 0 8px; line-height: 1.45;
-}
-.rez-ref .ref-who { font-size: 13px; color: var(--gray-400); }
-/* Formulářový panel (pravý sloupec) */
-.rez-stage {
-  background: linear-gradient(135deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-lg);
-  padding: 34px 32px;
-}
-
-/* Progress */
-.rez-progress { display: flex; gap: 8px; justify-content: center; margin-bottom: 14px; }
-.rez-dot {
-  height: 5px; flex: 1; max-width: 70px; border-radius: 100px;
-  background: rgba(255,255,255,0.12); transition: background 0.3s var(--ease);
-}
-.rez-dot.active { background: var(--blue-accent); }
-.rez-stepcount { text-align: center; font-size: 13px; color: var(--gray-400); margin-bottom: 30px; }
-
-/* Kroky */
-.rez-step { display: none; }
-.rez-step.active { display: block; animation: rezFade 0.35s var(--ease); }
-@keyframes rezFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.rez-step h2 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em;
-  margin-bottom: 6px; text-align: center;
-}
-.rez-step .rez-hint { text-align: center; color: var(--gray-400); font-size: 14px; margin-bottom: 24px; }
-
-/* Karty výběru služby */
-.rez-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.rez-card {
-  position: relative; text-align: left; cursor: pointer;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius); padding: 22px 20px;
-  color: var(--white); font-family: inherit;
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.25s var(--ease);
-}
-.rez-card:hover { transform: translateY(-3px); border-color: rgba(122,169,255,0.5); }
-.rez-card.selected { border-color: var(--blue-accent); background: rgba(77,140,255,0.08); }
-.rez-card-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; padding-right: 26px; }
-.rez-card-price { font-size: 1.5rem; font-weight: 800; color: var(--blue-glow); letter-spacing: -0.02em; }
-.rez-card-time { font-size: 13px; color: var(--gray-400); margin: 2px 0 12px; }
-.rez-card-desc { font-size: 13.5px; line-height: 1.5; color: var(--gray-300); }
-.rez-card-badge {
-  position: absolute; top: -10px; right: 14px;
-  background: var(--blue-accent); color: var(--navy-900);
-  font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 100px;
-}
-.rez-card-check {
-  position: absolute; top: 16px; right: 16px;
-  width: 22px; height: 22px; border-radius: 50%;
-  background: var(--blue-accent); color: var(--navy-900);
-  display: none; align-items: center; justify-content: center;
-}
-.rez-card-check svg { width: 13px; height: 13px; }
-.rez-card.selected .rez-card-check { display: flex; }
-
-/* Chips (trápí / typ auta / město) */
-.rez-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.rez-chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 18px; border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04);
-  color: var(--gray-300); cursor: pointer; font-family: inherit;
-  font-size: 14.5px; font-weight: 500;
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
-}
-.rez-chip:hover { border-color: rgba(122,169,255,0.55); color: var(--white); transform: translateY(-2px); }
-.rez-chip.selected { background: rgba(77,140,255,0.14); border-color: var(--blue-accent); color: var(--white); }
-.rez-chip .rez-chip-dot {
-  width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: all 0.2s var(--ease);
-}
-.rez-chip.selected .rez-chip-dot { background: var(--blue-accent); border-color: var(--blue-accent); color: var(--navy-900); }
-.rez-chip .rez-chip-dot svg { width: 10px; height: 10px; opacity: 0; }
-.rez-chip.selected .rez-chip-dot svg { opacity: 1; }
-.rez-city-other { margin-top: 16px; }
-
-/* Kalendář */
-.rez-cal {
-  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius);
-  padding: 18px; margin-top: 4px;
-}
-.rez-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.rez-cal-title { font-weight: 600; font-size: 15px; text-transform: capitalize; }
-.rez-cal-nav {
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.14); background: transparent; color: var(--white);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s var(--ease);
-}
-.rez-cal-nav svg { width: 16px; height: 16px; }
-.rez-cal-nav:hover:not(:disabled) { background: rgba(77,140,255,0.12); border-color: var(--blue-accent); }
-.rez-cal-nav:disabled { opacity: 0.28; cursor: not-allowed; }
-.rez-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-.rez-cal-dow { text-align: center; font-size: 11px; color: var(--gray-500); padding: 6px 0; text-transform: uppercase; letter-spacing: 0.04em; }
-.rez-cal-day {
-  aspect-ratio: 1; border: none; background: transparent; color: var(--gray-300);
-  border-radius: 9px; cursor: pointer; font-family: inherit; font-size: 14px;
-  transition: background 0.15s var(--ease), color 0.15s var(--ease);
-}
-.rez-cal-day:hover:not(:disabled):not(.empty) { background: rgba(77,140,255,0.14); color: var(--white); }
-.rez-cal-day.selected { background: var(--blue-accent); color: var(--navy-900); font-weight: 700; }
-.rez-cal-day:disabled { color: var(--navy-700); cursor: not-allowed; }
-.rez-cal-day.empty { visibility: hidden; pointer-events: none; }
-.rez-cal-legend { margin-top: 12px; font-size: 12px; color: var(--gray-500); text-align: center; }
-.rez-time { margin-top: 18px; }
-.rez-time-label { font-size: 13px; color: var(--gray-300); margin-bottom: 10px; text-align: center; }
-
-/* Akce a chyby */
-.rez-actions { display: flex; gap: 12px; margin-top: 28px; }
-.rez-actions .btn-secondary, .rez-actions .btn-submit { font-family: inherit; }
-.rez-actions .btn-submit { margin-top: 0; }
-.rez-actions .rez-grow { margin-left: auto; }
-.rez-err { display: none; color: #ff8a8a; font-size: 13px; margin-top: 14px; text-align: center; }
-.rez-err.show { display: block; }
-
-.rez-success {
-  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
-  border-radius: var(--radius); padding: 40px 28px; text-align: center;
-}
-.rez-success h2 {
-  font-family: 'Newsreader', Georgia, serif; font-size: 1.8rem; font-weight: 600;
-  color: #6ee7b7; margin-bottom: 10px;
-}
-.rez-success p { color: var(--gray-300); font-size: 15px; }
-.rez-success .rez-recap { margin-top: 18px; font-size: 14px; color: var(--gray-400); }
-.rez-success .rez-check-big {
-  width: 56px; height: 56px; border-radius: 50%; background: rgba(34,197,94,0.2);
-  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
-}
-.rez-success .rez-check-big svg { width: 28px; height: 28px; stroke: #6ee7b7; }
-
-@media (max-width: 900px) {
-  .rez-layout { grid-template-columns: 1fr; gap: 36px; }
-  .rez-aside { position: static; max-width: 580px; margin: 0 auto; }
-  .rez-stage { max-width: 580px; margin: 0 auto; }
-}
-@media (max-width: 520px) {
-  .rez-cards { grid-template-columns: 1fr; }
-  .rez-step h2 { font-size: 1.45rem; }
-  .rez-stage { padding: 26px 20px; }
-}
-</style>
-<nav class="nav" id="nav" aria-label="Hlavní navigace">
-  <a href="/" class="logo" aria-label="Express Detailing, domovská stránka">
-    <img src="/assets/logo.webp" alt="Logo Express Detailing" class="logo-img" width="322" height="160" fetchpriority="high" decoding="async" />
-  </a>
-  <div class="nav-right">
-    <a href="/pro-firmy" class="nav-link">Pro Firmy</a>
-    <a href="tel:+420792302615" class="nav-cta">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span>Zavolat</span>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Přeskočit na obsah</a>
+    <a class="nav__logo" href="./" aria-label="Express Detailing">
+      <img class="nav__brand-img" src="assets/logo-black.png" alt="Express Detailing">
     </a>
-  </div>
-</nav>
-
-<main id="hlavni-obsah">
-<section class="rez-section">
-  <div class="rez-wrap">
-    <div class="rez-layout">
-
-    <aside class="rez-aside reveal">
-      <div class="hero-badge"><span class="dot"></span> Rezervace online · Litomyšl a okolí</div>
-      <h1 class="rez-title">Zarezervujte si <em>termín.</em></h1>
-      <p class="rez-lead">Pár kliknutí a je hotovo. Vyberte službu, řekněte mi, co vás na autě trápí, a nechte kontakt.</p>
-      <ul class="rez-assure">
-        <li>
-          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><b>Přijedu za vámi</b><span>Litomyšl a okolí. Vyčistím auto u vás doma nebo v práci, stačí běžná zásuvka.</span></div>
-        </li>
-        <li>
-          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
-          <div><b>Cena od 3 000 Kč</b><span>Řeknu ji předem podle stavu vozu. Žádná překvapení.</span></div>
-        </li>
-        <li>
-          <span class="a-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <div><b>Ozvu se do 24 hodin</b><span>Osobně, žádné automaty. Domluvíme přesný den a čas.</span></div>
-        </li>
-      </ul>
-      <a href="https://www.google.com/search?q=Express+Detailing+Litomy%C5%A1l" target="_blank" rel="noopener" class="google-badge">
-        <svg class="g-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-        </svg>
-        <div class="g-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <span class="g-text"><strong>5,0</strong> · Google recenze</span>
-      </a>
-      <div class="rez-ref">
-        <p>„Skvělá práce, auto jako nové. Doporučuji na 200&nbsp;%."</p>
-        <div class="ref-who">Alena Kopecká &middot; Google recenze</div>
-      </div>
-    </aside>
-
-    <div class="rez-stage">
-    <div class="rez-progress" aria-hidden="true">
-      <span class="rez-dot active"></span>
-      <span class="rez-dot"></span>
-      <span class="rez-dot"></span>
-      <span class="rez-dot"></span>
-      <span class="rez-dot"></span>
-    </div>
-    <p class="rez-stepcount" id="rezStepCount">Krok 1 z 5</p>
-
-    <form id="rezForm" novalidate>
-      <input type="hidden" name="service" id="rezService" value="interier" />
-      <input type="hidden" name="concerns" id="rezConcerns" value="" />
-      <input type="hidden" name="car" id="rezCar" value="" />
-      <input type="hidden" name="city" id="rezCity" value="" />
-      <input type="hidden" name="preferred_date" id="rezDate" value="" />
-
-      <!-- KROK 1 – služba -->
-      <div class="rez-step active" data-step="1">
-        <h2>Co pro vás uděláme?</h2>
-        <p class="rez-hint">Kompletní hloubkové čištění interiéru vašeho auta.</p>
-        <div class="rez-cards rez-cards-single">
-          <button type="button" class="rez-card selected" data-service="interier" aria-pressed="true">
-            <span class="rez-card-badge">Hloubkové čištění</span>
-            <span class="rez-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <div class="rez-card-name">Detailing interiéru</div>
-            <div class="rez-card-price">od 3 000 Kč</div>
-            <div class="rez-card-desc">Vysávání, tepování sedaček a koberců, čištění plastů, palubovky a oken, odstranění skvrn a zápachu</div>
-          </button>
-        </div>
-        <div class="rez-err" id="errService">Vyberte prosím službu.</div>
-        <div class="rez-actions">
-          <button type="button" class="btn-submit rez-grow" id="next1"><span>Pokračovat →</span></button>
-        </div>
-      </div>
-
-      <!-- KROK 2 – co trápí -->
-      <div class="rez-step" data-step="2">
-        <h2>Co vás na autě nejvíc trápí?</h2>
-        <p class="rez-hint">Vyberte cokoliv, co sedí, klidně víc možností. Nebo krok přeskočte.</p>
-        <div class="rez-chips" id="concernChips">
-          <button type="button" class="rez-chip" data-val="Skvrny na sedačkách"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Skvrny na sedačkách</button>
-          <button type="button" class="rez-chip" data-val="Nepříjemný zápach"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nepříjemný zápach</button>
-          <button type="button" class="rez-chip" data-val="Zvířecí srst"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Zvířecí srst</button>
-          <button type="button" class="rez-chip" data-val="Špinavé koberce a podlaha"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Špinavé koberce a podlaha</button>
-          <button type="button" class="rez-chip" data-val="Zašlé plasty a palubovka"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Zašlé plasty a palubovka</button>
-          <button type="button" class="rez-chip" data-val="Celkově zanedbaný interiér"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Celkově zanedbaný interiér</button>
-        </div>
-        <div class="rez-actions">
-          <button type="button" class="btn-secondary" id="back2">← Zpět</button>
-          <button type="button" class="btn-submit rez-grow" id="next2"><span>Pokračovat →</span></button>
-        </div>
-      </div>
-
-      <!-- KROK 3 – typ auta -->
-      <div class="rez-step" data-step="3">
-        <h2>Jaké máte auto?</h2>
-        <p class="rez-hint">Stačí přibližně, kvůli odhadu času.</p>
-        <div class="rez-chips" id="carChips">
-          <button type="button" class="rez-chip" data-val="Osobní auto"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Osobní auto</button>
-          <button type="button" class="rez-chip" data-val="SUV / větší vůz"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>SUV / větší vůz</button>
-          <button type="button" class="rez-chip" data-val="Dodávka / užitkový"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Dodávka / užitkový</button>
-          <button type="button" class="rez-chip" data-val="Jiné"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Jiné</button>
-        </div>
-        <div class="rez-err" id="errCar">Vyberte prosím typ auta.</div>
-        <div class="rez-actions">
-          <button type="button" class="btn-secondary" id="back3">← Zpět</button>
-          <button type="button" class="btn-submit rez-grow" id="next3"><span>Pokračovat →</span></button>
-        </div>
-      </div>
-
-      <!-- KROK 4 – město -->
-      <div class="rez-step" data-step="4">
-        <h2>Kam máme přijet?</h2>
-        <p class="rez-hint">Jsme mobilní a přijedeme za vámi.</p>
-        <div class="rez-chips" id="cityChips">
-          <button type="button" class="rez-chip" data-val="Litomyšl"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Litomyšl</button>
-          <button type="button" class="rez-chip" data-val="Polička"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Polička</button>
-          <button type="button" class="rez-chip" data-val="Svitavy"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Svitavy</button>
-          <button type="button" class="rez-chip" data-val="Vysoké Mýto"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Vysoké Mýto</button>
-          <button type="button" class="rez-chip" data-val="Česká Třebová"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Česká Třebová</button>
-          <button type="button" class="rez-chip" data-val="__other"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Jinde…</button>
-        </div>
-        <div class="form-row rez-city-other" id="cityOtherRow" style="display:none;">
-          <label for="cityOther">Napište město</label>
-          <input type="text" id="cityOther" placeholder="např. Choceň, Brandýs nad Orlicí..." autocomplete="address-level2" />
-        </div>
-        <div class="rez-err" id="errCity">Vyberte nebo napište prosím město.</div>
-        <div class="rez-actions">
-          <button type="button" class="btn-secondary" id="back4">← Zpět</button>
-          <button type="button" class="btn-submit rez-grow" id="next4"><span>Pokračovat →</span></button>
-        </div>
-      </div>
-
-      <!-- KROK 5 – kontakt + termín -->
-      <div class="rez-step" data-step="5">
-        <h2>Kontakt a termín</h2>
-        <p class="rez-hint">Termín je jen orientační, přesný den a čas doladíme telefonicky.</p>
-        <div class="form-row">
-          <label for="name">Jméno <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-          <input type="text" id="name" name="name" autocomplete="name" aria-required="true" />
-          <div class="rez-err" id="errName">Zadejte prosím jméno.</div>
-        </div>
-        <div class="form-row">
-          <label for="phone">Telefon <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-          <input type="tel" id="phone" name="phone" placeholder="+420 777 000 000" autocomplete="tel" inputmode="tel" aria-required="true" />
-          <div class="rez-err" id="errPhone">Zadejte prosím platné telefonní číslo.</div>
-        </div>
-        <div class="form-row">
-          <label>Kdy chcete, abychom přijeli? <span aria-hidden="true">*</span><span class="sr-only">(povinné)</span></label>
-          <div class="rez-chips" id="whenChips" role="group" aria-label="Kdy chcete, abychom přijeli?">
-            <button type="button" class="rez-chip" data-val="Co nejdříve"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Co nejdříve</button>
-            <button type="button" class="rez-chip" data-val="Do týdne"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do týdne</button>
-            <button type="button" class="rez-chip" data-val="Do měsíce"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Do měsíce</button>
-          </div>
-          <div class="rez-err" id="errWhen">Vyberte prosím, jak rychle to potřebujete.</div>
-        </div>
-        <div class="form-row">
-          <label>Kdy se vám to hodí? <span class="rez-opt">(nepovinné)</span></label>
-          <div class="rez-chips" id="dayChips" role="group" aria-label="Kdy se vám to hodí?">
-            <button type="button" class="rez-chip" data-val="všední den"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Všední den</button>
-            <button type="button" class="rez-chip" data-val="víkend"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Víkend</button>
-            <button type="button" class="rez-chip" data-val="nezáleží"><span class="rez-chip-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>Nezáleží</button>
+    <nav class="nav__links" aria-label="Hlavní navigace">
+      <div class="nav__item">
+        <a class="nav__link" href="./#cenik">Služby <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-4">
+              <p class="t-label">Čištění interiéru</p>
+              <a href="./#postup">Tepování sedaček a koberců<span>I zaschlé skvrny</span></a>
+              <a href="./#postup">Parní čištění<span>Vybrané části interiéru</span></a>
+              <a href="./#postup">Kůže, plasty a detaily<span>Čištění a ošetření</span></a>
+            </div>
+            <div class="menu-col span-4">
+              <p class="t-label">Podle velikosti vozu</p>
+              <a href="./#cenik">Malé vozy<span>Kompletní interiér za 2 500 Kč</span></a>
+              <a href="./#cenik">Sedany, kombi a SUV<span>Kompletní interiér za 3 000 Kč</span></a>
+              <a href="./#cenik">MPV a 7místné vozy<span>Kompletní interiér za 3 500 Kč</span></a>
+            </div>
+            <a class="menu-card span-4 start-9" href="poukaz.html">
+              <div class="panel menu-card__voucher"><img class="frame__img" src="assets/poukaz/interier.jpg" alt="Dárkový poukaz na čištění interiéru, ukázka"></div>
+              <span class="menu-card__title">Dárkový poukaz</span>
+              <span class="t-small muted">Čištění interiéru jako dárek, od 1 000 Kč</span>
+            </a>
           </div>
         </div>
-        <p class="form-consent-note">Rezervace je nezávazná, cenu i rozsah domluvíme telefonicky. Platí <a href="/obchodni-podminky" target="_blank" rel="noopener">obchodní podmínky</a>. Odesláním formuláře berete na vědomí zpracování osobních údajů za účelem vyřízení vaší poptávky, viz <a href="/ochrana-osobnich-udaju" target="_blank" rel="noopener">zásady ochrany osobních údajů</a>.</p>
-        <div class="rez-storno">
-          <b>Zrušení termínu</b>
-          <p>Tato rezervace je nezávazná. Domluvený termín můžete bez problémů zrušit nebo přeložit telefonicky na <a href="tel:+420792302615">+420 792 302 615</a> nebo e-mailem na <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a>, ideálně co nejdříve, nejpozději 48 hodin před termínem. Zrušení 48 hodin předem a dříve je vždy zdarma. Pokud to nestihnete, dejte nám prosím vědět co nejdříve, abychom termín mohli nabídnout někomu dalšímu.</p>
-        </div>
-        <!-- honeypot proti spamu -->
-        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
-        <div class="rez-actions">
-          <button type="button" class="btn-secondary" id="back5">← Zpět</button>
-          <button type="submit" class="btn-submit rez-grow" id="rezSubmit"><span>Odeslat rezervaci →</span></button>
-        </div>
-        <div class="form-error" id="rezError" role="alert" aria-live="assertive">Nepodařilo se odeslat. Zkuste to prosím znovu, nebo zavolejte na 792 302 615.</div>
       </div>
-    </form>
-
-    <!-- ÚSPĚCH -->
-    <div class="rez-success" id="rezSuccess" hidden role="status" aria-live="polite">
-      <div class="rez-check-big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <h2>Rezervace přijata</h2>
-      <p>Ozveme se vám do 24 hodin a potvrdíme přesný čas.</p>
-      <p style="margin-top:18px;color:var(--gray-300);">Spěcháte? Zavolejte rovnou na <a href="tel:+420792302615" style="color:var(--blue-glow);font-weight:600;">+420 792 302 615</a>.</p>
-      <div class="rez-recap" id="rezRecap"></div>
+      <div class="nav__item"><a class="nav__link" href="./#pred-po">Ukázky práce</a></div>
+      <div class="nav__item"><a class="nav__link" href="./#postup">Jak pracuji</a></div>
+      <div class="nav__item"><a class="nav__link" href="./#cenik">Ceník</a></div>
+      <div class="nav__item"><a class="nav__link" href="poukaz.html">Poukazy</a></div>
+      <div class="nav__item"><a class="nav__link" href="./#dotazy">Dotazy</a></div>
+      <div class="nav__item"><a class="nav__link" href="rady.html">Rady</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="tel:+420792302615">+420 792 302 615</a>
+      <a class="btn btn--primary" href="rezervace.html">Rezervovat termín</a>
     </div>
-
-    </div>
-    </div>
-
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
   </div>
-</section>
+</header>
+
+
+<main id="top">
+  <section class="section" aria-labelledby="rez-h">
+    <div class="wrap grid grid--top">
+      <div class="span-5">
+        <div class="rez-aside">
+          <div class="section-head">
+            <h1 id="rez-h" class="t-h2">Rezervace termínu</h1>
+            <p class="muted">Pět krátkých kroků. Podle auta, místa a vašich časových možností vám navrhnu konkrétní termín a potvrdím ho telefonicky nebo SMS.</p>
+          </div>
+          <ul class="rez-assure">
+            <li><b>Rezervace je nezávazná</b><span>Cenu i rozsah práce s vámi domluvím předem.</span></li>
+            <li><b>Termín podle vás</b><span>Napište, které dny a části dne se vám hodí. Navržený termín můžete odmítnout nebo posunout.</span></li>
+          </ul>
+          <p style="margin-top: var(--s-5)"><a class="link" href="tel:+420792302615">Raději zavolám: +420 792 302 615</a></p>
+        </div>
+      </div>
+
+      <div class="span-6 start-7">
+        <div class="rez-stage">
+          <div class="rez-progress" aria-hidden="true"><span class="is-on"></span><span></span><span></span><span></span><span></span></div>
+          <p class="rez-count" id="rez-count" aria-live="polite">Krok 1 z 5</p>
+
+          <form id="rez-form" method="post" action="/api/rezervace" novalidate>
+            <input type="hidden" name="service" value="interier">
+
+            <!-- 1. Auto -->
+            <div class="form rez-step is-on" data-step="1">
+              <h2 class="field--full" tabindex="-1">Jaké máte auto?</h2>
+              <p class="rez-sub">Stačí přibližně. Podle velikosti odhadnu cenu a čas práce.</p>
+              <fieldset class="cars field--full">
+                <legend class="sr-only">Velikost auta</legend>
+                <label class="car"><input type="radio" name="car" value="Malé auto nebo hatchback" data-size="S"><span class="car__box"><span class="car__name">Malé auto</span><span class="car__ex">Fabia, Yaris, Clio</span><span class="car__meta">2 500 Kč · zhruba 3 hodiny</span></span></label>
+                <label class="car"><input type="radio" name="car" value="Sedan, kombi nebo SUV" data-size="M"><span class="car__box"><span class="car__name">Sedan, kombi, SUV</span><span class="car__ex">Octavia, Sportage, GLE</span><span class="car__meta">3 000 Kč · 3,5 až 4 hodiny</span></span></label>
+                <label class="car"><input type="radio" name="car" value="MPV nebo 7místný vůz" data-size="L"><span class="car__box"><span class="car__name">MPV, 7místné</span><span class="car__ex">Kodiaq, Sharan, Multivan</span><span class="car__meta">3 500 Kč · 4 až 5 hodin</span></span></label>
+                <label class="car"><input type="radio" name="car" value="Dodávka nebo užitkový vůz" data-size="XL"><span class="car__box"><span class="car__name">Dodávka, užitkový vůz</span><span class="car__ex">Transit, Transporter</span><span class="car__meta">cenu upřesním podle stavu</span></span></label>
+                <label class="car car--wide"><input type="radio" name="car" value="Jiné nebo nevím" data-size="?"><span class="car__box"><span class="car__name">Jiné nebo nevím</span><span class="car__meta">Upřesníme po telefonu.</span></span></label>
+              </fieldset>
+              <label class="field field--full" for="rez-model">Značka a model (nepovinné)<input id="rez-model" name="car_model" type="text" placeholder="např. Škoda Octavia combi" autocomplete="off"></label>
+              <p class="rez-err field--full" data-err></p>
+              <div class="rez-actions field--full"><button class="btn btn--primary" type="button" data-next>Pokračovat</button></div>
+            </div>
+
+            <!-- 2. Co trápí -->
+            <div class="form rez-step" data-step="2">
+              <h2 class="field--full" tabindex="-1">Co auto nejvíc trápí?</h2>
+              <p class="rez-sub">Můžete vybrat víc možností, nebo krok přeskočit.</p>
+              <fieldset class="chips field--full">
+                <legend class="sr-only">Co auto trápí</legend>
+                <div class="chips__row">
+                  <label class="chip"><input type="checkbox" name="problems" value="Skvrny na sedačkách"><span>Skvrny na sedačkách</span></label>
+                  <label class="chip"><input type="checkbox" name="problems" value="Zápach"><span>Zápach</span></label>
+                  <label class="chip"><input type="checkbox" name="problems" value="Zvířecí srst"><span>Zvířecí srst</span></label>
+                  <label class="chip"><input type="checkbox" name="problems" value="Špinavé koberce a podlaha"><span>Koberce a podlaha</span></label>
+                  <label class="chip"><input type="checkbox" name="problems" value="Zašlé plasty a palubní deska"><span>Plasty a palubní deska</span></label>
+                  <label class="chip"><input type="checkbox" name="problems" value="Celkově zanedbaný interiér"><span>Celkově zanedbaný interiér</span></label>
+                </div>
+              </fieldset>
+              <label class="field field--full" for="rez-poznamka">Chcete ještě něco dodat? (nepovinné)<textarea id="rez-poznamka" name="concerns" rows="3" placeholder="např. rozlitá káva na zadním sedadle"></textarea></label>
+              <div class="rez-actions field--full"><button class="btn btn--secondary" type="button" data-back>Zpět</button><button class="btn btn--primary" type="button" data-next>Pokračovat</button></div>
+            </div>
+
+            <!-- 3. Adresa -->
+            <div class="form rez-step" data-step="3">
+              <h2 class="field--full" tabindex="-1">Kde bude auto stát?</h2>
+              <p class="rez-sub">Přesnou adresu potřebuji k naplánování trasy a dojezdu.</p>
+              <label class="field field--full" for="rez-ulice">Ulice a číslo domu<input id="rez-ulice" name="street" type="text" autocomplete="address-line1" required minlength="3" placeholder="např. Smetanovo náměstí 72" data-error="Napište ulici a číslo, kam mám přijet."></label>
+              <label class="field" for="rez-misto">Obec<input id="rez-misto" name="city" type="text" list="rez-obce" autocomplete="address-level2" required minlength="2" data-error="Napište obec."><datalist id="rez-obce"><option value="Litomyšl"><option value="Polička"><option value="Svitavy"><option value="Vysoké Mýto"><option value="Česká Třebová"><option value="Ústí nad Orlicí"><option value="Choceň"><option value="Dolní Újezd"><option value="Sebranice"><option value="Cerekvice nad Loučnou"></datalist></label>
+              <label class="field" for="rez-psc">PSČ<input id="rez-psc" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="6" required pattern="\s*\d{3}\s?\d{2}\s*" placeholder="570 01" data-error="Napište PSČ, např. 570 01."></label>
+              <p class="t-small muted field--full">Jezdím po Litomyšli a širokém okolí. Napište, kde auto je, a domluvíme se.</p>
+              <p class="rez-err field--full" data-err></p>
+              <div class="rez-actions field--full"><button class="btn btn--secondary" type="button" data-back>Zpět</button><button class="btn btn--primary" type="button" data-next>Pokračovat</button></div>
+            </div>
+
+            <!-- 4. Kdy -->
+            <div class="form rez-step" data-step="4">
+              <h2 class="field--full" tabindex="-1">Kdy by se vám to hodilo?</h2>
+              <p class="rez-sub">Práce trvá 3 až 5 hodin. Čím víc možností vyberete, tím dřív termín najdu.</p>
+              <div class="season field--full" role="note"><span class="season__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17M9 3.6l3 2.4 3-2.4M9 20.4l3-2.4 3 2.4M3.6 11.2l3.1.9-.6 3.1M20.4 12.8l-3.1-.9.6-3.1M5.9 4.2l.5 3.4-3.2 1.2M18.1 19.8l-.5-3.4 3.2-1.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="season__body"><b>Zimní provoz</b>V zimním období probíhá čištění interiérů pouze v garážích, nebo výjimečně, když to počasí dovolí. Pravidelné termíny začínají opět v březnu.</span></div>
+              <fieldset class="chips field--full">
+                <legend>Jak brzy?</legend>
+                <div class="chips__row">
+                  <label class="chip"><input type="radio" name="when" value="Co nejdříve"><span>Co nejdříve</span></label>
+                  <label class="chip"><input type="radio" name="when" value="Do 14 dnů"><span>Do 14 dnů</span></label>
+                  <label class="chip"><input type="radio" name="when" value="Do měsíce"><span>Do měsíce</span></label>
+                  <label class="chip"><input type="radio" name="when" value="Nespěchá"><span>Nespěchá</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="chips field--full">
+                <legend>Které dny v týdnu? <span class="muted" style="font-weight:400">(když nevyberete nic, hodí se kterýkoli)</span></legend>
+                <div class="chips__row">
+                  <label class="chip"><input type="checkbox" name="days" value="Po"><span>Po</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="Út"><span>Út</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="St"><span>St</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="Čt"><span>Čt</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="Pá"><span>Pá</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="So"><span>So</span></label>
+                  <label class="chip"><input type="checkbox" name="days" value="Ne"><span>Ne</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="chips field--full">
+                <legend>Část dne</legend>
+                <div class="chips__row">
+                  <label class="chip"><input type="checkbox" name="dayparts" value="dopoledne"><span>Dopoledne (začátek 7 až 11 h)</span></label>
+                  <label class="chip"><input type="checkbox" name="dayparts" value="odpoledne"><span>Odpoledne (začátek 11 až 15 h)</span></label>
+                </div>
+              </fieldset>
+              <div class="field field--full">
+                <span>Konkrétní dny, které se vám hodí (nepovinné)</span>
+                <div class="dates" id="rez-dates"></div>
+                <button class="linkbtn" type="button" id="rez-add-date">+ Přidat den</button>
+              </div>
+              <p class="rez-err field--full" data-err></p>
+              <div class="rez-actions field--full"><button class="btn btn--secondary" type="button" data-back>Zpět</button><button class="btn btn--primary" type="button" data-next>Pokračovat</button></div>
+            </div>
+
+            <!-- 5. Kontakt -->
+            <div class="form rez-step" data-step="5">
+              <h2 class="field--full" tabindex="-1">Kontakt a shrnutí</h2>
+              <label class="field field--full" for="rez-jmeno">Jméno a příjmení<input id="rez-jmeno" name="name" type="text" autocomplete="name" required minlength="2" data-error="Napište své jméno."></label>
+              <label class="field" for="rez-telefon">Telefon<input id="rez-telefon" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="777 123 456" data-error="Napište telefonní číslo (9 číslic)."></label>
+              <label class="field" for="rez-email">E-mail (nepovinné)<input id="rez-email" name="email" type="email" autocomplete="email" data-error="E-mail nemá správný tvar."></label>
+              <dl class="rez-recap field--full" id="rez-recap"></dl>
+              <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+              <p class="t-small muted">Po odeslání vám přijde potvrzovací SMS. Rezervace je nezávazná, údaje použiji jen k domluvě a naplánování termínu. Více v <a class="link" href="ochrana-osobnich-udaju.html">zásadách ochrany osobních údajů</a>.</p>
+              <p class="rez-err field--full" data-err role="alert"></p>
+              <div class="rez-actions field--full"><button class="btn btn--secondary" type="button" data-back>Zpět</button><button class="btn btn--primary" type="submit">Odeslat rezervaci</button></div>
+            </div>
+          </form>
+
+          <div class="rez-done" id="rez-done" hidden tabindex="-1">
+            <div class="rez-done__mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h2 class="t-h3">Děkuji, rezervace je odeslána</h2>
+            <p>Podle vašich možností a ostatních zakázek vám navrhnu konkrétní termín a ozvu se telefonicky nebo SMS.</p>
+            <p class="muted t-small">Spěcháte? Zavolejte na <a class="link" href="tel:+420792302615">+420 792 302 615</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  <div class="footer-wrap">
-    <div class="footer-col footer-brand">
-      <a href="#" class="logo" style="margin-bottom:18px;" aria-label="Express Detailing, domovská stránka">
-        <img src="/assets/logo.webp" alt="Logo Express Detailing" class="logo-img" width="322" height="160" loading="lazy" decoding="async" />
-      </a>
-      <p>Hloubkové čištění interiéru aut v Litomyšli a okolí. Mobilní služba, přijedu za vámi.</p>
-      <div class="socials">
-        <a href="https://www.facebook.com/profile.php?id=61580205237265" target="_blank" rel="noopener" aria-label="Express Detailing na Facebooku (otevře se v novém okně)">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/expressdetailing_lit" target="_blank" rel="noopener" aria-label="Express Detailing na Instagramu (otevře se v novém okně)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.5"/></svg>
+
+<!-- FOOTER.CLOSING -->
+<footer class="footer closing footer--dark ground-inverse" id="kontakt" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Domluvte si termín čištění</h2>
+        <p class="t-lead">Zavolejte, napište na WhatsApp nebo vyplňte rezervaci. Termíny domlouvám individuálně.</p>
+      </div>
+      <a class="btn btn--primary btn--xl" href="tel:+420792302615">Domluvit termín: +420 792 302 615</a>
+    </div>
+
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="./" aria-label="Express Detailing">
+            <img class="nav__brand-img" src="assets/logo-black.png" alt="Express Detailing">
+          </a>
+          <p class="footer__lede">Mobilní čištění interiérů aut v Litomyšli a širokém okolí.</p>
+        </div>
+        <div class="span-2 footer__col">
+          <h3>Navigace</h3>
+          <ul>
+            <li><a href="./#pred-po">Ukázky práce</a></li>
+            <li><a href="./#postup">Jak pracuji</a></li>
+            <li><a href="./#cenik">Ceník</a></li>
+            <li><a href="poukaz.html">Dárkový poukaz</a></li>
+            <li><a href="rezervace.html">Rezervace</a></li>
+            <li><a href="./#dotazy">Časté dotazy</a></li>
+            <li><a href="rady.html">Rady k péči o interiér</a></li>
+          </ul>
+        </div>
+        <div class="span-3 footer__col">
+          <h3>Působnost</h3>
+          <ul>
+            <li>Litomyšl a široké okolí</li>
+            <li>Jezdím i dál, stačí se ozvat</li>
+          </ul>
+        </div>
+        <div class="span-3 footer__col">
+          <h3>Kontakt a fakturace</h3>
+          <ul>
+            <li><a href="tel:+420792302615">+420 792 302 615</a></li>
+            <li><a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a></li>
+            <li>Jan Nechvíle, IČO 23820560<br>Jiříkov 18, 570 01 Dolní Újezd<br>Zapsán v živnostenském rejstříku, neplátce DPH</li>
+            <li><a href="https://www.instagram.com/express_detailing_/" target="_blank" rel="noopener">Instagram @express_detailing_</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61580205237265" target="_blank" rel="noopener">Facebook Express Detailing</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <span>&copy; 2026 Express Detailing, Jan Nechvíle</span>
+        <span class="footer__legal-links"><a href="obchodni-podminky.html">Obchodní podmínky</a> <a href="ochrana-osobnich-udaju.html">Ochrana osobních údajů</a> <button type="button" class="ck-reopen" data-ck-open>Nastavení cookies</button></span>
+        <a class="statly-credit" href="https://www.statly.cz" target="_blank" rel="noopener">
+          <span>Vytvořeno ve spolupráci se</span>
+          <img src="assets/statly-logo.svg" alt="Statly.cz">
         </a>
       </div>
-    </div>
-    <div class="footer-col">
-      <h5>Kontakt</h5>
-      <a href="tel:+420792302615">+420 792 302 615</a>
-      <a href="mailto:expressdetail.litomysl@gmail.com">expressdetail.litomysl@gmail.com</a>
-      <p style="margin-top:14px;">Litomyšl a okolí</p>
-    </div>
-    <div class="footer-col">
-      <h5>Navigace</h5>
-      <a href="/#o-mne">O službě</a>
-      <a href="/#sluzby">Co je v ceně</a>
-      <a href="/#galerie">Galerie před/po</a>
-      <a href="/#reference">Reference</a>
-      <a href="/rezervace">Rezervace</a>
-      <a href="/#faq">Časté dotazy</a>
-    </div>
-    <div class="footer-col">
-      <h5>Firma</h5>
-      <p>Jan Nechvíle</p>
-      <p>IČO: 23820560</p>
-      <p>Jiříkov 18, 570 01 Dolní Újezd</p>
-      <p>Podnikatel zapsaný v živnostenském rejstříku. Neplátce DPH.</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 Express Detailing. Všechna práva vyhrazena.</div>
-    <div class="footer-credit">
-      <a href="https://statly.cz" target="_blank" rel="noopener" class="statly" aria-label="Web vytvořil Statly">
-        <span class="statly-pre">Vytvořil</span>
-        <img src="/assets/statly-logo.svg" alt="Statly logo" width="24" height="24" loading="lazy" />
-        <span class="statly-name">statly.cz</span>
-      </a>
-    </div>
-    <div class="footer-legal">
-      <a href="/obchodni-podminky">Obchodní podmínky</a>
-      <span aria-hidden="true">·</span>
-      <a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a>
-      <span aria-hidden="true">·</span>
-      <button type="button" class="footer-cookie-link" id="cookieReopenLink">Nastavení cookies</button>
     </div>
   </div>
 </footer>
-<!-- COOKIE / GDPR LIŠTA -->
-<aside class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="false" aria-labelledby="cookieTitle" aria-describedby="cookieDesc">
-  <h3 id="cookieTitle">Používáme cookies</h3>
-  <p id="cookieDesc">
-    Tento web používá nezbytné cookies pro správné fungování. S vaším souhlasem
-    používáme i analytické a marketingové cookies (Google, Meta), abychom měřili
-    návštěvnost a výsledky reklamy.
-    Více v <a href="/ochrana-osobnich-udaju">zásadách ochrany osobních údajů</a>.
-  </p>
 
-  <div class="cookie-detail" id="cookieDetail">
-    <div class="cookie-option">
-      <div class="cookie-option-text">
-        <strong>Nezbytné cookies</strong>
-        <span>Potřebné pro základní funkce webu. Nelze vypnout.</span>
-      </div>
-      <span class="cookie-switch">
-        <input type="checkbox" checked disabled aria-label="Nezbytné cookies, vždy zapnuto" />
-        <span class="track" aria-hidden="true"></span>
-      </span>
-    </div>
-    <div class="cookie-option">
-      <div class="cookie-option-text">
-        <strong>Analytické cookies</strong>
-        <span>Anonymní statistiky o návštěvnosti webu. Pomáhají web zlepšovat.</span>
-      </div>
-      <span class="cookie-switch">
-        <input type="checkbox" id="ckAnalytics" aria-label="Analytické cookies" />
-        <span class="track" aria-hidden="true"></span>
-      </span>
-    </div>
-    <div class="cookie-option">
-      <div class="cookie-option-text">
-        <strong>Marketingové cookies</strong>
-        <span>Měření reklamy a remarketing (Meta Pixel).</span>
-      </div>
-      <span class="cookie-switch">
-        <input type="checkbox" id="ckMarketing" aria-label="Marketingové cookies" />
-        <span class="track" aria-hidden="true"></span>
-      </span>
-    </div>
+<nav class="actionbar" aria-label="Rychlý kontakt">
+  <a class="btn btn--secondary" href="tel:+420792302615">Zavolat</a>
+  <a class="btn btn--primary" href="rezervace.html">Rezervovat termín</a>
+</nav>
+
+<script type="module" src="assets/system.js"></script>
+<script>
+/* Krokový průvodce rezervací. Každý krok se kontroluje zvlášť, odeslání jde přes fetch na /api/rezervace. */
+(function () {
+  var form = document.getElementById('rez-form');
+  if (!form) return;
+  var steps = [].slice.call(form.querySelectorAll('.rez-step'));
+  var bars = [].slice.call(document.querySelectorAll('.rez-progress span'));
+  var count = document.getElementById('rez-count');
+  var done = document.getElementById('rez-done');
+  var cur = 0;
+
+  function show(i) {
+    cur = i;
+    steps.forEach(function (s, n) { s.classList.toggle('is-on', n === i); });
+    bars.forEach(function (b, n) { b.classList.toggle('is-on', n <= i); });
+    count.textContent = 'Krok ' + (i + 1) + ' z ' + steps.length;
+    if (i === steps.length - 1) recap();
+    var h = steps[i].querySelector('h2');
+    var top = form.closest('.rez-stage').getBoundingClientRect().top;
+    if (top < 0) window.scrollBy({ top: top - 90, behavior: 'smooth' });
+    if (h) h.focus({ preventScroll: true });
+  }
+
+  function err(step, text, field) {
+    var box = step.querySelector('[data-err]');
+    if (box) box.textContent = text || '';
+    step.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+    return !text;
+  }
+
+  function digits(v) { return String(v || '').replace(/\D/g, ''); }
+
+  function check(i) {
+    var s = steps[i];
+    if (i === 0 && !form.querySelector('input[name="car"]:checked')) return err(s, 'Vyberte prosím velikost auta.');
+    var inputs = [].slice.call(s.querySelectorAll('input[required], input[type="email"]'));
+    for (var k = 0; k < inputs.length; k++) {
+      var el = inputs[k];
+      if (!el.checkValidity()) return err(s, el.dataset.error || el.validationMessage, el);
+    }
+    if (i === 4) {
+      var p = digits(form.phone.value);
+      if (p.length < 9 || p.length > 12) return err(s, 'Napište telefonní číslo (9 číslic).', form.phone);
+    }
+    return err(s, '');
+  }
+
+  form.addEventListener('click', function (e) {
+    if (e.target.closest('[data-next]')) { if (check(cur)) show(cur + 1); }
+    else if (e.target.closest('[data-back]')) show(cur - 1);
+  });
+  /* Enter v poli posune na další krok místo odeslání */
+  form.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.matches('input') && cur < steps.length - 1) {
+      e.preventDefault(); if (check(cur)) show(cur + 1);
+    }
+  });
+  /* Po výběru auta zmizí chybová hláška */
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'car') err(steps[0], '');
+  });
+
+  /* Konkrétní dny: přidat / odebrat řádek s datem */
+  var dates = document.getElementById('rez-dates');
+  var today = new Date(); today.setHours(12);
+  var minDate = new Date(today.getTime() + 864e5).toISOString().slice(0, 10);
+  function addDate() {
+    if (dates.children.length >= 5) return;
+    var row = document.createElement('div');
+    row.className = 'dates__row';
+    row.innerHTML = '<input type="date" name="exact_date" min="' + minDate + '" aria-label="Den, který se vám hodí"><button type="button" class="dates__rm" aria-label="Odebrat den">&times;</button>';
+    row.querySelector('button').addEventListener('click', function () { row.remove(); });
+    dates.append(row);
+    row.querySelector('input').focus();
+  }
+  document.getElementById('rez-add-date').addEventListener('click', addDate);
+
+  /* Shrnutí před odesláním */
+  function all(name) { return [].slice.call(form.querySelectorAll('input[name="' + name + '"]:checked')).map(function (x) { return x.value; }); }
+  function fmt(d) { var p = d.split('-'); return +p[2] + '. ' + +p[1] + '.'; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function recap() {
+    var car = (form.querySelector('input[name="car"]:checked') || {}).value || '';
+    if (form.car_model.value.trim()) car += ' (' + form.car_model.value.trim() + ')';
+    var ex = [].slice.call(form.querySelectorAll('input[name="exact_date"]')).map(function (x) { return x.value; }).filter(Boolean).map(fmt);
+    var when = [(form.querySelector('input[name="when"]:checked') || {}).value, all('days').join(', ') || 'kterýkoli den', all('dayparts').join(' nebo ')].filter(Boolean).join(', ');
+    if (ex.length) when += '; konkrétně ' + ex.join(', ');
+    var rows = [
+      ['Auto', car],
+      ['Trápí', all('problems').join(', ') || 'neuvedeno'],
+      ['Adresa', form.street.value.trim() + ', ' + form.zip.value.trim() + ' ' + form.city.value.trim()],
+      ['Kdy', when]
+    ];
+    document.getElementById('rez-recap').innerHTML = rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('');
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    for (var i = 0; i < steps.length; i++) { if (!check(i)) { show(i); check(i); return; } }
+    var last = steps[steps.length - 1];
+    var btn = form.querySelector('[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Odesílám…';
+    try {
+      var res = await fetch('/api/rezervace', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(res.status);
+      form.hidden = true;
+      document.querySelector('.rez-progress').hidden = true;
+      count.hidden = true;
+      done.hidden = false;
+      done.focus();
+    } catch (x) {
+      err(last, 'Rezervaci se nepodařilo odeslat. Zkuste to prosím znovu, nebo zavolejte na +420 792 302 615.');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Odeslat rezervaci';
+    }
+  });
+})();
+</script>
+
+<aside class="ck" id="ck" role="dialog" aria-modal="false" aria-labelledby="ck-h" hidden>
+  <h2 id="ck-h">Cookies</h2>
+  <p>Nezbytné cookies web potřebuje k fungování. S vaším souhlasem použiji i analytické a marketingové cookies (Google Analytics, Meta Pixel), abych věděl, odkud lidé přicházejí, a mohl měřit reklamu. Více v <a href="ochrana-osobnich-udaju.html">zásadách ochrany osobních údajů</a>.</p>
+  <div class="ck__detail">
+    <label class="ck__opt"><input type="checkbox" checked disabled><span><b>Nezbytné</b>Potřebné pro chod webu, nelze vypnout.</span></label>
+    <label class="ck__opt"><input type="checkbox" id="ck-a"><span><b>Analytické</b>Statistiky návštěvnosti (Google Analytics).</span></label>
+    <label class="ck__opt"><input type="checkbox" id="ck-m"><span><b>Marketingové</b>Měření a cílení reklamy (Meta Pixel).</span></label>
   </div>
-
-  <div class="cookie-actions">
-    <button type="button" class="cookie-btn reject" id="cookieReject">Odmítnout</button>
-    <button type="button" class="cookie-btn accept" id="cookieAccept">Přijmout vše</button>
-    <button type="button" class="cookie-btn settings" id="cookieSettings" aria-expanded="false" aria-controls="cookieDetail">Upravit nastavení</button>
-    <button type="button" class="cookie-btn save" id="cookieSavePrefs" style="display:none;">Uložit zvolené nastavení</button>
+  <div class="ck__actions">
+    <button type="button" class="btn btn--primary" id="ck-all">Přijmout vše</button>
+    <button type="button" class="btn btn--secondary" id="ck-none">Jen nezbytné</button>
+    <button type="button" class="ck__link" id="ck-set">Nastavit</button>
+    <button type="button" class="btn btn--secondary" id="ck-save" hidden>Uložit volbu</button>
   </div>
 </aside>
-
-<!-- Plovoucí tlačítko pro znovuotevření nastavení cookies -->
-<button type="button" class="cookie-reopen" id="cookieReopen" aria-label="Nastavení cookies">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9" r="1.2" fill="currentColor"/><circle cx="9" cy="13.5" r="1.2" fill="currentColor"/><circle cx="15" cy="13" r="1.2" fill="currentColor"/></svg>
-</button>
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" id="stickyCta">
-  <a href="sms:+420792302615" class="sms">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span>Napsat SMS</span>
-  </a>
-  <a href="tel:+420792302615" class="call">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span>Zavolat hned</span>
-  </a>
-</div>
 <script>
-/* ===== SCROLL NA SEKCI Z ?sekce=... (kvůli Google Ads) ===== */
+/* Cookies and measurement. Google Analytics and the Meta Pixel load only after consent. Same key as the current site, so a visitor's earlier choice carries over. */
 (function () {
-  var id = new URLSearchParams(window.location.search).get('sekce');
-  if (!id) return;
-  function go() {
-    var el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  var GA_ID = 'G-L718E72LY9', PIXEL_ID = '1028815046350783', KEY = 'ed_consent_v2';
+  var box = document.getElementById('ck'); if (!box) return;
+  var a = document.getElementById('ck-a'), m = document.getElementById('ck-m');
+  function read() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+  function loadGA() {
+    if (window.__gaLoaded) return; window.__gaLoaded = true;
+    var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date()); gtag('config', GA_ID);
   }
-  if (document.readyState === 'complete') { go(); }
-  else { window.addEventListener('load', function () { setTimeout(go, 100); }); }
+  function loadPixel() {
+    if (window.__fbLoaded) return; window.__fbLoaded = true;
+    !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID); fbq('track', 'PageView');
+  }
+  function apply(c) { if (c && c.analytics) loadGA(); if (c && c.marketing) loadPixel(); }
+  function save(an, mk) { var c = { necessary: true, analytics: !!an, marketing: !!mk, date: new Date().toISOString() }; try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} apply(c); close(); }
+  function open(detail) { box.hidden = false; box.classList.toggle('is-detail', !!detail); document.getElementById('ck-set').hidden = !!detail; document.getElementById('ck-save').hidden = !detail; requestAnimationFrame(function () { box.classList.add('is-open'); }); }
+  function close() { box.classList.remove('is-open'); setTimeout(function () { box.hidden = true; }, 300); }
+  document.getElementById('ck-all').addEventListener('click', function () { save(true, true); });
+  document.getElementById('ck-none').addEventListener('click', function () { save(false, false); });
+  document.getElementById('ck-set').addEventListener('click', function () { open(true); });
+  document.getElementById('ck-save').addEventListener('click', function () { save(a.checked, m.checked); });
+  document.querySelectorAll('[data-ck-open]').forEach(function (b) { b.addEventListener('click', function () { var c = read(); a.checked = !!(c && c.analytics); m.checked = !!(c && c.marketing); open(true); }); });
+  var c0 = read(); if (c0) apply(c0); else setTimeout(function () { open(false); }, 800);
+
+  // conversions for ads: only sent when the visitor agreed (the functions exist only then)
+  function lead(kind, value) {
+    if (typeof window.gtag === 'function') gtag('event', 'generate_lead', { lead_source: kind, value: value, currency: 'CZK' });
+    if (typeof window.fbq === 'function') fbq('track', 'Lead', { content_name: kind, value: value, currency: 'CZK' });
+  }
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (l) { l.addEventListener('click', function () {
+    if (typeof window.gtag === 'function') gtag('event', 'contact', { method: 'phone' });
+    if (typeof window.fbq === 'function') fbq('track', 'Contact');
+  }); });
+  var done = document.getElementById('rez-done');
+  if (done) new MutationObserver(function () { if (!done.hidden && !done.dataset.tracked) { done.dataset.tracked = '1'; lead('rezervace', 2500); } }).observe(done, { attributes: true, attributeFilter: ['hidden'] });
+  var pf = document.getElementById('poukaz-form'), st = pf && pf.querySelector('[data-form-status]');
+  if (st) new MutationObserver(function () {
+    if (st.textContent.trim() !== (pf.dataset.sent || '').trim()) return;
+    var t = (pf.dataset.lastTyp || ''), v = t === 'vstupni' ? 1500 : t === 'castka' ? (+pf.dataset.lastCastka || 1000) : 3000;
+    lead('poukaz', v);
+  }).observe(st, { childList: true, characterData: true, subtree: true });
+  if (pf) pf.addEventListener('submit', function () { var r = pf.querySelector('input[name=typ]:checked'), c = pf.querySelector('[name=castka]'); pf.dataset.lastTyp = r ? r.value : ''; pf.dataset.lastCastka = c ? c.value : ''; }, true);
 })();
-</script>
-<script>
-(function () {
-  var STORAGE_KEY = 'ed_cookie_consent_v1';
-  var banner = document.getElementById('cookieBanner');
-  var detail = document.getElementById('cookieDetail');
-  var reopenBtn = document.getElementById('cookieReopen');
-  var ckAnalytics = document.getElementById('ckAnalytics');
-  var settingsBtn = document.getElementById('cookieSettings');
-  var saveBtn = document.getElementById('cookieSavePrefs');
-  var ckMarketing = document.getElementById('ckMarketing');
-  var META_PIXEL_ID = '1028815046350783';
-
-  // Sem patří inicializace analytiky (Google Analytics apod.).
-  // Spustí se POUZE pokud uživatel odsouhlasí analytické cookies.
-  function loadAnalytics() {
-    if (window.__edAnalyticsLoaded) return;
-    window.__edAnalyticsLoaded = true;
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-L718E72LY9';
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
-    gtag('js', new Date());
-    gtag('config', 'G-L718E72LY9');
-  }
-
-  function loadMarketing() {
-    if (window.__edMarketingLoaded) return;
-    window.__edMarketingLoaded = true;
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', META_PIXEL_ID);
-    fbq('track', 'PageView');
-  }
-
-  function readConsent() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); }
-    catch (e) { return null; }
-  }
-
-  function saveConsent(analytics, marketing) {
-    var data = {
-      necessary: true,
-      analytics: !!analytics,
-      marketing: !!marketing,
-      date: new Date().toISOString()
-    };
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
-    if (analytics) loadAnalytics();
-    if (marketing) loadMarketing();
-  }
-
-  function hideBanner() {
-    banner.classList.remove('visible');
-    reopenBtn.classList.add('visible');
-  }
-
-  function showBanner() {
-    banner.classList.add('visible');
-    reopenBtn.classList.remove('visible');
-  }
-
-  function openDetail() {
-    detail.classList.add('open');
-    settingsBtn.setAttribute('aria-expanded', 'true');
-    settingsBtn.style.display = 'none';
-    saveBtn.style.display = '';
-  }
-
-  // Při načtení: pokud už volba existuje, banner neukazuj
-  var existing = readConsent();
-  if (existing) {
-    if (existing.analytics) loadAnalytics();
-    if (existing.marketing) loadMarketing();
-    ckAnalytics.checked = !!existing.analytics;
-    ckMarketing.checked = !!existing.marketing;
-    reopenBtn.classList.add('visible');
-  } else {
-    // krátká prodleva, ať banner nebliká hned při načtení
-    setTimeout(showBanner, 700);
-  }
-
-  // Přijmout vše
-  document.getElementById('cookieAccept').addEventListener('click', function () {
-    ckAnalytics.checked = true;
-    ckMarketing.checked = true;
-    saveConsent(true, true);
-    hideBanner();
-  });
-
-  // Odmítnout (jen nezbytné cookies)
-  document.getElementById('cookieReject').addEventListener('click', function () {
-    ckAnalytics.checked = false;
-    ckMarketing.checked = false;
-    saveConsent(false, false);
-    hideBanner();
-  });
-
-  // Rozbalit detailní nastavení
-  settingsBtn.addEventListener('click', openDetail);
-
-  // Uložit vlastní nastavení
-  saveBtn.addEventListener('click', function () {
-    saveConsent(ckAnalytics.checked, ckMarketing.checked);
-    hideBanner();
-  });
-
-  // Znovuotevření banneru (plovoucí tlačítko i odkaz v patičce)
-  function reopen() {
-    var c = readConsent();
-    ckAnalytics.checked = c ? !!c.analytics : false;
-    ckMarketing.checked = c ? !!c.marketing : false;
-    openDetail();
-    showBanner();
-  }
-  reopenBtn.addEventListener('click', reopen);
-  var footerLink = document.getElementById('cookieReopenLink');
-  if (footerLink) footerLink.addEventListener('click', reopen);
-})();
-
-const nav = document.getElementById('nav');
-const stickyCta = document.getElementById('stickyCta');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 30) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-  if (window.scrollY > 120) stickyCta.classList.add('visible');
-  else stickyCta.classList.remove('visible');
-}, { passive: true });
-
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-reveals.forEach((el) => observer.observe(el));
-</script>
-<script>
-/* ===== REZERVAČNÍ STEPPER ===== */
-(function () {
-  const $ = (id) => document.getElementById(id);
-  const form = $('rezForm');
-  const steps = Array.from(document.querySelectorAll('.rez-step'));
-  const dots = Array.from(document.querySelectorAll('.rez-dot'));
-  const stepCount = $('rezStepCount');
-  const TOTAL = steps.length;
-  let current = 1;
-
-  function showStep(n) {
-    current = n;
-    steps.forEach((s) => s.classList.toggle('active', +s.dataset.step === n));
-    dots.forEach((d, i) => d.classList.toggle('active', i < n));
-    stepCount.textContent = 'Krok ' + n + ' z ' + TOTAL;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  const showErr = (id, on) => $(id).classList.toggle('show', on);
-
-  /* --- Krok 1: výběr služby (karty) --- */
-  document.querySelectorAll('.rez-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.rez-card').forEach((c) => {
-        c.classList.remove('selected');
-        c.setAttribute('aria-pressed', 'false');
-      });
-      card.classList.add('selected');
-      card.setAttribute('aria-pressed', 'true');
-      $('rezService').value = card.dataset.service;
-      $('next1').disabled = false;
-      showErr('errService', false);
-    });
-  });
-  $('next1').addEventListener('click', () => {
-    if (!$('rezService').value) { showErr('errService', true); return; }
-    showStep(2);
-  });
-
-  /* --- Krok 2: co trápí (multi-select chips) --- */
-  const concernChips = $('concernChips');
-  concernChips.addEventListener('click', (e) => {
-    const chip = e.target.closest('.rez-chip');
-    if (!chip) return;
-    chip.classList.toggle('selected');
-    chip.setAttribute('aria-pressed', chip.classList.contains('selected'));
-    const vals = [...concernChips.querySelectorAll('.rez-chip.selected')].map((c) => c.dataset.val);
-    $('rezConcerns').value = vals.join(', ');
-  });
-  $('back2').addEventListener('click', () => showStep(1));
-  $('next2').addEventListener('click', () => showStep(3));
-
-  /* --- Krok 3: typ auta (single-select chips) --- */
-  const carChips = $('carChips');
-  carChips.addEventListener('click', (e) => {
-    const chip = e.target.closest('.rez-chip');
-    if (!chip) return;
-    carChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-    chip.classList.add('selected');
-    chip.setAttribute('aria-pressed', 'true');
-    $('rezCar').value = chip.dataset.val;
-    showErr('errCar', false);
-    setTimeout(() => showStep(4), 300);
-  });
-  $('back3').addEventListener('click', () => showStep(2));
-  $('next3').addEventListener('click', () => {
-    if (!$('rezCar').value) { showErr('errCar', true); return; }
-    showStep(4);
-  });
-
-  /* --- Krok 4: město (single-select chips + jiné) --- */
-  const cityChips = $('cityChips');
-  const cityOtherRow = $('cityOtherRow');
-  const cityOther = $('cityOther');
-  cityChips.addEventListener('click', (e) => {
-    const chip = e.target.closest('.rez-chip');
-    if (!chip) return;
-    cityChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-    chip.classList.add('selected');
-    chip.setAttribute('aria-pressed', 'true');
-    showErr('errCity', false);
-    if (chip.dataset.val === '__other') {
-      cityOtherRow.style.display = '';
-      $('rezCity').value = cityOther.value.trim();
-      cityOther.focus();
-    } else {
-      cityOtherRow.style.display = 'none';
-      $('rezCity').value = chip.dataset.val;
-      setTimeout(() => showStep(5), 300);
-    }
-  });
-  cityOther.addEventListener('input', () => {
-    $('rezCity').value = cityOther.value.trim();
-    if (cityOther.value.trim()) showErr('errCity', false);
-  });
-  $('back4').addEventListener('click', () => showStep(3));
-  $('next4').addEventListener('click', () => {
-    if (!$('rezCity').value) { showErr('errCity', true); return; }
-    showStep(5);
-  });
-
-  /* --- Krok 5: orientační termín (chip skupiny) --- */
-  // jak rychle (povinné, single-select)
-  let whenPref = '';
-  const whenChips = $('whenChips');
-  whenChips.addEventListener('click', (e) => {
-    const chip = e.target.closest('.rez-chip');
-    if (!chip) return;
-    whenChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-    chip.classList.add('selected'); chip.setAttribute('aria-pressed', 'true');
-    whenPref = chip.dataset.val;
-    showErr('errWhen', false);
-  });
-
-  // kdy se hodí (nepovinné, single-select, lze odznačit)
-  let dayPref = '';
-  const dayChips = $('dayChips');
-  dayChips.addEventListener('click', (e) => {
-    const chip = e.target.closest('.rez-chip');
-    if (!chip) return;
-    const was = chip.classList.contains('selected');
-    dayChips.querySelectorAll('.rez-chip').forEach((c) => { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
-    if (!was) { chip.classList.add('selected'); chip.setAttribute('aria-pressed', 'true'); dayPref = chip.dataset.val; }
-    else { dayPref = ''; }
-  });
-
-  $('back5').addEventListener('click', () => showStep(4));
-
-  // čištění chyb při psaní
-  ['name', 'phone'].forEach((id) => $(id).addEventListener('input', () => {
-    showErr(id === 'name' ? 'errName' : 'errPhone', false);
-  }));
-
-  /* --- Odeslání --- */
-  const submitBtn = $('rezSubmit');
-  const errorMsg = $('rezError');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errorMsg.classList.remove('show');
-    if (form.website.value) return; // honeypot
-
-    const name = form.name.value.trim();
-    const phone = form.phone.value.trim();
-    const checks = [
-      ['errName', name.length >= 2, form.name],
-      ['errPhone', phone.replace(/\D/g, '').length >= 9, form.phone],
-      ['errWhen', !!whenPref, null],
-    ];
-    let firstInvalid = null;
-    for (const [errId, ok, el] of checks) {
-      showErr(errId, !ok);
-      if (!ok && !firstInvalid) firstInvalid = el;
-    }
-    if (firstInvalid) { firstInvalid.focus(); return; }
-    if (!whenPref) return;
-
-    const preferred_date = dayPref ? `${whenPref} (${dayPref})` : whenPref;
-    $('rezDate').value = preferred_date;
-
-    submitBtn.disabled = true;
-    submitBtn.querySelector('span').textContent = 'Odesílám...';
-
-    const data = {
-      service: $('rezService').value,
-      concerns: $('rezConcerns').value,
-      car: $('rezCar').value,
-      city: $('rezCity').value,
-      name, phone, preferred_date,
-      website: form.website.value,
-    };
-
-    try {
-      const res = await fetch('/api/rezervace', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error('fail');
-      form.hidden = true;
-      document.querySelector('.rez-progress').style.display = 'none';
-      stepCount.style.display = 'none';
-      $('rezRecap').textContent = `${data.car} · ${data.city} · ${preferred_date}`;
-      $('rezSuccess').hidden = false;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { value: 3000, currency: 'CZK', lead_source: 'rezervace' });
-    } catch (err) {
-      errorMsg.classList.add('show');
-      submitBtn.disabled = false;
-      submitBtn.querySelector('span').textContent = 'Odeslat rezervaci →';
-    }
-  });
-})();
-
-// Měření kliků na telefon / SMS jako konverzní signál (jen když je povolená analytika)
-document.querySelectorAll('a[href^="tel:"], a[href^="sms:"]').forEach((a) => {
-  a.addEventListener('click', () => {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'contact', {
-        method: a.getAttribute('href').indexOf('sms:') === 0 ? 'sms' : 'phone',
-      });
-    }
-  });
-});
 </script>
 </body>
 </html>
