@@ -187,7 +187,7 @@ h1, h2, h3, h4 {
   letter-spacing: var(--display-tracking); text-wrap: balance; overflow-wrap: break-word;
   /* a long word (a German compound at 390) breaks at a syllable with a hyphen, in the language of <html lang>;
      only words of 10 letters or more, 4 at least on each side, so a short English heading never breaks */
-  hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 10 4 4;
+  hyphens: manual; -webkit-hyphens: manual;
 }
 h1, .t-h1 { font-size: var(--t-h1); line-height: 1.04; }
 h2, .t-h2 { font-size: var(--t-h2); line-height: 1.1; }
