@@ -46,15 +46,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..600&family=Inter+Tight:wght@500..600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/system.css?v=20261121b">
-<link rel="stylesheet" href="assets/ui/cards.css?v=20261121b">
-<link rel="stylesheet" href="assets/motion/motion.css?v=20261121b">
-<link rel="stylesheet" href="assets/backgrounds/backgrounds.css?v=20261121b">
-<link rel="stylesheet" href="assets/layout/layout.css?v=20261121b">
-<link rel="stylesheet" href="assets/icons/icon.css?v=20261121b">
-<link rel="stylesheet" href="assets/moments/pinned-chapters/moment.css?v=20261121b">
-<link rel="stylesheet" href="assets/moments/picture-develops/moment.css?v=20261121b">
-<link rel="stylesheet" href="assets/moments/word-highlight/moment.css?v=20261121b">
+<link rel="stylesheet" href="assets/system.css?v=20261121c">
+<link rel="stylesheet" href="assets/ui/cards.css?v=20261121c">
+<link rel="stylesheet" href="assets/motion/motion.css?v=20261121c">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css?v=20261121c">
+<link rel="stylesheet" href="assets/layout/layout.css?v=20261121c">
+<link rel="stylesheet" href="assets/icons/icon.css?v=20261121c">
+<link rel="stylesheet" href="assets/moments/pinned-chapters/moment.css?v=20261121c">
+<link rel="stylesheet" href="assets/moments/picture-develops/moment.css?v=20261121c">
+<link rel="stylesheet" href="assets/moments/word-highlight/moment.css?v=20261121c">
 
 <style>
 :root {
@@ -386,6 +386,8 @@ html.wipe-js .wipe__list li { transition: color 200ms ease; }
 .ck-reopen { background: none; border: 0; padding: 0; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 @media (max-width: 639px) { .ck { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); } }
 @media (prefers-reduced-motion: reduce) { .ck { transition: none; } }
+/* the form is taller than one screen on a big monitor: the section grows with it instead of running over the footer */
+main > section.section { height: auto; min-height: calc(var(--h, 1) * 100svh); }
 </style>
 
 </head>
@@ -546,7 +548,7 @@ html.wipe-js .wipe__list li { transition: color 200ms ease; }
   <a class="btn btn--primary" href="rezervace.html">Rezervovat termín</a>
 </nav>
 
-<script type="module" src="assets/system.js?v=20261121b"></script>
+<script type="module" src="assets/system.js?v=20261121c"></script>
 <script>
 /* Amount field only for a free amount; source from ?zdroj=. */
 (function () {
