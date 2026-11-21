@@ -8,6 +8,11 @@
 //   MAIL_TO                     - kam mají rezervace chodit
 //   SUPABASE_URL                - Supabase → Settings → API → Project URL
 //   SUPABASE_SERVICE_ROLE_KEY   - Supabase → Settings → API → service_role key (Encrypt = ON)
+//   MAPY_API_KEY                - (nepovinné) klíč z developer.mapy.com, převod adresy na polohu
+//   BULKGATE_APP_ID             - (nepovinné) BulkGate → Modules & APIs → Simple API → Application ID
+//   BULKGATE_APP_TOKEN          - (nepovinné) totéž, Application token (Encrypt = ON)
+//   SMS_ENABLED                 - "1" = posílat potvrzovací SMS zákazníkovi. Bez toho se SMS neposílá.
+//   SMS_UNICODE                 - "1" = SMS s diakritikou (stojí 2 SMS místo 1)
 
 const BRAND = {
   name: 'Express Detailing Litomyšl',
@@ -21,7 +26,7 @@ const BRAND = {
 };
 
 const SERVICE_LABELS = {
-  interier: 'Detailing interiéru (od 3 000 Kč)',
+  interier: 'Detailing interiéru (od 2 500 Kč)',
 };
 
 const VALID_SERVICES = ['interier'];
@@ -56,7 +61,7 @@ export async function onRequestPost(context) {
     }
 
     // 3) Parsing
-    const body = await request.json().catch(() => null);
+    const body = await readBody(request);
     if (!body || typeof body !== 'object') {
       return new Response(JSON.stringify({ ok: false, error: 'invalid_body' }), { status: 400, headers });
     }
@@ -72,8 +77,25 @@ export async function onRequestPost(context) {
     const city = sanitize(body.city);
     const car = sanitize(body.car);
     const service = sanitize(body.service);
-    const preferred_date = sanitize(body.preferred_date);
-    const concerns = sanitize(body.concerns); // nepovinné
+    const street = sanitize(body.street);   // nepovinné (nový formulář ho vyžaduje)
+    const zip = sanitize(body.zip);         // nepovinné
+    // Starý formulář posílá preferred_date a concerns hotové, nový je skládá z částí.
+    const when = sanitize(body.when);
+    const days = sanitize(body.days);
+    const exact = sanitize(body.exact_date);
+    const dayparts = sanitize(body.dayparts);
+    const email = sanitize(body.email).slice(0, 200);
+    const car_model = sanitize(body.car_model).slice(0, 120);
+    const problems = sanitize(body.problems);
+    const note = sanitize(body.concerns);
+    const prefDates = exact.split(/,\s*/).filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)).slice(0, 5);
+    const preferred_date =
+      sanitize(body.preferred_date) ||
+      [when, days || (when ? 'kterýkoli den' : ''), dayparts, prefDates.length ? `konkrétně ${prefDates.map(czDate).join(', ')}` : '']
+        .filter(Boolean)
+        .join(', ') ||
+      'Kdykoli, bez omezení';
+    const concerns = [problems, note].filter(Boolean).join('. '); // nepovinné
 
     if (
       name.length < 2 ||
@@ -86,11 +108,22 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ ok: false, error: 'validation' }), { status: 400, headers });
     }
 
-    const record = { name, phone, city, car, service, preferred_date, concerns };
+    const record = {
+      name, phone, email, city, street, zip, car, car_model, service, preferred_date, concerns, problems, note,
+      car_size: carSize(car),
+      pref_urgency: when || null,
+      pref_days: splitList(days),
+      pref_dayparts: splitList(dayparts),
+      pref_dates: prefDates,
+    };
 
-    // 6) Paralelně: zápis do Supabase + odeslání emailu.
+    // 6) Poloha z adresy (Mapy.com). Když selže, rezervace projde i tak, poloha jen chybí.
+    const geo = await geocode(env, record);
+    if (geo) Object.assign(record, geo);
+
+    // 7) Paralelně: zápis do Supabase + odeslání emailu.
     //    Supabase si chyby ošetří uvnitř (nesmí shodit email).
-    const [, emailResp] = await Promise.all([
+    const [saved, emailResp] = await Promise.all([
       supabaseInsert(env, record),
       sendEmail(env, record),
     ]);
@@ -106,6 +139,10 @@ export async function onRequestPost(context) {
     list.push(now);
     recentSubmits.set(ip, list);
 
+    // 8) Potvrzovací SMS zákazníkovi (jen když je zapnutá). Chyba SMS nesmí shodit rezervaci.
+    const smsOk = await sendSms(env, record);
+    if (smsOk && saved && saved.id != null) await supabasePatch(env, saved.id, { sms_sent_at: new Date().toISOString() });
+
     return new Response(JSON.stringify({ ok: true }), { headers });
   } catch (e) {
     console.error('Unhandled:', e);
@@ -116,38 +153,142 @@ export async function onRequestPost(context) {
 // ---- Supabase ----
 
 // Vrací vždy splněný Promise — případnou chybu jen zaloguje, aby email odešel i tak.
+// Vrací uložený řádek (kvůli id), nebo null.
 async function supabaseInsert(env, record) {
   if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
     console.error('Supabase env vars missing — přeskakuji INSERT');
     return null;
   }
+  const legacyNote = [record.concerns, addressLine(record) ? `Adresa: ${addressLine(record)}` : ''].filter(Boolean).join(' | ') || null;
+  const full = {
+    name: record.name,
+    phone: record.phone,
+    city: record.city,
+    car: record.car,
+    service: record.service,
+    preferred_date: record.preferred_date,
+    note: legacyNote,
+    street: record.street || null,
+    zip: record.zip || null,
+    email: record.email || null,
+    car_model: record.car_model || null,
+    car_size: record.car_size,
+    problems: record.problems || null,
+    lat: record.lat ?? null,
+    lng: record.lng ?? null,
+    geocode_label: record.geocode_label || null,
+    pref_urgency: record.pref_urgency,
+    pref_days: record.pref_days,
+    pref_dayparts: record.pref_dayparts,
+    pref_dates: record.pref_dates,
+    status: 'nova',
+    planned_minutes: plannedMinutes(record.car_size),
+  };
+  // Stará tabulka (před spuštěním SQL migrace) nové sloupce nezná -> druhý pokus jen se starými.
+  const legacy = {
+    name: full.name, phone: full.phone, city: full.city, car: full.car, service: full.service,
+    preferred_date: full.preferred_date, note: legacyNote,
+  };
   try {
-    const resp = await fetch(`${env.SUPABASE_URL}/rest/v1/bookings`, {
-      method: 'POST',
-      headers: {
-        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
-        Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
-      body: JSON.stringify({
-        name: record.name,
-        phone: record.phone,
-        city: record.city,
-        car: record.car,
-        service: record.service,
-        preferred_date: record.preferred_date,
-        note: record.concerns || null,
-      }),
-    });
-    if (!resp.ok) {
-      const err = await resp.text();
-      console.error('Supabase insert failed:', resp.status, err);
+    for (const row of [full, legacy]) {
+      const resp = await fetch(`${env.SUPABASE_URL}/rest/v1/bookings`, {
+        method: 'POST',
+        headers: supabaseHeaders(env, 'return=representation'),
+        body: JSON.stringify(row),
+      });
+      if (resp.ok) {
+        const data = await resp.json().catch(() => null);
+        return Array.isArray(data) ? data[0] : data;
+      }
+      console.error('Supabase insert failed:', resp.status, await resp.text());
+      if (resp.status !== 400) return null; // jen chyba sloupců (400) má smysl zkoušet znovu
     }
-    return resp;
+    return null;
   } catch (e) {
     console.error('Supabase insert error:', e);
     return null;
+  }
+}
+
+async function supabasePatch(env, id, patch) {
+  try {
+    const resp = await fetch(`${env.SUPABASE_URL}/rest/v1/bookings?id=eq.${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      headers: supabaseHeaders(env, 'return=minimal'),
+      body: JSON.stringify(patch),
+    });
+    if (!resp.ok) console.error('Supabase patch failed:', resp.status, await resp.text());
+  } catch (e) {
+    console.error('Supabase patch error:', e);
+  }
+}
+
+function supabaseHeaders(env, prefer) {
+  return {
+    apikey: env.SUPABASE_SERVICE_ROLE_KEY,
+    Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+    'Content-Type': 'application/json',
+    Prefer: prefer,
+  };
+}
+
+// ---- Poloha z adresy (Mapy.com Geocoding API) ----
+// 1 dotaz = 4 kredity, zdarma je 250 000 kreditů měsíčně (~60 000 adres).
+
+async function geocode(env, { street, zip, city }) {
+  if (!env.MAPY_API_KEY || !city) return null;
+  const query = [street, [zip, city].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+  const url = `https://api.mapy.com/v1/geocode?lang=cs&limit=1&type=regional&query=${encodeURIComponent(query)}&apikey=${encodeURIComponent(env.MAPY_API_KEY)}`;
+  try {
+    const resp = await fetch(url, { signal: AbortSignal.timeout(4000) });
+    if (!resp.ok) {
+      console.error('Mapy geocode failed:', resp.status, await resp.text());
+      return null;
+    }
+    const data = await resp.json();
+    const hit = data && data.items && data.items[0];
+    if (!hit || !hit.position) return null;
+    return {
+      lat: hit.position.lat,
+      lng: hit.position.lon,
+      geocode_label: [hit.name, hit.location].filter(Boolean).join(', ').slice(0, 300),
+    };
+  } catch (e) {
+    console.error('Mapy geocode error:', e);
+    return null;
+  }
+}
+
+// ---- SMS (BulkGate Simple Transactional API) ----
+
+async function sendSms(env, { phone }) {
+  if (env.SMS_ENABLED !== '1' || !env.BULKGATE_APP_ID || !env.BULKGATE_APP_TOKEN) return false;
+  const unicode = env.SMS_UNICODE === '1';
+  const text = unicode
+    ? 'Dobrý den, děkuji za rezervaci čištění interiéru. Ozvu se vám s návrhem přesného termínu. Jan, Express Detailing, 792 302 615'
+    : 'Dobry den, dekuji za rezervaci cisteni interieru. Ozvu se vam s navrhem presneho terminu. Jan, Express Detailing, 792 302 615';
+  try {
+    const resp = await fetch('https://portal.bulkgate.com/api/1.0/simple/transactional', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        application_id: env.BULKGATE_APP_ID,
+        application_token: env.BULKGATE_APP_TOKEN,
+        number: phone.replace(/[^\d+]/g, ''),
+        country: 'cz',
+        text,
+        unicode,
+      }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!resp.ok) {
+      console.error('BulkGate SMS failed:', resp.status, await resp.text());
+      return false;
+    }
+    return true;
+  } catch (e) {
+    console.error('BulkGate SMS error:', e);
+    return false;
   }
 }
 
@@ -177,9 +318,51 @@ function sendEmail(env, record) {
 
 // ---- Helpers ----
 
+// Přijme JSON i data z klasického formuláře (multipart / urlencoded).
+async function readBody(request) {
+  const type = request.headers.get('content-type') || '';
+  if (type.includes('application/json')) return request.json().catch(() => null);
+  try {
+    const form = await request.formData();
+    const out = {};
+    for (const [k, v] of form.entries()) out[k] = k in out ? `${out[k]}, ${v}` : v;
+    return out;
+  } catch (e) {
+    return null;
+  }
+}
+
+// Velikost auta z textu volby ve formuláři (musí sedět s hodnotami v rezervace.html).
+function carSize(car) {
+  if (/^Malé/.test(car)) return 'S';
+  if (/^Sedan/.test(car)) return 'M';
+  if (/^Velké/.test(car)) return 'L';
+  if (/^Dodávka/.test(car)) return 'XL';
+  return '?';
+}
+
+// Odhad délky práce v minutách (bez dojezdu a rezervy). Stejná čísla používá planovac.html.
+function plannedMinutes(size) {
+  return { S: 180, M: 240, L: 285, XL: 300, '?': 240 }[size] || 240;
+}
+
+function splitList(v) {
+  return v ? v.split(/,\s*/).filter(Boolean).slice(0, 7) : [];
+}
+
+function czDate(iso) {
+  const [, m, d] = iso.split('-');
+  return `${+d}. ${+m}.`;
+}
+
 function sanitize(v) {
   if (v == null) return '';
   return String(v).trim().slice(0, 2000);
+}
+
+function addressLine({ street, zip, city }) {
+  if (!street && !zip) return '';
+  return [street, [zip, city].filter(Boolean).join(' ')].filter(Boolean).join(', ');
 }
 
 function serviceLabel(service) {
@@ -195,13 +378,16 @@ function escapeHtml(s) {
     .replace(/'/g, '&#39;');
 }
 
-function renderHtmlEmail({ name, phone, city, car, service, preferred_date, concerns }) {
+function renderHtmlEmail({ name, phone, email, city, street, zip, car, car_model, service, preferred_date, concerns, lat, lng }) {
   const e = escapeHtml;
+  const map = lat != null ? ` · <a href="https://mapy.com/s?q=${lat},${lng}" style="color:${BRAND.accent}">mapa</a>` : '';
   const rows = [
     ['Jméno', e(name)],
     ['Telefon', `<a href="tel:${e(phone)}" style="color:${BRAND.accent};text-decoration:none">${e(phone)}</a>`],
+    email ? ['E-mail', e(email)] : null,
     ['Město', e(city)],
-    ['Auto', e(car)],
+    street || zip ? ['Adresa', e(addressLine({ street, zip, city })) + map] : null,
+    ['Auto', e(car) + (car_model ? ` (${e(car_model)})` : '')],
     ['Služba', e(serviceLabel(service))],
     ['Termín', e(preferred_date)],
     concerns ? ['Co trápí', e(concerns)] : null,
@@ -258,14 +444,16 @@ function renderHtmlEmail({ name, phone, city, car, service, preferred_date, conc
 </html>`;
 }
 
-function renderTextEmail({ name, phone, city, car, service, preferred_date, concerns }) {
+function renderTextEmail({ name, phone, email, city, street, zip, car, car_model, service, preferred_date, concerns }) {
   return [
     `NOVÁ REZERVACE Z WEBU - ${BRAND.name}`,
     '',
     `Jméno: ${name}`,
     `Telefon: ${phone}`,
+    email ? `E-mail: ${email}` : null,
     `Město: ${city}`,
-    `Auto: ${car}`,
+    street || zip ? `Adresa: ${addressLine({ street, zip, city })}` : null,
+    `Auto: ${car}${car_model ? ` (${car_model})` : ''}`,
     `Služba: ${serviceLabel(service)}`,
     `Termín: ${preferred_date}`,
     concerns ? `Co trápí: ${concerns}` : null,
