@@ -1341,3 +1341,7 @@ html { overflow-x: clip; }
 
 /* a narrow desktop window: the links and the phone number no longer fit side by side, so the number steps aside (the button stays) */
 @media (min-width: 1024px) and (max-width: 1139px) { .nav__actions > .nav__link { display: none; } }
+
+/* the closing footer grows with its content on every screen, so on a short laptop window the big buttons never sit over the links */
+footer.closing { height: auto; min-height: 100svh; display: flex; flex-direction: column; }
+footer.closing > .wrap { flex: 1 0 auto; height: auto; grid-template-rows: 1fr auto; }
