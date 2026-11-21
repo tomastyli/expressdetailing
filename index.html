@@ -693,8 +693,9 @@ html.wipe-js .wipe__line { display: block; position: absolute; top: 0; bottom: 0
 html.wipe-js .wipe__list li { transition: color 200ms ease; }
 /* desktop: photo sits right next to the text, the pair is centred so there is no empty middle */
 @media (min-width: 1024px) {
-  html.wipe-js .wipe__grid { --wipe-h: min(calc(100svh - var(--nav, 72px) - 64px), 760px); grid-template-columns: minmax(0, 440px) auto; justify-content: center; column-gap: clamp(48px, 6vw, 112px); }
-  html.wipe-js .wipe__stage { justify-self: start; height: var(--wipe-h); width: calc(var(--wipe-h) * 0.75); max-width: none; }
+  html.wipe-js .wipe__grid { --wipe-h: min(calc(100svh - var(--nav, 72px) - 64px), 760px); grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(48px, 6vw, 112px); }
+  html.wipe-js .wipe__stage { justify-self: end; height: var(--wipe-h); width: calc(var(--wipe-h) * 0.8); max-width: none; }
+  html.wipe-js .wipe__text { max-width: 560px; }
   html.wipe-js .wipe__text h2 { font-size: clamp(2.75rem, 4.2vw, 4rem); }
   html.wipe-js .wipe__list li { cursor: pointer; }
   html.wipe-js .wipe__list li:hover .wipe__car { color: var(--ink); }
