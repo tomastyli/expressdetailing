@@ -696,7 +696,16 @@ html.wipe-js .wipe__list li { transition: color 200ms ease; }
   html.wipe-js .wipe__grid { --wipe-h: min(calc(100svh - var(--nav, 72px) - 64px), 760px); grid-template-columns: minmax(0, 440px) auto; justify-content: center; column-gap: clamp(48px, 6vw, 112px); }
   html.wipe-js .wipe__stage { justify-self: start; height: var(--wipe-h); width: calc(var(--wipe-h) * 0.75); max-width: none; }
   html.wipe-js .wipe__text h2 { font-size: clamp(2.75rem, 4.2vw, 4rem); }
+  html.wipe-js .wipe__list { counter-reset: shot; gap: 0; margin-top: var(--s-7); }
+  html.wipe-js .wipe__list li { counter-increment: shot; position: relative; padding: 14px 0 14px 3.2em; cursor: pointer; }
+  html.wipe-js .wipe__list li::before { content: counter(shot, decimal-leading-zero); position: absolute; left: 0; top: 17px; font-size: var(--t-small); font-variant-numeric: tabular-nums; color: var(--muted); }
+  html.wipe-js .wipe__list li:hover .wipe__car { color: var(--ink); }
+  html.wipe-js .wipe__bar { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line-strong); overflow: hidden; }
+  html.wipe-js .wipe__bar i { position: absolute; inset: -1px 0; background: var(--accent, var(--ink)); transform: scaleX(0); transform-origin: left; will-change: transform; }
+  html.wipe-js .wipe__list li.is-on .wipe__car { font-weight: 500; }
 }
+.wipe__cta { display: none; }
+@media (min-width: 1024px) { html.wipe-js .wipe__cta { display: inline-flex; margin-top: var(--s-6); } }
 @media (max-width: 1023px) {
   .wipe__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
   html.wipe-js .wipe__grid { align-content: center; }
@@ -908,11 +917,12 @@ html.steps-io #postup:not(.is-live) .mo-pc__step.is-seen { opacity: 1; transform
           <p class="muted">Výsledky, ne sliby. Skutečné fotky z mé práce, posouvejte stránku dolů.</p>
           <p class="wipe__hint">Předěl můžete posunout i prstem nebo myší.</p>
           <ol class="wipe__list" aria-label="Záběry">
-            <li class="is-on"><span class="wipe__car">Kia Sportage</span><span class="wipe__desc">Kompletní čištění interiéru</span></li>
-            <li><span class="wipe__car">Audi SQ8</span><span class="wipe__desc">Hloubkové čištění celého interiéru</span></li>
-            <li><span class="wipe__car">Škoda</span><span class="wipe__desc">Tepování světlých sedaček</span></li>
-            <li><span class="wipe__car">Mercedes-Benz GLE</span><span class="wipe__desc">Čištění a péče o kůži</span></li>
+            <li class="is-on"><span class="wipe__bar" aria-hidden="true"><i></i></span><span class="wipe__car">Kia Sportage</span><span class="wipe__desc">Kompletní čištění interiéru</span></li>
+            <li><span class="wipe__bar" aria-hidden="true"><i></i></span><span class="wipe__car">Audi SQ8</span><span class="wipe__desc">Hloubkové čištění celého interiéru</span></li>
+            <li><span class="wipe__bar" aria-hidden="true"><i></i></span><span class="wipe__car">Škoda</span><span class="wipe__desc">Tepování světlých sedaček</span></li>
+            <li><span class="wipe__bar" aria-hidden="true"><i></i></span><span class="wipe__car">Mercedes-Benz GLE</span><span class="wipe__desc">Čištění a péče o kůži</span></li>
           </ol>
+          <a class="btn btn--primary wipe__cta" href="rezervace.html">Rezervovat termín</a>
         </div>
         <div class="wipe__stage">
           <figure class="wipe__pair is-on">
@@ -1404,6 +1414,8 @@ html.steps-io #postup:not(.is-live) .mo-pc__step.is-seen { opacity: 1; transform
   var items = [].slice.call(root.querySelectorAll('.wipe__list li'));
   var cap = root.querySelector('.wipe__cap'), stage = root.querySelector('.wipe__stage'), line = root.querySelector('.wipe__line'), handle = root.querySelector('.wipe__handle');
   var parts = pairs.map(function (f) { return { clip: f.querySelector('.wipe__clip'), img: f.querySelector('.wipe__clip img'), tb: f.querySelector('.wipe__tag--before'), ta: f.querySelector('.wipe__tag--after') }; });
+  var bars = items.map(function (li) { return li.querySelector('.wipe__bar i'); });
+  items.forEach(function (li, i) { li.addEventListener('click', function () { measure(); window.scrollTo({ top: top + span * (i + 0.6) / pairs.length, behavior: 'smooth' }); }); });
   var W = 0, top = 0, span = 1, current = -1, ticking = false, manual = null, lastY = -1;
   function measure() {
     W = stage.clientWidth;
@@ -1427,6 +1439,7 @@ html.steps-io #postup:not(.is-live) .mo-pc__step.is-seen { opacity: 1; transform
     line.style.transform = 'translate3d(' + lx + 'px,0,0)';
     handle.style.transform = 'translate3d(' + lx + 'px,0,0)';
     handle.setAttribute('aria-valuenow', Math.round(p * 100));
+    bars.forEach(function (b, i) { if (b) b.style.transform = 'scaleX(' + (i < seg ? 1 : i > seg ? 0 : p).toFixed(3) + ')'; });
   }
   function fromScroll() {
     var t = Math.max(0, Math.min(0.9999, (window.scrollY - top) / span));
