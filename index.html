@@ -691,6 +691,12 @@ html.wipe-js .wipe__tag { transition: opacity 200ms ease; }
 
 html.wipe-js .wipe__line { display: block; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--bg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent); pointer-events: none; z-index: 2; will-change: transform; }
 html.wipe-js .wipe__list li { transition: color 200ms ease; }
+/* desktop: photo sits right next to the text, the pair is centred so there is no empty middle */
+@media (min-width: 1024px) {
+  html.wipe-js .wipe__grid { --wipe-h: min(calc(100svh - var(--nav, 72px) - 64px), 760px); grid-template-columns: minmax(0, 440px) auto; justify-content: center; column-gap: clamp(48px, 6vw, 112px); }
+  html.wipe-js .wipe__stage { justify-self: start; height: var(--wipe-h); width: calc(var(--wipe-h) * 0.75); max-width: none; }
+  html.wipe-js .wipe__text h2 { font-size: clamp(2.75rem, 4.2vw, 4rem); }
+}
 @media (max-width: 1023px) {
   .wipe__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
   html.wipe-js .wipe__grid { align-content: center; }
