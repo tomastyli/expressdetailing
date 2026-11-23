@@ -305,7 +305,7 @@ html.reel-js .reel__item { flex-basis: min(calc((100svh - var(--nav, 72px) - 180
 .poukaz-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .vchoose { border: 0; padding: 0; margin: 0; min-width: 0; }
 .vchoose legend { padding: 0; margin-bottom: var(--s-3); font-size: var(--t-card); font-weight: 500; }
-.vchoose__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
+.vchoose__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
 .vcard { position: relative; display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line-strong); border-radius: var(--r-lg); overflow: hidden; background: var(--bg); cursor: pointer; transition: border-color 150ms ease; }
 .vcard:hover { border-color: var(--ink); }
 .vcard input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 2; }
@@ -452,7 +452,6 @@ main > section.section { height: auto; min-height: calc(var(--h, 1) * 100svh); }
         <fieldset class="field field--full vchoose"><legend>1. Vyberte poukaz</legend>
           <div class="vchoose__row">
 <label class="vcard"><input type="radio" name="typ" value="interier" required data-error="Vyberte druh poukazu."><img src="assets/poukaz/interier.jpg" alt="Dárkový poukaz na hloubkové čištění interiéru, ukázka" width="1400" height="700" loading="lazy"><span class="vcard__body"><span class="vcard__t">Hloubkové čištění interiéru</span><span class="vcard__p">3 000 Kč</span><span class="vcard__s">Pokryje čištění malého auta, sedanu, kombi i SUV. U MPV a 7místných vozů se doplácí 500 Kč.</span></span></label>
-<label class="vcard"><input type="radio" name="typ" value="vstupni"><img src="assets/poukaz/vstupni.jpg" alt="Vstupní dárkový poukaz 1 500 Kč, ukázka" width="1400" height="700" loading="lazy"><span class="vcard__body"><span class="vcard__t">Vstupní poukaz</span><span class="vcard__p">1 500 Kč</span><span class="vcard__s">Započítá se na jakoukoli službu.</span></span></label>
 <label class="vcard"><input type="radio" name="typ" value="castka"><img src="assets/poukaz/castka.jpg" alt="Dárkový poukaz na libovolnou částku, ukázka" width="1400" height="700" loading="lazy"><span class="vcard__body"><span class="vcard__t">Poukaz na libovolnou částku</span><span class="vcard__p">od 1 000 Kč</span><span class="vcard__s">Hodí se pro firmy nebo když neznáte auto obdarovaného.</span></span></label>
           </div>
         </fieldset>
