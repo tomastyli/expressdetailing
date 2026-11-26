@@ -812,9 +812,12 @@ html.wipe-js .wipe--swipe .wipe__stage { width: min(100%, calc((100svh - var(--n
 html.wipe-js .wipe--swipe .wipe__nav { width: min(100%, 520px); margin-inline: auto; }
 html.wipe-js .wipe__nav { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-4); width: 100%; }
 html.wipe-js .wipe__stage + .wipe__nav { grid-column: auto; }
-.wipe__btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding-inline: 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 500 16px/1 var(--font-text); cursor: pointer; transition: background 200ms ease, border-color 200ms ease, opacity 200ms ease; }
+.wipe__btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding-inline: 26px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 500 18px/1 var(--font-text); cursor: pointer; transition: background 200ms ease, border-color 200ms ease, opacity 200ms ease; }
 .wipe__btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .wipe__btn:hover:not(:disabled) { border-color: var(--ink); }
+.wipe__btn[data-dir="1"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.wipe__btn[data-dir="1"]:hover:not(:disabled) { background: color-mix(in srgb, var(--ink) 85%, var(--bg)); }
+.wipe__btn svg { width: 20px; height: 20px; }
 .wipe__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .wipe__btn:disabled { opacity: .35; cursor: default; }
 .wipe__nav .wipe__dots { display: flex; gap: 6px; margin: 0; }
@@ -1427,6 +1430,25 @@ html.wipe-js .wipe--swipe .wipe__stage { cursor: grab; }
     top = r.top + window.scrollY; span = Math.max(1, root.offsetHeight - window.innerHeight);
   }
   function ease(t) { return t * t * (3 - 2 * t); }
+  /* a hint that the photo moves: the line slides in a little and back, until the visitor touches it */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function bell(ms) { var c = ms % 3200; if (c > 1400) return 0; return Math.sin(Math.PI * c / 1400); }
+  function hinter(tick, stopOn) {
+    if (reduced || !('IntersectionObserver' in window)) return function () {};
+    var raf = 0, live = true, t0 = 0, seen = false;
+    var loop = function (now) { if (!live) return; if (!t0) t0 = now; tick(bell(now - t0)); raf = requestAnimationFrame(loop); };
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!live) return;
+        if (e.isIntersecting && !seen) { seen = true; t0 = 0; raf = requestAnimationFrame(loop); }
+        else if (!e.isIntersecting && seen) { seen = false; cancelAnimationFrame(raf); tick(0); }
+      });
+    }, { threshold: 0.6 });
+    io.observe(stage);
+    var stop = function () { if (!live) return; live = false; cancelAnimationFrame(raf); io.disconnect(); tick(0); };
+    stopOn.forEach(function (p) { p[0].addEventListener(p[1], stop, { passive: true }); });
+    return stop;
+  }
   function paint(seg, p) {
     if (seg !== current) {
       current = seg;
@@ -1531,6 +1553,7 @@ html.wipe-js .wipe--swipe .wipe__stage { cursor: grab; }
     });
     window.addEventListener('resize', function () { measure(); showSwipe(); });
     measure(); P = stops[0]; showSwipe();
+    var stopHint = hinter(function (b) { if (at === 0 && !drag) { P = stops[0] + 0.42 * b; showSwipe(); } }, [[stage, 'pointerdown'], [stage, 'wheel'], [nav, 'click'], [handle, 'keydown']]);
     return;
   }
   (function () {
@@ -1553,6 +1576,7 @@ html.wipe-js .wipe--swipe .wipe__stage { cursor: grab; }
     });
     window.addEventListener('scroll', function () { requestAnimationFrame(sync); }, { passive: true });
     sync();
+    hinter(function (b) { var s = fromScroll(); if (!manual && s.p === 0) paint(s.seg, 0.38 * b); }, [[stage, 'pointerdown'], [nav, 'click'], [handle, 'keydown']]);
   })();
   stage.addEventListener('pointerdown', function (e) {
     drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: e.pointerType === 'mouse' || e.target.closest('.wipe__handle') };
