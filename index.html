@@ -805,6 +805,24 @@ main > #dotazy.section { padding-block: var(--gap-sec); }
 .season__body b { font-size: var(--t-body); font-weight: 600; color: var(--accent); }
 @keyframes season-turn { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .season__icon svg { animation: none; } }
+
+/* phone and tablet: Před a po as a sideways strip of photos (built in the wipe script), no hold */
+.wipe.wipe--strip { height: auto; min-height: 0; padding-block: var(--gap-sec, 72px) 0; }
+.wipe--strip .wipe__sticky { position: static; height: auto; display: block; padding-top: 0; }
+.wipe--strip .wipe__stage, .wipe--strip .wipe__cap, .wipe--strip .wipe__hint, .wipe--strip .wipe__list, .wipe--strip .wipe__line, .wipe--strip .wipe__handle { display: none !important; }
+.ba-strip { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 340px); gap: var(--s-3); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gut, 16px); margin: var(--s-5) calc(-1 * var(--gut, 16px)) 0; padding: 0 var(--gut, 16px) var(--s-2); scrollbar-width: none; }
+.ba-strip::-webkit-scrollbar { display: none; }
+.ba-strip figure { margin: 0; position: relative; aspect-ratio: 3 / 4; border-radius: var(--r-lg); overflow: hidden; background: var(--surface); scroll-snap-align: start; }
+.ba-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ba-strip figcaption { position: absolute; left: var(--s-3); top: var(--s-3); display: flex; gap: 8px; align-items: baseline; padding: 6px 12px; border-radius: 10px; background: var(--bg); font-size: var(--t-small); }
+.ba-strip figcaption b { font-weight: 600; }
+.ba-strip__hint { margin-top: var(--s-2); font-size: var(--t-small); color: var(--muted); }
+main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
+@media (max-width: 899px) {
+  main > .reel { height: auto !important; min-height: 0 !important; padding-block: var(--gap-sec, 72px) 0; }
+  .reel__track { padding-inline: 16px; scroll-padding-inline: 16px; scrollbar-width: none; }
+  .reel__track::-webkit-scrollbar { display: none; }
+}
 </style>
 
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
@@ -1387,7 +1405,32 @@ main > #dotazy.section { padding-block: var(--gap-sec); }
    Only transforms change while scrolling, so the phone does not repaint the photos. */
 (function () {
   var root = document.querySelector('[data-wipe]');
-  if (!root || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!root) return;
+  if (window.matchMedia && window.matchMedia('(max-width: 899px)').matches) {
+    /* phone and tablet: no hold; the before and after photos are a strip you can swipe sideways */
+    var strip = document.createElement('div');
+    strip.className = 'ba-strip';
+    var names = [].slice.call(root.querySelectorAll('.wipe__list .wipe__car')).map(function (n) { return n.textContent; });
+    [].forEach.call(root.querySelectorAll('.wipe__pair'), function (f, i) {
+      [['.wipe__before', 'Před'], ['.wipe__after', 'Po']].forEach(function (k) {
+        var img = f.querySelector(k[0]); if (!img) return;
+        var fig = document.createElement('figure');
+        var c = img.cloneNode(); c.removeAttribute('class'); c.loading = 'lazy';
+        fig.appendChild(c);
+        var cap = document.createElement('figcaption');
+        cap.innerHTML = '<b>' + k[1] + '</b>' + (names[i] || '');
+        fig.appendChild(cap);
+        strip.appendChild(fig);
+      });
+    });
+    var hint = document.createElement('p'); hint.className = 'ba-strip__hint'; hint.textContent = 'Posuňte do strany';
+    var stage = root.querySelector('.wipe__stage');
+    stage.parentNode.insertBefore(strip, stage); strip.parentNode.insertBefore(hint, strip.nextSibling);
+    root.classList.add('wipe--strip');
+    var lead = root.querySelector('.wipe__text .muted'); if (lead) lead.textContent = 'Výsledky, ne sliby. Skutečné fotky z mé práce.';
+    return;
+  }
+  if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.documentElement.classList.add('wipe-js');
   var pairs = [].slice.call(root.querySelectorAll('.wipe__pair'));
   var items = [].slice.call(root.querySelectorAll('.wipe__list li'));
@@ -1474,6 +1517,7 @@ main > #dotazy.section { padding-block: var(--gap-sec); }
 (function () {
   var root = document.querySelector('[data-reel]');
   if (!root || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 899px)').matches) return;   /* phone and tablet: a plain sideways strip, the page scrolls past freely */
   document.documentElement.classList.add('reel-js');
   var track = root.querySelector('.reel__track'), items = [].slice.call(track.children);
   var top = 0, span = 1, max = 0, centers = [], ticking = false;
