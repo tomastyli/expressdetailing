@@ -1461,7 +1461,21 @@ html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 1
       var s = fromScroll(); paint(s.seg, s.p);
       [].forEach.call(dots.children, function (d, i) { d.classList.toggle('is-on', i === s.seg); });
     };
-    stage.addEventListener('pointerdown', function (e) { drag = { id: e.pointerId, x: e.clientX, y: e.clientY, p0: P, on: false }; });
+    /* each swipe is one step: car 1 before -> car 1 after -> car 2 before -> ... (back the other way) */
+    var stops = []; pairs.forEach(function (_, i) { stops.push(i + 0.04, i + 0.86); });
+    var at = 0, anim = 0;
+    var go = function (to) {
+      at = Math.max(0, Math.min(stops.length - 1, to));
+      var from = P, target = stops[at], t0 = performance.now(), dur = 520;
+      cancelAnimationFrame(anim);
+      var step = function (now) {
+        var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        P = from + (target - from) * e; showSwipe();
+        if (k < 1) anim = requestAnimationFrame(step);
+      };
+      anim = requestAnimationFrame(step);
+    };
+    stage.addEventListener('pointerdown', function (e) { cancelAnimationFrame(anim); drag = { id: e.pointerId, x: e.clientX, y: e.clientY, p0: P, on: false }; });
     stage.addEventListener('pointermove', function (e) {
       if (!drag || drag.id !== e.pointerId) return;
       if (!drag.on) {
@@ -1470,13 +1484,23 @@ html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 1
         if (dx > 8 && dx > dy) { drag.on = true; try { stage.setPointerCapture(e.pointerId); } catch (err) {} }
       }
       if (drag && drag.on) {
-        P = Math.max(0, Math.min(pairs.length - 0.0001, drag.p0 + (drag.x - e.clientX) / (W * 0.8)));
+        drag.last = e.clientX;
+        var lo = stops[Math.max(0, at - 1)], hi = stops[Math.min(stops.length - 1, at + 1)];
+        P = Math.max(lo, Math.min(hi, drag.p0 + (drag.x - e.clientX) / (W * 0.8)));
         showSwipe();
       }
     });
-    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) { stage.addEventListener(ev, function () { drag = null; }); });
+    var release = function () {
+      if (drag && drag.on) {
+        var d = drag.x - (drag.last == null ? drag.x : drag.last);
+        go(d > 30 ? at + 1 : d < -30 ? at - 1 : at);
+      }
+      drag = null;
+    };
+    stage.addEventListener('pointerup', release);
+    stage.addEventListener('pointercancel', release);
     window.addEventListener('resize', function () { measure(); showSwipe(); });
-    measure(); showSwipe();
+    measure(); P = stops[0]; showSwipe();
     return;
   }
   stage.addEventListener('pointerdown', function (e) {
