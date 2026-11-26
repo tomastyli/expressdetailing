@@ -797,15 +797,31 @@ main > #dotazy.section { padding-block: var(--gap-sec); }
 main > .wipe.wipe--swipe, html.wipe-js main > .wipe.wipe--swipe { height: auto !important; min-height: 0 !important; padding-block: var(--gap-sec, 72px) 0; }
 html.wipe-js .wipe--swipe .wipe__sticky { position: static; height: auto; display: block; padding-top: 0; overflow: visible; }
 html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 100%; aspect-ratio: 3 / 4; justify-self: stretch; }
-.wipe__dots { display: none; }
-.wipe--swipe .wipe__dots { display: flex; justify-content: center; gap: 6px; margin-top: var(--s-3); }
-.wipe--swipe .wipe__dots span { width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width 300ms ease, background 300ms ease; }
-.wipe--swipe .wipe__dots span.is-on { width: 18px; background: var(--accent); }
 @media (max-width: 899px) {
   main > .reel { height: auto !important; min-height: 0 !important; padding-block: var(--gap-sec, 72px) 0; }
   .reel__track { padding-inline: 16px; scroll-padding-inline: 16px; scrollbar-width: none; }
   .reel__track::-webkit-scrollbar { display: none; }
 }
+
+/* Před a po: clear Zpět / Dál buttons and dots under the photo (all widths) */
+.wipe__nav { display: none; }
+html.wipe-js .wipe__nav--side { width: auto; justify-content: flex-start; margin-top: var(--s-5); }
+@media (max-width: 1023px) { html.wipe-js .wipe__nav--side { display: none; } }
+/* narrow window: the photo fits the screen with the buttons under it */
+html.wipe-js .wipe--swipe .wipe__stage { width: min(100%, calc((100svh - var(--nav, 72px) - 210px) * 0.75)); max-width: 100%; justify-self: center; margin-inline: auto; }
+html.wipe-js .wipe--swipe .wipe__nav { width: min(100%, 520px); margin-inline: auto; }
+html.wipe-js .wipe__nav { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-4); width: 100%; }
+html.wipe-js .wipe__stage + .wipe__nav { grid-column: auto; }
+.wipe__btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding-inline: 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: 500 16px/1 var(--font-text); cursor: pointer; transition: background 200ms ease, border-color 200ms ease, opacity 200ms ease; }
+.wipe__btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.wipe__btn:hover:not(:disabled) { border-color: var(--ink); }
+.wipe__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wipe__btn:disabled { opacity: .35; cursor: default; }
+.wipe__nav .wipe__dots { display: flex; gap: 6px; margin: 0; }
+.wipe__nav .wipe__dots span { width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width 300ms ease, background 300ms ease; }
+.wipe__nav .wipe__dots span.is-on { width: 18px; background: var(--accent); }
+html.wipe-js .wipe__stage img { -webkit-user-drag: none; user-select: none; }
+html.wipe-js .wipe--swipe .wipe__stage { cursor: grab; }
 </style>
 
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
@@ -1396,7 +1412,7 @@ html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 1
   if (swipe) {
     root.classList.add('wipe--swipe');
     var lead = root.querySelector('.wipe__text .muted'); if (lead) lead.textContent = 'Výsledky, ne sliby. Skutečné fotky z mé práce.';
-    var hint0 = root.querySelector('.wipe__hint'); if (hint0) hint0.textContent = 'Přejeďte po fotce prstem do strany.';
+    var hint0 = root.querySelector('.wipe__hint'); if (hint0) hint0.textContent = 'Další fotku ukážou tlačítka pod fotkou nebo přejetí do strany.';
   }
   var pairs = [].slice.call(root.querySelectorAll('.wipe__pair'));
   var items = [].slice.call(root.querySelectorAll('.wipe__list li'));
@@ -1454,12 +1470,15 @@ html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 1
   var drag = null;
   if (swipe) {
     stage.style.touchAction = 'pan-y';
-    var dots = document.createElement('div'); dots.className = 'wipe__dots'; dots.setAttribute('aria-hidden', 'true');
+    var nav = document.createElement('div'); nav.className = 'wipe__nav';
+    nav.innerHTML = '<button type="button" class="wipe__btn" data-dir="-1" aria-label="Předchozí fotka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Zpět</span></button><div class="wipe__dots" aria-hidden="true"></div><button type="button" class="wipe__btn" data-dir="1" aria-label="Další fotka"><span>Dál</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>';
+    var dots = nav.querySelector('.wipe__dots');
     pairs.forEach(function () { dots.appendChild(document.createElement('span')); });
-    stage.parentNode.insertBefore(dots, stage.nextSibling);
+    stage.parentNode.insertBefore(nav, stage.nextSibling);
     var showSwipe = function () {
       var s = fromScroll(); paint(s.seg, s.p);
       [].forEach.call(dots.children, function (d, i) { d.classList.toggle('is-on', i === s.seg); });
+      if (typeof at === 'number' && nav) { nav.querySelector('[data-dir="-1"]').disabled = at <= 0; nav.querySelector('[data-dir="1"]').disabled = at >= pairs.length * 2 - 1; }
     };
     /* each swipe is one step: car 1 before -> car 1 after -> car 2 before -> ... (back the other way) */
     var stops = []; pairs.forEach(function (_, i) { stops.push(i + 0.04, i + 0.86); });
@@ -1499,10 +1518,42 @@ html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 1
     };
     stage.addEventListener('pointerup', release);
     stage.addEventListener('pointercancel', release);
+    nav.addEventListener('click', function (e) { var b = e.target.closest('.wipe__btn'); if (b) go(at + (+b.getAttribute('data-dir'))); });
+    var wheelLock = 0;
+    stage.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) < 6 || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;   // only a sideways trackpad move
+      e.preventDefault();
+      var now = Date.now(); if (now < wheelLock) return;
+      wheelLock = now + 650; go(at + (e.deltaX > 0 ? 1 : -1));
+    }, { passive: false });
+    handle.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(at + 1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); go(at - 1); }
+    });
     window.addEventListener('resize', function () { measure(); showSwipe(); });
     measure(); P = stops[0]; showSwipe();
     return;
   }
+  (function () {
+    var nav = document.createElement('div'); nav.className = 'wipe__nav';
+    nav.innerHTML = '<button type="button" class="wipe__btn" data-dir="-1" aria-label="Předchozí fotka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Zpět</span></button><div class="wipe__dots" aria-hidden="true"></div><button type="button" class="wipe__btn" data-dir="1" aria-label="Další fotka"><span>Dál</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>';
+    var dots = nav.querySelector('.wipe__dots');
+    pairs.forEach(function () { dots.appendChild(document.createElement('span')); });
+    var list = root.querySelector('.wipe__list');
+    nav.classList.add('wipe__nav--side');
+    list.parentNode.insertBefore(nav, list.nextSibling);
+    var n = pairs.length;
+    var state = function () { var s = fromScroll(); return s.seg * 2 + (s.p > 0.5 ? 1 : 0); };
+    var sync = function () { var s = fromScroll(), st = state(); [].forEach.call(dots.children, function (d, i) { d.classList.toggle('is-on', i === s.seg); }); nav.querySelector('[data-dir="-1"]').disabled = st <= 0; nav.querySelector('[data-dir="1"]').disabled = st >= n * 2 - 1; };
+    nav.addEventListener('click', function (e) {
+      var b = e.target.closest('.wipe__btn'); if (!b) return;
+      measure(); manual = null;
+      var to = Math.max(0, Math.min(n * 2 - 1, state() + (+b.getAttribute('data-dir'))));
+      var t = (Math.floor(to / 2) + (to % 2 ? 0.9 : 0.06)) / n;
+      window.scrollTo({ top: top + span * t, behavior: 'smooth' });
+    });
+    window.addEventListener('scroll', function () { requestAnimationFrame(sync); }, { passive: true });
+    sync();
+  })();
   stage.addEventListener('pointerdown', function (e) {
     drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: e.pointerType === 'mouse' || e.target.closest('.wipe__handle') };
     if (drag.on) { stage.setPointerCapture(e.pointerId); setManual(e.clientX); }
