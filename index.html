@@ -658,19 +658,6 @@ html.flow-js .flow__step.is-on { opacity: 1; }
 html.flow-js .flow__step.is-on .flow__n { transform: none; }
 html.flow-js .flow__step.is-on .flow__body { transform: translate3d(6px, 0, 0); }
 @media (max-width: 899px) { .flow__grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); } .flow__head { position: static; } }
-/* phone and tablet: the steps are a strip you can swipe sideways; the page scrolls past it freely */
-@media (max-width: 899px) {
-  .flow__steps { grid-auto-flow: column; grid-auto-columns: min(82%, 360px); gap: var(--s-3); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gut, 16px); margin-inline: calc(-1 * var(--gut, 16px)); padding: var(--s-2) var(--gut, 16px) var(--s-4); scrollbar-width: none; }
-  .flow__steps::-webkit-scrollbar { display: none; }
-  .flow__step, .flow__step:last-child { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); align-content: start; padding: var(--s-6) var(--s-5); border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); scroll-snap-align: start; }
-  html.flow-js .flow__step { opacity: 1; }
-  html.flow-js .flow__step .flow__n, html.flow-js .flow__step .flow__body { transform: none; }
-  .flow__swipe { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-2); font-size: var(--t-small); color: var(--muted); }
-  .flow__dots { display: flex; gap: 6px; }
-  .flow__dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background 300ms ease, width 300ms ease; }
-  .flow__dots span.is-on { width: 18px; border-radius: 3px; background: var(--accent); }
-}
-@media (min-width: 900px) { .flow__swipe { display: none; } }
 @media (prefers-reduced-motion: reduce) { html.flow-js .flow__step, html.flow-js .flow__step .flow__n, html.flow-js .flow__step .flow__body { transition: none; } }
 /* ceník without the photo: the list takes the width */
 #cenik .cenik-main { grid-column: 1 / span 8; }
@@ -806,18 +793,14 @@ main > #dotazy.section { padding-block: var(--gap-sec); }
 @keyframes season-turn { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .season__icon svg { animation: none; } }
 
-/* phone and tablet: Před a po as a sideways strip of photos (built in the wipe script), no hold */
-.wipe.wipe--strip { height: auto; min-height: 0; padding-block: var(--gap-sec, 72px) 0; }
-.wipe--strip .wipe__sticky { position: static; height: auto; display: block; padding-top: 0; }
-.wipe--strip .wipe__stage, .wipe--strip .wipe__cap, .wipe--strip .wipe__hint, .wipe--strip .wipe__list, .wipe--strip .wipe__line, .wipe--strip .wipe__handle { display: none !important; }
-.ba-strip { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 340px); gap: var(--s-3); overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gut, 16px); margin: var(--s-5) calc(-1 * var(--gut, 16px)) 0; padding: 0 var(--gut, 16px) var(--s-2); scrollbar-width: none; }
-.ba-strip::-webkit-scrollbar { display: none; }
-.ba-strip figure { margin: 0; position: relative; aspect-ratio: 3 / 4; border-radius: var(--r-lg); overflow: hidden; background: var(--surface); scroll-snap-align: start; }
-.ba-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ba-strip figcaption { position: absolute; left: var(--s-3); top: var(--s-3); display: flex; gap: 8px; align-items: baseline; padding: 6px 12px; border-radius: 10px; background: var(--bg); font-size: var(--t-small); }
-.ba-strip figcaption b { font-weight: 600; }
-.ba-strip__hint { margin-top: var(--s-2); font-size: var(--t-small); color: var(--muted); }
-main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
+/* phone and tablet: Před a po stays one photo with the line, moved by a sideways swipe; the page does not hold */
+main > .wipe.wipe--swipe, html.wipe-js main > .wipe.wipe--swipe { height: auto !important; min-height: 0 !important; padding-block: var(--gap-sec, 72px) 0; }
+html.wipe-js .wipe--swipe .wipe__sticky { position: static; height: auto; display: block; padding-top: 0; overflow: visible; }
+html.wipe-js .wipe--swipe .wipe__stage { height: auto; max-width: none; width: 100%; aspect-ratio: 3 / 4; justify-self: stretch; }
+.wipe__dots { display: none; }
+.wipe--swipe .wipe__dots { display: flex; justify-content: center; gap: 6px; margin-top: var(--s-3); }
+.wipe--swipe .wipe__dots span { width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width 300ms ease, background 300ms ease; }
+.wipe--swipe .wipe__dots span.is-on { width: 18px; background: var(--accent); }
 @media (max-width: 899px) {
   main > .reel { height: auto !important; min-height: 0 !important; padding-block: var(--gap-sec, 72px) 0; }
   .reel__track { padding-inline: 16px; scroll-padding-inline: 16px; scrollbar-width: none; }
@@ -1057,7 +1040,6 @@ main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
             <div class="flow__body"><h3>Kůže, plasty a detaily</h3><p>Kožené sedačky vyčistím a ošetřím, vyčistím a ošetřím plasty a palubovku.</p></div>
           </li>
         </ol>
-        <div class="flow__swipe" aria-hidden="true"><span>Posuňte do strany</span><span class="flow__dots"><span class="is-on"></span><span></span><span></span><span></span></span></div>
       </div>
     </div>
   </section>
@@ -1406,32 +1388,16 @@ main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
 (function () {
   var root = document.querySelector('[data-wipe]');
   if (!root) return;
-  if (window.matchMedia && window.matchMedia('(max-width: 899px)').matches) {
-    /* phone and tablet: no hold; the before and after photos are a strip you can swipe sideways */
-    var strip = document.createElement('div');
-    strip.className = 'ba-strip';
-    var names = [].slice.call(root.querySelectorAll('.wipe__list .wipe__car')).map(function (n) { return n.textContent; });
-    [].forEach.call(root.querySelectorAll('.wipe__pair'), function (f, i) {
-      [['.wipe__before', 'Před'], ['.wipe__after', 'Po']].forEach(function (k) {
-        var img = f.querySelector(k[0]); if (!img) return;
-        var fig = document.createElement('figure');
-        var c = img.cloneNode(); c.removeAttribute('class'); c.loading = 'lazy';
-        fig.appendChild(c);
-        var cap = document.createElement('figcaption');
-        cap.innerHTML = '<b>' + k[1] + '</b>' + (names[i] || '');
-        fig.appendChild(cap);
-        strip.appendChild(fig);
-      });
-    });
-    var hint = document.createElement('p'); hint.className = 'ba-strip__hint'; hint.textContent = 'Posuňte do strany';
-    var stage = root.querySelector('.wipe__stage');
-    stage.parentNode.insertBefore(strip, stage); strip.parentNode.insertBefore(hint, strip.nextSibling);
-    root.classList.add('wipe--strip');
-    var lead = root.querySelector('.wipe__text .muted'); if (lead) lead.textContent = 'Výsledky, ne sliby. Skutečné fotky z mé práce.';
-    return;
-  }
+  /* phone and tablet: the same single photo, but a sideways swipe moves the line and steps to the next car;
+     the page itself scrolls past freely */
+  var swipe = !!(window.matchMedia && window.matchMedia('(max-width: 899px)').matches), P = 0;
   if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.documentElement.classList.add('wipe-js');
+  if (swipe) {
+    root.classList.add('wipe--swipe');
+    var lead = root.querySelector('.wipe__text .muted'); if (lead) lead.textContent = 'Výsledky, ne sliby. Skutečné fotky z mé práce.';
+    var hint0 = root.querySelector('.wipe__hint'); if (hint0) hint0.textContent = 'Přejeďte po fotce prstem do strany.';
+  }
   var pairs = [].slice.call(root.querySelectorAll('.wipe__pair'));
   var items = [].slice.call(root.querySelectorAll('.wipe__list li'));
   var cap = root.querySelector('.wipe__cap'), stage = root.querySelector('.wipe__stage'), line = root.querySelector('.wipe__line'), handle = root.querySelector('.wipe__handle');
@@ -1464,7 +1430,7 @@ main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
     bars.forEach(function (b, i) { if (b) b.style.transform = 'scaleX(' + (i < seg ? 1 : i > seg ? 0 : p).toFixed(3) + ')'; });
   }
   function fromScroll() {
-    var t = Math.max(0, Math.min(0.9999, (window.scrollY - top) / span));
+    var t = swipe ? Math.max(0, Math.min(0.9999, P / pairs.length)) : Math.max(0, Math.min(0.9999, (window.scrollY - top) / span));
     var n = pairs.length, seg = Math.min(n - 1, Math.floor(t * n)), u = t * n - seg;
     return { seg: seg, p: ease(Math.max(0, Math.min(1, (u - 0.12) / 0.7))) };
   }
@@ -1486,6 +1452,33 @@ main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
   }
   // A mouse drags at once; a finger only after it clearly moves sideways, so scrolling past the photo never moves the line.
   var drag = null;
+  if (swipe) {
+    stage.style.touchAction = 'pan-y';
+    var dots = document.createElement('div'); dots.className = 'wipe__dots'; dots.setAttribute('aria-hidden', 'true');
+    pairs.forEach(function () { dots.appendChild(document.createElement('span')); });
+    stage.parentNode.insertBefore(dots, stage.nextSibling);
+    var showSwipe = function () {
+      var s = fromScroll(); paint(s.seg, s.p);
+      [].forEach.call(dots.children, function (d, i) { d.classList.toggle('is-on', i === s.seg); });
+    };
+    stage.addEventListener('pointerdown', function (e) { drag = { id: e.pointerId, x: e.clientX, y: e.clientY, p0: P, on: false }; });
+    stage.addEventListener('pointermove', function (e) {
+      if (!drag || drag.id !== e.pointerId) return;
+      if (!drag.on) {
+        var dx = Math.abs(e.clientX - drag.x), dy = Math.abs(e.clientY - drag.y);
+        if (dy > 10 && dy > dx) { drag = null; return; }
+        if (dx > 8 && dx > dy) { drag.on = true; try { stage.setPointerCapture(e.pointerId); } catch (err) {} }
+      }
+      if (drag && drag.on) {
+        P = Math.max(0, Math.min(pairs.length - 0.0001, drag.p0 + (drag.x - e.clientX) / (W * 0.8)));
+        showSwipe();
+      }
+    });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) { stage.addEventListener(ev, function () { drag = null; }); });
+    window.addEventListener('resize', function () { measure(); showSwipe(); });
+    measure(); showSwipe();
+    return;
+  }
   stage.addEventListener('pointerdown', function (e) {
     drag = { id: e.pointerId, x: e.clientX, y: e.clientY, on: e.pointerType === 'mouse' || e.target.closest('.wipe__handle') };
     if (drag.on) { stage.setPointerCapture(e.pointerId); setManual(e.clientX); }
@@ -1664,14 +1657,6 @@ main > .wipe.wipe--strip { height: auto !important; min-height: 0 !important; }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   window.addEventListener('resize', update);
   update();
-})();
-(function () {
-  var list = document.querySelector('[data-flow] .flow__steps'), dots = document.querySelectorAll('[data-flow] .flow__dots span');
-  if (!list || !dots.length) return;
-  list.addEventListener('scroll', function () {
-    var w = list.firstElementChild.getBoundingClientRect().width + 12, i = Math.round(list.scrollLeft / w);
-    [].forEach.call(dots, function (d, n) { d.classList.toggle('is-on', n === Math.min(i, dots.length - 1)); });
-  }, { passive: true });
 })();
 </script>
 
